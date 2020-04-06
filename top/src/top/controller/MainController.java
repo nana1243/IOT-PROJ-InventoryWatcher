@@ -2,7 +2,10 @@ package top.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.Rserve.RConnection;
@@ -19,14 +22,23 @@ import top.model.Warehouse;
 public class MainController {
 
 	@RequestMapping("/main.top")
-	public ModelAndView main(ModelAndView mv, HttpServletResponse res) {
+	public ModelAndView main(ModelAndView mv, HttpServletResponse res, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String u_id = (String) session.getAttribute("loginid");
+		System.out.println(u_id);
+
+		mv.addObject("uid", u_id);
+		// uid가 null이 아닐때
 		mv.addObject("inventory", "../inventory/inventory_summary");
 		mv.addObject("suggestion", null);
 		mv.addObject("analysis", null);
+
+		// uid가 null일때
+		if (u_id == null) {
+			mv.addObject("center", "../user/login");
+		}
 		mv.setViewName("main/main");
-
 		res.setContentType("text/html; charset=UTF-8");
-
 		return mv;
 	}
 
@@ -81,7 +93,7 @@ public class MainController {
 
 	@RequestMapping("/rt_inventory")
 	public void rt_inventory() {
-		
+
 		Item item01_1 = new Item("itemId01_1", "itemCode01", "itemName01", "itemCategory01", null, null);
 		Item item01_2 = new Item("itemId01_2", "itemCode01", "itemName01", "itemCategory01", null, null);
 		Item item01_3 = new Item("itemId01_3", "itemCode01", "itemName01", "itemCategory01", null, null);
@@ -92,10 +104,9 @@ public class MainController {
 		Item item02_3 = new Item("itemId02_3", "itemCode02", "itemName02", "itemCategory02", null, null);
 		Item item02_4 = new Item("itemId02_4", "itemCode02", "itemName02", "itemCategory02", null, null);
 		Item item02_5 = new Item("itemId02_5", "itemCode02", "itemName02", "itemCategory02", null, null);
-		
+
 		ArrayList<Item> itemList = new ArrayList<Item>();
 
-		
 		itemList.add(item01_1);
 		itemList.add(item01_2);
 		itemList.add(item01_3);
@@ -106,18 +117,17 @@ public class MainController {
 		itemList.add(item02_3);
 		itemList.add(item02_4);
 		itemList.add(item02_5);
-		
-		
+
 		Container container01 = new Container("containerId01", "containerName01", "100", null, null, null, null);
 		Container container02 = new Container("containerId02", "containerName02", "200", null, null, null, null);
 
 		ArrayList<Container> conList = new ArrayList<Container>();
 		conList.add(container01);
 		conList.add(container02);
-		
-		
-		Warehouse warehouse = new Warehouse("warehouseId01", "warehouseName01", "warehouseAddress01", conList, itemList);
-	
+
+		Warehouse warehouse = new Warehouse("warehouseId01", "warehouseName01", "warehouseAddress01", conList,
+				itemList);
+
 		System.out.println(warehouse);
 	}
 

@@ -4,6 +4,7 @@ import top.model.User;
 
 public interface UserMapper {
 	
-	public void insert(User user);
+
+	public User select(String u_id);
 
 }

@@ -24,6 +24,7 @@ public class User {
 		this.u_addr = u_addr;
 	}
 
+	
 	public String getU_id() {
 		return u_id;
 	}

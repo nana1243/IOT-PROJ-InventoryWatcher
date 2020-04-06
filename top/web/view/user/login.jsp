@@ -29,44 +29,53 @@
 		<div class="container container-login animated fadeIn">
 			<h3 class="text-center">LOGIN</h3>
 			<div class="login-form">
-			<!--  ID 입력 START -->			
-				<div class="form-group">
-					<label for="ID" class="placeholder"><b>ID</b></label>
-					<input id="ID" name="ID" type="text" class="form-control" required>
-				</div>
-			<!--  ID 입력 END -->
+			<form class="loginform" action="loginimpl.top" method="post"
+				novalidate="novalidate">	
+					<!--  ID 입력 START -->
+					<div class="form-group">
+						<label for="ID" class="placeholder"><b>ID</b></label> <input
+							id="ID" name="ID" type="text" class="form-control" required>
+					</div>
+					<!--  ID 입력 END -->
 
-			<!--  PASSWORD 입력 START -->
-				<div class="form-group">
-					<label for="password" class="placeholder"><b>Password</b></label>
-					<a href="#" class="link float-right">Forget Password ?</a>
-					<div class="position-relative">
-						<input id="password" name="password" type="password" class="form-control" required>
-						<div class="show-password">
-							<i class="flaticon-interface"></i>
+					<!--  PASSWORD 입력 START -->
+					<div class="form-group">
+						<label for="password" class="placeholder"><b>Password</b></label>
+						<a href="#" class="link float-right">Forget Password ?</a>
+						<div class="position-relative">
+							<input id="password" name="password" type="password"
+								class="form-control" required>
+							<div class="show-password">
+								<i class="flaticon-interface"></i>
+							</div>
 						</div>
 					</div>
-				</div>
-			<!--  PASSWORD 입력 END -->
+					<!--  PASSWORD 입력 END -->
 
-			<!-- 마지막 제출하기 구간 START -->	
-				<div class="form-group form-action-d-flex mb-3">
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="rememberme">
-						<label class="custom-control-label m-0" for="rememberme">Remember Me</label>
+					<!-- 마지막 제출하기 구간 START -->
+					<div class="form-group form-action-d-flex mb-3">
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								id="rememberme"> <label class="custom-control-label m-0"
+								for="rememberme">Remember Me</label>
+						</div>
+
+						<button
+							class="btn btn-primary col-md-5 float-right mt-3 mt-sm-0 fw-bold"
+							type="submit" value="submit" class="btn_3">log in</button>
+
 					</div>
-					<a href="#" class="btn btn-primary col-md-5 float-right mt-3 mt-sm-0 fw-bold">Sign In</a>
-				</div>
 
-				<div class="login-account">
-					<span class="msg">Don't have an account yet ?</span>
-					<a href="#" id="show-signup" class="link">Sign Up</a>
-				</div>				
-			<!-- 마지막 제출하기 구간 END -->			
-			</div>
+					<div class="login-account">
+						<span class="msg">Don't have an account yet ?</span> <a href="#"
+							id="show-signup" class="link">Sign Up</a>
+					</div>
+					<!-- 마지막 제출하기 구간 END -->
+			</form>
 		</div>
 	</div>
-	
+</div>
+
 	<script src="assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 	<script src="assets/js/core/popper.min.js"></script>

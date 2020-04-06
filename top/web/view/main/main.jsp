@@ -37,53 +37,56 @@
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link rel="stylesheet" href="assets/css/demo.css">
 </head>
+
 <body>
 	<div class="wrapper">
-
 		<jsp:include page="header.jsp" />
-
 		<jsp:include page="sidebar.jsp" />
-
 		<!--  Center Page Here! -->
 		<div class="main-panel">
 			<div class="content">
 				<div class="page-inner">
 
 
-
 					<!-- Inventory Summary START! -->
-					<c:choose>
-						<c:when test="${inventory == null }">
-							<jsp:include page="empty.jsp" />
-						</c:when>
-						<c:otherwise>
-							<jsp:include page="${inventory }.jsp" />
-						</c:otherwise>
-					</c:choose>
-					<!-- Inventory Summary END! -->
 
-					<!-- Product Suggestion START! -->
 					<c:choose>
-						<c:when test="${suggestion == null }">
-							<jsp:include page="empty.jsp" />
-						</c:when>
-						<c:otherwise>
-							<jsp:include page="${suggestion }.jsp" />
-						</c:otherwise>
-					</c:choose>
-					<!-- Product Suggestion END! -->
+						<c:when test="${uid !=null}">
+							<c:if test="${inventory != null }">
+								<jsp:include page="${inventory}.jsp" />
+							</c:if>
+							<!-- Inventory Summary END! -->
 
-					<!-- Visual Analysis START! -->
-					<c:choose>
-						<c:when test="${analysis == null }">
-							<jsp:include page="empty.jsp" />
+							<!-- Product Suggestion START! -->
+
+							<c:if test="${suggestion != null }">
+								<jsp:include page="${suggestion }.jsp" />
+							</c:if>
+
+							<!-- Product Suggestion END! -->
+
+							<!-- Visual Analysis START! -->
+
+							<c:if test="${analysis != null }">
+								<jsp:include page="${analysis }.jsp" />
+							</c:if>
+
+							<!-- Visual Analysis END! -->
 						</c:when>
+
 						<c:otherwise>
-							<jsp:include page="${analysis }.jsp" />
+							<!--  login and logout  start -->
+
+							<c:if test="${center != null }">
+								<jsp:include page="${center}.jsp" />
+							</c:if>
+							<!--  login and logout end -->
+
 						</c:otherwise>
+
 					</c:choose>
-					<!-- Visual Analysis END! -->
-					
+
+
 
 				</div>
 			</div>
@@ -92,7 +95,6 @@
 
 
 	</div>
-
 	<!--   Core JS Files   -->
 	<script src="assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="assets/js/core/popper.min.js"></script>
