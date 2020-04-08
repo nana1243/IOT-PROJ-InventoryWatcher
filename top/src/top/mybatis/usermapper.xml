@@ -13,9 +13,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	
 	<insert id="insert" parameterType="user">
-		INSERT INTO USERS VALUES (#{u_id},#{u_pwd},#{u_name},#{u_phone},#{u_address})
+		INSERT INTO USERS VALUES (#{u_id},#{u_pwd},#{u_name},#{u_phone},#{u_addr})
 	</insert>
 	
+	<select id="selectall" resultType="user">
+		SELECT * FROM USERS
+	</select>
 	
 	
 </mapper>

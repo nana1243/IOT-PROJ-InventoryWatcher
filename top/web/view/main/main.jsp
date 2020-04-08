@@ -52,6 +52,7 @@
 
 					<c:choose>
 						<c:when test="${uid !=null}">
+				
 							<c:if test="${inventory != null }">
 								<jsp:include page="${inventory}.jsp" />
 							</c:if>

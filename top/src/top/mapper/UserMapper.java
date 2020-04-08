@@ -1,12 +1,20 @@
 package top.mapper;
 
-import top.model.User;
+
+
+import java.util.ArrayList;
+
+import top.vo.UserVO;
 
 public interface UserMapper {
 	
 
-	public User select(String u_id);
+	public UserVO select(String u_id);
 	
-	public User insert(User user);
+	
+	public ArrayList<UserVO> selectall();
+
+	
+	public void insert(UserVO user);
 
 }

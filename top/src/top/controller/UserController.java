@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import top.frame.Biz;
-import top.model.User;
+import top.vo.UserVO;
 
 @Controller
 public class UserController {
 
 	@Resource(name = "ubiz")
-	Biz<String, User> ubiz;
+	Biz<String, UserVO> ubiz;
 
 	@RequestMapping("/login.top")
 	public ModelAndView login(HttpServletRequest request) {
@@ -45,7 +45,7 @@ public class UserController {
 		
 		String u_id = request.getParameter("ID").trim();
 		String u_pwd = request.getParameter("password").trim();	
-		User dbuser = null;
+		UserVO dbuser = null;
 		try {
 			dbuser = ubiz.get(u_id);
 			System.out.println(dbuser);
@@ -86,45 +86,51 @@ public class UserController {
 
 	
 	@RequestMapping(value="/signupimpl.top" ,produces="text/plain;charset=UTF-8")
-
+	
 	public String signupimpl(HttpServletRequest request) {
-		User insert_user = new User();
-		ArrayList<String> u_addr =null;
+		UserVO insert_user = new UserVO();
+		
+		ArrayList<String> u_addr = new ArrayList<String>();
 		try {
 			request.setCharacterEncoding("UTF-8"); 
-					
 
-			Enumeration<String> params = request.getParameterNames();
 			System.out.println("----------------------------");
-			
-			
-			while (params.hasMoreElements()) {
-				String name = (String) params.nextElement();
-				if (name.startsWith("address")) {
-					u_addr.add(request.getParameter(name));
-			
-				}	
-			}
-			System.out.println("----------------------------");			
-			
+		
+			Enumeration<String> params = request.getParameterNames();
 			String u_name = request.getParameter("name").trim();
 			String u_id = request.getParameter("ID").trim();
 			String u_pwd = request.getParameter("passwordsignin").trim();
 			String u_phone = request.getParameter("phonenumber").trim();
+			while (params.hasMoreElements()) {
+				String name = (String) params.nextElement();
+				if (name.startsWith("address")) {
+					String inputaddr=request.getParameter(name);
+					inputaddr= inputaddr.replace(",", " ");
+					u_addr.add(inputaddr);
+				}	
+			}
+			
+			System.out.println("----------------------------");
 		
-			String u_address = request.getParameter("address0").trim();
-			
-			System.out.println("check 5");
-			System.out.println(u_address);
-			
 			try {
 				insert_user.setU_id(u_id);
 				insert_user.setU_name(u_name);
 				insert_user.setU_pwd(u_pwd);
 				insert_user.setU_phone(u_phone);
-				insert_user.setU_addr(u_addr);
+				String inputaddr="";
+				for (int i = 0; i < u_addr.size(); i++) {
+					inputaddr += u_addr.get(i);
+					if (i != u_addr.size() - 1) {
+						inputaddr = inputaddr + ",";
+					} 					
+					insert_user.setU_addr(inputaddr);
+				}
+				System.out.println(insert_user+" :insert_user");
+				System.out.println(inputaddr.length());
+				System.out.println(  "inputaddr : "+inputaddr);
 				ubiz.register(insert_user);
 				
+				System.out.println("----------------------------");
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -137,9 +143,7 @@ public class UserController {
 			
 		}
 		
-				
 	
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main/main");
 		return "redirect:main.top";	

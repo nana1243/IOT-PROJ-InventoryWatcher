@@ -1,16 +1,18 @@
 package top.frame;
 
-public interface Biz<K, V> {
+import java.util.ArrayList;
 
-	
-	default public V get(K k) throws Exception {
-		return null;
-	};
+public interface Biz<Id, Model> {
 	
 	
-	default public void register(V v) throws Exception{
-		
-	};
-
+	public Model get(Id id);
 	
+	public ArrayList<Model> get();
+	
+    public void register(Model model);
+			
 }
+
+
+
+

@@ -1,16 +1,18 @@
 package top.frame;
 
-public interface Dao<K, V> {
+import java.util.ArrayList;
+
+public interface Dao<Id, Model> {
 	
 	
-	default public V select(K k) throws Exception {
-		return null;
-	}
+	public Model select(Id id);
 	
-	default public void insert(V v) throws Exception {
-		
-	}
+	public ArrayList<Model> selectall();
+	
+	public void insert(Model model) ;
 
 	
 
 }
+
+

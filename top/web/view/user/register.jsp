@@ -83,6 +83,11 @@
 			}
 		}
 	}
+	
+	
+	
+	
+	
 </script>
 
 
@@ -112,8 +117,11 @@
 
 					<!--  ID  START-->
 					<div class="form-group">
-						<label for="ID" class="placeholder"><b>ID</b></label> <input
-							id="ID" name="ID" type="text" class="form-control" required>
+						<label for="ID" class="placeholder"><b>ID</b></label> <a href="#"
+							class="link float-right">id중복확인
+						</a> <input id="ID" name="ID" type="text" class="form-control"
+							required>
+
 					</div>
 					<!--  ID  END-->
 
