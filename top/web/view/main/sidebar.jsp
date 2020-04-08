@@ -143,10 +143,10 @@
 					<div class="collapse" id="custompages">
 						<ul class="nav nav-collapse">
 							<li><a href="login.top"> <span class="sub-item">Login
-										& Register 1</span>
+								</span>
 							</a></li>
-							<li><a href="login2.html"> <span class="sub-item">Login
-										& Register 2</span>
+							<li><a href="signup.top"> <span class="sub-item">Register
+								</span>
 							</a></li>
 							<li><a href="userprofile.html"> <span class="sub-item">User
 										Profile</span>

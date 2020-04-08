@@ -1,14 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
 <!DOCTYPE html>
-<html >
+<html lang="en">
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
 <title>Register TEST</title>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no'
 	name='viewport' />
@@ -17,7 +13,6 @@
 <!-- Fonts and icons -->
 <script src="assets/js/plugin/webfont/webfont.min.js"></script>
 <script>
-
 	WebFont.load({
 		google : {
 			"families" : [ "Open+Sans:300,400,600,700" ]
@@ -28,42 +23,42 @@
 			urls : [ 'assets/css/fonts.css' ]
 		},
 		active : function() {
-			sessionStorage.fonts = false;
+			sessionStorage.fonts = true;
 		}
 	});
 
-	var count = 1;
+		var count = 1;
 
-	function addForm() {
-		var addedFormDiv = document.getElementById("inputarea");
-		var str = "";
-		str += '<input type="text"  class="form-control" name="address' + count+ '" ' +
-		' id="address' + count + '" ' + 'placeholder="ì£¼ì†Œë¥¼ ì…ë ¥í•˜ê¸° ìœ„í•´ í´ë¦­í•˜ì„¸ìš”" ';
-		str += 'onclick="goPopup(';
-		str += count;
-		str += ')" / >';
-		alert(str);
-		// ì¶”ê°€í•  í¼(ì— ë“¤ì–´ê°ˆ HTML)
-		var addedDiv = document.createElement("div"); // í¼ ìƒì„±
-		addedDiv.id = "added_" + count; // í¼ Divì— ID ë¶€ ì—¬ (ì‚­ì œë¥¼ ìœ„í•´)
-		addedDiv.innerHTML = str; // í¼ Divì•ˆì— HTMLì‚½ì…
-		addedFormDiv.appendChild(addedDiv); // ì‚½ì…í•  DIVì— ìƒì„±í•œ í¼ ì‚½ì…
-		count++;
-		document.baseForm.count.value = count;
+		function addForm() {
+			alert("check1");
+			var addedFormDiv = document.getElementById("inputarea");
+			var str = "";
+			str += '<input type="text" class="form-control" id="address'
+					+ count + '" ' + 'placeholder="ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ±â À§ÇØ Å¬¸¯ÇÏ¼¼¿ä" ';
+			str += 'onclick="goPopup(';
+			str += count;
+			str += ')" >';
+			// Ãß°¡ÇÒ Æû(¿¡ µé¾î°¥ HTML)
+			var addedDiv = document.createElement("div"); // Æû »ı¼º
+			addedDiv.id = "added_" + count; // Æû Div¿¡ ID ºÎ ¿© (»èÁ¦¸¦ À§ÇØ)
+			addedDiv.innerHTML = str; // Æû Div¾È¿¡ HTML»ğÀÔ
+			addedFormDiv.appendChild(addedDiv); // »ğÀÔÇÒ DIV¿¡ »ı¼ºÇÑ Æû »ğÀÔ
+			alert("check2");
+			count++;
+			alert("check3");
+		}
+		function delForm() {
+			var addedFormDiv = document.getElementById("inputarea");
+			if (count > 1) { // ÇöÀç ÆûÀÌ µÎ°³ ÀÌ»óÀÌ¸é
+				var addedDiv = document.getElementById("added_" + (--count));
+				addedFormDiv.removeChild(addedDiv); // Æû »èÁ¦
+			} else { // ¸¶ Áö¸· Æû¸¸ ³²¾ÆÀÖ´Ù¸é
+				document.baseForm.reset(); // Æû ³»¿ë »èÁ¦
+			}
 	
 	}
-	function delForm() {
-		var addedFormDiv = document.getElementById("inputarea");
-		if (count > 1) { // í˜„ì¬ í¼ì´ ë‘ê°œ ì´ìƒì´ë©´
-			var addedDiv = document.getElementById("added_" + (--count));
-			addedFormDiv.removeChild(addedDiv); // í¼ ì‚­ì œ
-		} else { // ë§ˆ ì§€ë§‰ í¼ë§Œ ë‚¨ì•„ìˆë‹¤ë©´
-			document.baseForm.reset(); // í¼ ë‚´ìš© ì‚­ì œ
-		}
-
-	}
 	document.domain = "127.0.0.1";
-
+	
 	function goPopup(num) {
 		var pop = window.open("view/address/jusoPopup.jsp", "pop",
 				"width=570,height=420, scrollbars=yes, resizable=yes");
@@ -72,17 +67,20 @@
 
 	function jusoCallBack(roadFullAddr, addrDetail) {
 		var number = 0;
-		var inputid = "address" + number + "";
-		while (true) {
-			var inputid = "address" + number + "";
-			if (document.getElementById(inputid).value.length > 0) {
-				number += 1;
-			} else {
-				document.getElementById(inputid).value = roadFullAddr;
+		var inputid = "address"+number+"";
+		while(true){
+			var inputid = "address"+number+"";
+			if(document.getElementById(inputid).value.length>0){
+				number+=1;
+			}else{
+				document.getElementById(inputid).value = roadFullAddr;		
 				break;
-			}
+			}	
 		}
 	}
+	
+	
+
 </script>
 
 
@@ -98,17 +96,17 @@
 			<h3 class="text-center">Sign Up</h3>
 			<div class="login-form">
 
-  		<form class="signupform" action="signupimpl.top" method="post" accept-charset="utf-8"
-					novalidate="novalidate"> 
+				<form class="signupform" action="signupimpl.top" method="post"
+					novalidate="novalidate">
 
 
-					<!--  ì´ë¦„  START -->
+					<!--  ÀÌ¸§  START -->
 					<div class="form-group">
 						<label for="name" class="placeholder"><b>Fullname</b></label> <input
 							id="name" name="name" type="text" class="form-control"
 							required>
 					</div>
-					<!--  ì´ë¦„  END -->
+					<!--  ÀÌ¸§  END -->
 
 					<!--  ID  START-->
 					<div class="form-group">
@@ -146,33 +144,33 @@
 
 					<!--  PWD_CONFRIM END -->
 
-					<!--  ì „í™”ë²ˆí˜¸ START -->
+					<!--  ÀüÈ­¹øÈ£ START -->
 					<div class="form-group">
-						<label for="phonenumber" class="placeholder"><b>ì „í™”ë²ˆí˜¸</b></label> <input
+						<label for="phonenumber" class="placeholder"><b>ÀüÈ­¹øÈ£</b></label> <input
 							id="phonenumber" name="phonenumber" type="text"
 							class="form-control" required>
 					</div>
-					<!--  ì „í™”ë²ˆí˜¸  END -->
+					<!--  ÀüÈ­¹øÈ£  END -->
 
-					<!--  ì£¼ì†Œì…ë ¥ START -->
-					<div class="">
+					<!--  ÁÖ¼ÒÀÔ·Â START -->
+					<div class="form-group">
 						<label for="addr" class="placeholder"><b>address</b></label> <a
 							href="#" class="link float-right">
-							<span class="btn" onclick="addForm()">+</span>
-							<span class="btn" onclick="delForm()">ã…¡</span>
+							<button class="btn" onclick="addForm()">+</button>
+							<button class="btn" onclick="delForm()">¤Ñ</button>
 						</a>
 
 						<div id="addressarea">
-							<input type="text" id="address0" name="address0"
-								placeholder="ì£¼ì†Œë¥¼ ì…ë ¥í•˜ê¸° ìœ„í•´ í´ë¦­í•˜ì„¸ìš”" class="form-control"
+							<input type="text" id="address0" name="u_address"
+								placeholder="ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ±â À§ÇØ Å¬¸¯ÇÏ¼¼¿ä" class="form-control"
 								onclick="goPopup(0)">
 							<div id="inputarea"></div>
 						</div>
 
 					</div>
-					<!--  ì£¼ì†Œì…ë ¥  END -->
+					<!--  ÁÖ¼ÒÀÔ·Â  END -->
 
-					<!--  ë§ˆì§€ë§‰ ì·¨ì†Œ ë° SUBMIT ë²„íŠ¼ START  -->
+					<!--  ¸¶Áö¸· Ãë¼Ò ¹× SUBMIT ¹öÆ° START  -->
 					<div class="row form-action">
 						<div class="col-md-6">
 							<a href="main.top" id="show-signin"
@@ -186,8 +184,8 @@
 						</div>
 					</div>
 
-					<!--  ë§ˆì§€ë§‰ ì·¨ì†Œ ë° SUBMIT ë²„íŠ¼ END  -->
-			  	</form> 
+					<!--  ¸¶Áö¸· Ãë¼Ò ¹× SUBMIT ¹öÆ° END  -->
+				</form>
 			</div>
 		</div>
 	</div>

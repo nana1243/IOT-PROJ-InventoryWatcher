@@ -19,7 +19,10 @@ public class UserBiz implements Biz<String, User> {
 		return dao.select(u_id);
 	}
 	
-	
+	@Override
+	public void register(User v) throws Exception {
+		dao.insert(v);
+	}
 	
 
 

@@ -6,5 +6,7 @@ public interface UserMapper {
 	
 
 	public User select(String u_id);
+	
+	public User insert(User user);
 
 }

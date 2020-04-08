@@ -34,10 +34,12 @@ public class MainController {
 		mv.addObject("analysis", null);
 
 		// uid가 null일때
-		if (u_id == null) {
-			mv.addObject("center", "../user/login");
-		}
+	
+		mv.addObject("center", "../user/login");
 		mv.setViewName("main/main");
+		
+		
+
 		res.setContentType("text/html; charset=UTF-8");
 		return mv;
 	}

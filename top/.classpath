@@ -24,5 +24,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/lib/REngine.jar"/>
 	<classpathentry kind="lib" path="C:/lib/RserveEngine.jar"/>
+	<classpathentry kind="lib" path="C:/lib/ojdbc6_g.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

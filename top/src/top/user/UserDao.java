@@ -16,9 +16,15 @@ public class UserDao implements Dao<String, User > {
 	// Login ÇÒ¶§ 
 	@Override
 	public User select(String u_id) throws Exception {
-		
 		return um.select(u_id);
 	}
+	
+	
+	@Override
+	public void insert(User v) throws Exception {
+		um.insert(v);
+	}
+
 	
 	
 	
