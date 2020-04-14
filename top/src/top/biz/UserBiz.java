@@ -10,28 +10,39 @@ import top.frame.Biz;
 import top.frame.Dao;
 import top.vo.UserVO;
 
-
-@Service("ubiz")
+@Service("userbiz")
 public class UserBiz implements Biz<String, UserVO> {
 
-	@Resource(name = "udao")
+	@Resource(name = "userdao")
 	Dao<String, UserVO> dao;
 	
 	@Override
-	public UserVO get(String u_id) {
-		return dao.select(u_id);
+	public UserVO get(String userID) {
+		return dao.select(userID);
 	}
 
 	@Override
 	public ArrayList<UserVO> get() {
 		return dao.selectall();
 	}
+	
+	@Override
+	public void register(UserVO model) {
+		dao.insert(model);
+		
+	}
 
 	@Override
-	public void register(UserVO user) {
-		dao.insert(user);
+	public void remove(String id) {
+		// TODO Auto-generated method stub
+		
 	}
-	
+
+	@Override
+	public void modify(UserVO model) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

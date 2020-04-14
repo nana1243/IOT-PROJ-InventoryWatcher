@@ -76,7 +76,7 @@
 						</c:when>
 
 						<c:otherwise>
-							<!--  login and logout  start -->
+							<!--  login and logout and signup  start -->
 
 							<c:if test="${center != null }">
 								<jsp:include page="${center}.jsp" />

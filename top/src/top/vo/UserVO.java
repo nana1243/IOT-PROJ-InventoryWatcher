@@ -2,90 +2,92 @@ package top.vo;
 
 
 public class UserVO {
-	
-	
-	String u_id;
-	String u_pwd;
-	String u_name;
-	String u_phone;
-	String u_addr;
-	
-	
+
+	String userID;
+	String userName;
+	String userPwd;
+	String userEmail;
+	String userPhone;
+	String userRegDate;
+	String chainID;
+
 	public UserVO() {
-		
+
 	}
 
-
-	public UserVO(String u_id, String u_pwd, String u_name, String u_phone, String u_addr) {
-		
-		this.u_id = u_id;
-		this.u_pwd = u_pwd;
-		this.u_name = u_name;
-		this.u_phone = u_phone;
-		this.u_addr = u_addr;
+	public UserVO(String userID, String userName, String userPwd, String userEmail, String userPhone,
+			String userRegDate, String chainID) {
+		super();
+		this.userID = userID;
+		this.userName = userName;
+		this.userPwd = userPwd;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+		this.userRegDate = userRegDate;
+		this.chainID = chainID;
 	}
 
-
-	public String getU_id() {
-		return u_id;
+	public String getUserID() {
+		return userID;
 	}
 
-
-	public void setU_id(String u_id) {
-		this.u_id = u_id;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
-
-	public String getU_pwd() {
-		return u_pwd;
+	public String getUserName() {
+		return userName;
 	}
 
-
-	public void setU_pwd(String u_pwd) {
-		this.u_pwd = u_pwd;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-
-	public String getU_name() {
-		return u_name;
+	public String getUserPwd() {
+		return userPwd;
 	}
 
-
-	public void setU_name(String u_name) {
-		this.u_name = u_name;
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
 	}
 
-
-	public String getU_phone() {
-		return u_phone;
+	public String getUserEmail() {
+		return userEmail;
 	}
 
-
-	public void setU_phone(String u_phone) {
-		this.u_phone = u_phone;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 
-
-	public String getU_addr() {
-		return u_addr;
+	public String getUserPhone() {
+		return userPhone;
 	}
 
-
-	public void setU_addr(String u_addr) {
-		this.u_addr = u_addr;
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 
+	public String getUserRegDate() {
+		return userRegDate;
+	}
+
+	public void setUserRegDate(String userRegDate) {
+		this.userRegDate = userRegDate;
+	}
+
+	public String getChainID() {
+		return chainID;
+	}
+
+	public void setChainID(String chainID) {
+		this.chainID = chainID;
+	}
 
 	@Override
 	public String toString() {
-		return "User [u_id=" + u_id + ", u_pwd=" + u_pwd + ", u_name=" + u_name + ", u_phone=" + u_phone + ", u_addr="
-				+ u_addr + "]";
+		return "UserVO [userID=" + userID + ", userName=" + userName + ", userPwd=" + userPwd + ", userEmail="
+				+ userEmail + ", userPhone=" + userPhone + ", userRegDate=" + userRegDate + ", chainID=" + chainID
+				+ "]";
 	}
-	
-	
-	
-
 
 }
-
-

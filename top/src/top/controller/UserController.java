@@ -1,8 +1,6 @@
 package top.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Enumeration;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,17 +8,25 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import top.frame.Biz;
+import top.vo.HeadquarterVO;
 import top.vo.UserVO;
 
 @Controller
 public class UserController {
 
-	@Resource(name = "ubiz")
-	Biz<String, UserVO> ubiz;
+	@Resource(name = "userbiz")
+	Biz<String, UserVO> userbiz;
 
+	@Resource(name = "hqbiz")
+	Biz<String, HeadquarterVO> hqbiz;
+
+	// login
 	@RequestMapping("/login.top")
 	public ModelAndView login(HttpServletRequest request) {
 
@@ -31,6 +37,7 @@ public class UserController {
 		return mv;
 	}
 
+	// logout
 	@RequestMapping("/logout.top")
 	public String logout(HttpServletRequest request, ModelAndView mv) {
 		HttpSession session = request.getSession();
@@ -40,116 +47,88 @@ public class UserController {
 		return "redirect:main.top";
 	}
 
+	// loginimpl
 	@RequestMapping("/loginimpl.top")
 	public String loginimpl(HttpServletRequest request, ModelAndView mv) {
-		
-		String u_id = request.getParameter("ID").trim();
-		String u_pwd = request.getParameter("password").trim();	
-		UserVO dbuser = null;
-		try {
-			dbuser = ubiz.get(u_id);
-			System.out.println(dbuser);
-			if (dbuser.getU_id() != null) {
-				if (dbuser.getU_pwd().equals(u_pwd)) {
-					System.out.println("dbuser : " + dbuser.getU_id());
-					HttpSession session = request.getSession();
-					session.setAttribute("loginid", u_id);
-					System.out.println("id 다름");
-				} else {
-					System.out.println("pwd 다름");
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("id다름----- ");
-			return "redirect:main.top";
 
+		// step1. form으로 부터 필요한 name을 받아온다
+		String id = request.getParameter("ID").trim();
+		String pwd = request.getParameter("password");
+		String[] radio = request.getParameterValues("radio");
+
+		// step2. 필요한 vo객체를 불러오고 나서 pwd가 일치하는지 확인
+		if (radio[0].equals("hq")) {
+			HeadquarterVO dbhquser = new HeadquarterVO();
+			dbhquser = hqbiz.get(id);
+			System.out.println("hquser : " + dbhquser);
+			try {
+				if (dbhquser.getHqID() != null) {
+					if (dbhquser.getHqPwd().equals(pwd)) {
+						HttpSession session = request.getSession();
+						session.setAttribute("loginid", id);
+						session.setAttribute("chaincnt", dbhquser.getChainCount());
+						System.out.println("----------- hqid 비번 일치--------------");
+					} else {
+						System.out.println("---------- hq pwd 일치하지 않음-------------");
+					}
+				}
+			} catch (Exception e) {
+				System.out.println("sqlexcetion");
+				e.printStackTrace();
+
+			}
+		} else {
+			UserVO dbuser = null;
+			dbuser = userbiz.get(id);
+			try {
+				if (dbuser.getUserID() != null) {
+					if (dbuser.getUserPwd().equals(pwd)) {
+						System.out.println("dbuser : " + dbuser.getUserID());
+						HttpSession session = request.getSession();
+						session.setAttribute("loginid", id);
+						
+						
+						System.out.println("----------- user id 비번 일치--------------");
+
+					} else {
+						System.out.println("---------- user pwd 일치하지 않음-------------");
+					}
+				}
+			} catch (Exception e) {
+				System.out.println("sqlexcetion ");
+				return "redirect:main.top";
+
+			}
 		}
 
 		return "redirect:main.top";
 	}
 	
 	
-	// register 
-	
-	@RequestMapping("/signup.top")
-	public ModelAndView signup(ModelAndView mv) {
-		mv.addObject("center", "../user/register");
-		mv.setViewName("main/main");
-		return mv;
-	}
-	
-	
-	
-	
-	
-	
+	// idcheckup
 
-	
-	@RequestMapping(value="/signupimpl.top" ,produces="text/plain;charset=UTF-8")
-	
-	public String signupimpl(HttpServletRequest request) {
-		UserVO insert_user = new UserVO();
-		
-		ArrayList<String> u_addr = new ArrayList<String>();
+	@RequestMapping(value = "/idCheck.top", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String AjaxView(@RequestParam("hqid") String hqid, String idcheck, HttpServletRequest request)
+			throws UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
+		String str = "";
 		try {
-			request.setCharacterEncoding("UTF-8"); 
-
-			System.out.println("----------------------------");
-		
-			Enumeration<String> params = request.getParameterNames();
-			String u_name = request.getParameter("name").trim();
-			String u_id = request.getParameter("ID").trim();
-			String u_pwd = request.getParameter("passwordsignin").trim();
-			String u_phone = request.getParameter("phonenumber").trim();
-			while (params.hasMoreElements()) {
-				String name = (String) params.nextElement();
-				if (name.startsWith("address")) {
-					String inputaddr=request.getParameter(name);
-					inputaddr= inputaddr.replace(",", " ");
-					u_addr.add(inputaddr);
-				}	
-			}
-			
-			System.out.println("----------------------------");
-		
-			try {
-				insert_user.setU_id(u_id);
-				insert_user.setU_name(u_name);
-				insert_user.setU_pwd(u_pwd);
-				insert_user.setU_phone(u_phone);
-				String inputaddr="";
-				for (int i = 0; i < u_addr.size(); i++) {
-					inputaddr += u_addr.get(i);
-					if (i != u_addr.size() - 1) {
-						inputaddr = inputaddr + ",";
-					} 					
-					insert_user.setU_addr(inputaddr);
-				}
-				System.out.println(insert_user+" :insert_user");
-				System.out.println(inputaddr.length());
-				System.out.println(  "inputaddr : "+inputaddr);
-				ubiz.register(insert_user);
-				
-				System.out.println("----------------------------");
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("----------SQL삽입실패");
-			}
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			System.out.println("ENCODING FAIL");
-			e1.printStackTrace();
-			
+			System.out.println(hqid);
+			idcheck = hqbiz.get(hqid).getHqID();
+		} catch (Exception e) {
+			System.out.println("중복이 없습니다");
 		}
-		
-	
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("main/main");
-		return "redirect:main.top";	
-}
+		System.out.println(idcheck);
+		if (idcheck == null) { // 이미 존재하는 계정
+			str = "YES";
+		} else { // 사용 가능한 계정
+			str = "NO";
+		}
+		return str;
+	}
 
-	
-	
+	// show mypage
+
+	// modify mypage
 
 }

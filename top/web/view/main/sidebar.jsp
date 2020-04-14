@@ -148,8 +148,8 @@
 							<li><a href="signup.top"> <span class="sub-item">Register
 								</span>
 							</a></li>
-							<li><a href="userprofile.html"> <span class="sub-item">User
-										Profile</span>
+							<li><a href="addAddr.top"> <span class="sub-item">Add
+										Address</span>
 							</a></li>
 							<li><a href="404.html"> <span class="sub-item">404</span>
 							</a></li>

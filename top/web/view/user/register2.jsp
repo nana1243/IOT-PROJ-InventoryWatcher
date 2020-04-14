@@ -82,6 +82,39 @@
 	
 
 </script>
+<script>
+
+$(document).ready(function() {
+	
+  $("#uid").blur(function () {
+ 
+
+      var uid = $('#uid').val();
+      var Myobject = { "uid": uid }
+      $.ajax({
+          url: 'idcheck.top',
+          type: 'post',
+          data : Myobject,
+          success: function (data) {
+              console.log("1이 중복 ");
+              if (data == 1) {
+                  // 1 : 아이디가 중복되는 문구
+                  console.log("hahahah")
+                  $("#id_check").text("사용중인 아이디입니다");
+             	
+                  console.log("중복된 데이터 ");
+	            }else{
+                  $("#id_check").text("사용가능한 아이디입니다");
+             	
+              }
+              
+              console.log("=============");
+          }, error: function () {
+              console.log("실패");
+          }
+      });
+  });
+</script>
 
 
 <!-- CSS Files -->
