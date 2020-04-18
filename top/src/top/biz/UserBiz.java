@@ -10,7 +10,7 @@ import top.frame.Biz;
 import top.frame.Dao;
 import top.vo.UserVO;
 
-@Service("userbiz")
+@Service("ubiz")
 public class UserBiz implements Biz<String, UserVO> {
 
 	@Resource(name = "userdao")
@@ -43,6 +43,14 @@ public class UserBiz implements Biz<String, UserVO> {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public ArrayList<UserVO> getname(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 	
 

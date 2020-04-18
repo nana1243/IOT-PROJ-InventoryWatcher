@@ -80,17 +80,17 @@
 					accept-charset="utf-8" novalidate="novalidate">
 
 
-					<!--  company이름  START -->
+					<!--  company?대쫫  START -->
 					<div class="form-group">
-						<label for="cname" class="placeholder"><b>회사이름</b></label> <input
+						<label for="cname" class="placeholder"><b>chainname</b></label> <input
 							id="cname" name="cname" type="text" class="form-control" required>
 					</div>
-					<!--  company 이름  END -->
+					<!--  company ?대쫫  END -->
 
 					<!--  ID  START-->
 					<div class="form-group">
 						<label for="ID" class="placeholder"><b>ID</b></label> <a href="#"
-							class="link float-right">중복확인</a> <input id="hqid" name="hqid"
+							class="link float-right"></a> <input id="hqid" name="hqid"
 							type="text" class="form-control" required>
 					</div>
 					<!--  ID  END-->
@@ -132,22 +132,22 @@
 					<!--  Email  END -->
 
 
-					<!--  전화번호 START -->
+					<!--  phone START -->
 					<div class="form-group">
 						<label for="phonenumber" class="placeholder"><b>Phone</b></label> <input
 							id="hqphone" name="hqphone" type="text" class="form-control"
 							required>
 					</div>
-					<!--  전화번호  END -->
+					<!--  phone  END -->
 
 
 
 					<!--  chain Count START -->
 					<div class="form-group">
-						<label for="chaincnt" class="placeholder"><b>담당 CHAIN 갯수</b></label>
+						<label for="chaincnt" class="placeholder"><b>chaincount</b></label>
 						<a href="#"
 							class="link float-right"> <span class="btn" onclick="addcnt()">+</span>
-							<span class="btn" onclick="minuscnt()">ㅡ</span>
+							<span class="btn" onclick="minuscnt()">??/span>
 						</a>
 						<input type="text" style="width: 100px" id="chaincnt" name="chaincnt" value="1"
 							 class="form-control"> 
@@ -155,16 +155,16 @@
 
 					<!--  chain Count END -->
 					
-					<!--  주소입력 START -->
+					<!--  본사주소 START -->
 					<div id="addressarea">
-					<label for="caddress" class="placeholder"><b>본사주소</b></label>
+					<label for="caddress" class="placeholder"><b>Address</b></label>
 						<input type="text" id="address" name="caddr"
-							placeholder="주소를 입력하기 위해 클릭하세요" class="form-control"
+							placeholder="주소를 입력하기 위해 클릭해주세요" class="form-control"
 							onclick="goPopup()">
 					</div>
-					<!--  주소입력  END -->
+					<!-- 본사주소  END -->
 
-					<!--  마지막 취소 및 SUBMIT 버튼 START  -->
+					<!--  button START  -->
 					<div class="row form-action">
 						<div class="col-md-6">
 							<a href="main.top" id="show-signin"
@@ -177,7 +177,7 @@
 						</div>
 					</div>
 
-					<!--  마지막 취소 및 SUBMIT 버튼 END  -->
+					<!--  button END  -->
 				</form>
 			</div>
 		</div>

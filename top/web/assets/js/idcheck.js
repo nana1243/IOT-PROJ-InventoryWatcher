@@ -1,5 +1,7 @@
 encodeURIComponent();
 
+// register 할때 id 중복 check
+
 $(function() {
 	// 아이디 중복체크
 	$('#hqid').blur(function() {
@@ -28,3 +30,11 @@ $(function() {
 	})
 
 });
+
+
+
+
+
+
+
+

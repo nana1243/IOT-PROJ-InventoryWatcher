@@ -41,6 +41,12 @@ public class HeadquarterDao implements Dao<String, HeadquarterVO> {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public ArrayList<HeadquarterVO> selectname(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

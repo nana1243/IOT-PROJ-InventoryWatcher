@@ -31,30 +31,59 @@
 		}
 	});
 
-	var count = 1;
-	var chaincnt = <%=(int)session.getAttribute("chaincnt")-1%>
-	
 	
 	window.onload = function() {
-		var addedFormDiv = document.getElementById("inputarea");
-		while (chaincnt > 0) {
+		var count = 2;
+		var chaincnt = <%=(int)session.getAttribute("chaincnt")-1%>
+		var addedFormDiv = document.getElementById("inputarea_init");
+		while (chaincnt >=1) {
 			var str = "";
+			str += '<label for="chainname" class="placeholder"><b>';
+			str += count+' .'; 
+			str +='chain name</b></label>';
+			str += '<input id="chainname" name="chainname' + count +'" '+' type="text" ';
+			str += 'class="form-control" required> ' ;
+			str +='<label for="addr" class="placeholder"><b>' +count +' .chain address</b></label>';
 			str += '<input type="text"  class="form-control" name="address'
 					+ count + '" ' + ' id="address' + count + '" '
 					+ 'placeholder="주소를 입력하기 위해 클릭하세요" ';
 			str += 'onclick="goPopup(';
 			str += count;
 			str += ')" / >';
+			
 			// 추가할 폼(에 들어갈 HTML)
 			var addedDiv = document.createElement("div"); // 폼 생성
 			addedDiv.id = "added_" + count; // 폼 Div에 ID 부 여 (삭제를 위해)
 			addedDiv.innerHTML = str; // 폼 Div안에 HTML삽입
 			addedFormDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입
-			document.baseForm.count.value = count;
 			chaincnt--;
 			count++;
+			
+		}
+		
+
+	}
+	document.domain = "127.0.0.1";
+	function goPopup(num) {
+		var pop = window.open("view/address/jusoPopup.jsp", "pop",
+				"width=570,height=420, scrollbars=yes, resizable=yes");
+
+	}
+
+	function jusoCallBack(roadFullAddr, addrDetail) {
+		var number = 1;
+		var inputid = "address" + number + "";
+		while (true) {
+			var inputid = "address" + number + "";
+			if (document.getElementById(inputid).value.length > 0) {
+				number += 1;
+			} else {
+				document.getElementById(inputid).value = roadFullAddr;
+				break;
+			}
 		}
 	}
+	
 	
 	function addForm() {
 		var addedFormDiv = document.getElementById("inputarea");
@@ -85,27 +114,7 @@
 		}
 
 	}
-	document.domain = "127.0.0.1";
-
-	function goPopup(num) {
-		var pop = window.open("view/address/jusoPopup.jsp", "pop",
-				"width=570,height=420, scrollbars=yes, resizable=yes");
-
-	}
-
-	function jusoCallBack(roadFullAddr, addrDetail) {
-		var number = 0;
-		var inputid = "address" + number + "";
-		while (true) {
-			var inputid = "address" + number + "";
-			if (document.getElementById(inputid).value.length > 0) {
-				number += 1;
-			} else {
-				document.getElementById(inputid).value = roadFullAddr;
-				break;
-			}
-		}
-	}
+	
 </script>
 
 
@@ -118,15 +127,15 @@
 <body class="login">
 	<div class="wrapper wrapper-login">
 		<div class="container container-login animated fadeIn">
-			<h3 class="text-center">add address</h3>
+			<h3 class="text-center">ADD address</h3>
 			<div class="login-form">
 
-				<form class="addaddr" action="addAddrimpl.top" method="post"
+				<form class="add_addr" action="addAddrimpl.top" method="post"
 					accept-charset="utf-8" novalidate="novalidate">
 
 					<!-- 창고 name start-->
-					<div class="form-group">
-						<label for="chainname" class="placeholder"><b>chain
+					<div class="">
+						<label for="chainname" class="placeholder"><b>1. chain
 								name</b></label> <input id="chainname" name="chainname" type="text"
 							class="form-control" required>
 					</div>
@@ -135,16 +144,17 @@
 
 					<!--  주소입력 START -->
 					<div class="">
-						<label for="addr" class="placeholder"><b>chain address</b></label>
+						<label for="addr" class="placeholder"><b>1. chain address</b></label>
 						<a href="#" class="link float-right"> <span class="btn"
 							onclick="addForm()">+</span> <span class="btn"
 							onclick="delForm()">ㅡ</span>
 						</a>
 
 						<div id="addressarea">
-							<input type="text" id="address0" name="address0"
+							<input type="text" id="address1" name="address1"
 								placeholder="주소를 입력하기 위해 클릭하세요" class="form-control"
-								onclick="goPopup(0)">
+								onclick="goPopup(1)">
+							<div id="inputarea_init"></div>
 							<div id="inputarea"></div>
 						</div>
 

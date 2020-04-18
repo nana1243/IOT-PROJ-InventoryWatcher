@@ -42,4 +42,10 @@ public class UserDao implements Dao<String, UserVO> {
 		
 	}
 
+	@Override
+	public ArrayList<UserVO> selectname(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

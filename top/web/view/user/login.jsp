@@ -9,7 +9,7 @@
 
 	<!-- Fonts and icons -->
 	<script src="assets/js/plugin/webfont/webfont.min.js"></script>
-	<script>
+<script>
 		WebFont.load({
 			google: {"families":["Open+Sans:300,400,600,700"]},
 			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['assets/css/fonts.css']},
@@ -18,10 +18,20 @@
 			}
 		});
 		
-		
-	</script>
+
+		// radiobutton check ! 
 	
-	<!-- CSS Files -->
+	$(document).ready(function() {
+		$('#ID').click(function() {
+			var radioVal = $('input[name="radio"]:checked').val();
+			if (radioVal == undefined) {
+				alert("headquarter or user인지 체크해주세요");
+			}
+		})
+	});
+</script>
+
+<!-- CSS Files -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/azzara.min.css">
 
@@ -72,31 +82,35 @@
 					<!--  ID  check box START -->
 					<div class="row">
 						<div class="col-xs-6 col-sm-3">
-							<label for="ID" class="placeholder"><b>ID</b></label>
+							<label for="ID" class="placeholder"><b>check user or hq</b></label>
 						</div>
 						<div class="col-xs-6 col-sm-3">
 							<span class="form-inline"> <input type="radio"
-								class="input-radio" name="radio" id="radio1" value="hq" > <label
-								for="radio1" class="form-radio">HQ</label></span>
+								class="input-radio" name="radio" id="radio1" value="hq" >
+								<label for="radio1" class="form-radio">HQ</label></span>
 
 						</div>
 						<div class="col-xs-6 col-sm-3">
 							<span class="form-inline"> <input type="radio"
-								class="input-radio" name="radio" id="radio2" value="user"> <label
-								for="radio2" class="form-radio">USER</label></span>
+								class="input-radio" name="radio" id="radio2" value="user">
+								<label for="radio2" class="form-radio">USER</label></span>
 						</div>
 					</div>
 					<!--  ID  check box END -->
 
+
+
 					<!--  ID 입력 START -->
+
 					<div class="form-group">
+						<label for="ID" class="placeholder"><b>*ID</b></label>					
 						<input id="ID" name="ID" type="text" class="form-control" required>
 					</div>
 					<!--  ID 입력 END -->
 
 					<!--  PASSWORD 입력 START -->
 					<div class="form-group">
-						<label for="password" class="placeholder"><b>Password</b></label>
+						<label for="password" class="placeholder"><b>*Password</b></label>
 						<a href="#" class="link float-right">Forget Password ?</a>
 						<div class="position-relative">
 							<input id="password" name="password" type="password"
@@ -115,16 +129,21 @@
 								id="rememberme"> <label class="custom-control-label m-0"
 								for="rememberme">Remember Me</label>
 						</div>
-						
+
 						<button
 							class="btn btn-primary col-md-5 float-right mt-3 mt-sm-0 fw-bold"
 							type="submit" value="submit" class="btn_3">log in</button>
 
 					</div>
 
+					
+
 					<div class="login-account">
-						<span class="msg">Don't have an account yet ?</span> <a href="#"
-							id="show-signup" class="link">Sign Up</a>
+						<span class="msg">가입 및 신청</span> <a href="apply.top"
+							id="show-signup" class="link">가입자 신청</a>
+							<br>
+						<a href="signup.top"
+							 class="link">register</a>
 					</div>
 					<!-- 마지막 제출하기 구간 END -->
 				</form>
@@ -137,5 +156,6 @@
 	<script src="assets/js/core/popper.min.js"></script>
 	<script src="assets/js/core/bootstrap.min.js"></script>
 	<script src="assets/js/ready.js"></script>
+	<script src="assets/js/logincheckup.js"></script>
 </body>
 </html>

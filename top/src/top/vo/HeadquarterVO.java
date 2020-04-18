@@ -11,10 +11,11 @@ public class HeadquarterVO {
 	String hqAddress;
 	String chainCount;
 	
-
+	
+	
 
 	public HeadquarterVO() {
-		
+		super();
 	}
 
 	public HeadquarterVO(String hqID, String hqName, String hqPwd, String hqEmail, String hqPhone, String hqRegDate,

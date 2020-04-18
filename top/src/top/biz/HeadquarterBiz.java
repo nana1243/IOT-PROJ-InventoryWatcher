@@ -43,8 +43,15 @@ public class HeadquarterBiz implements Biz<String, HeadquarterVO> {
 	public void modify(HeadquarterVO model) {
 		// TODO Auto-generated method stub
 		
-	}	
-	
+	}
+
+	@Override
+	public ArrayList<HeadquarterVO> getname(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 }

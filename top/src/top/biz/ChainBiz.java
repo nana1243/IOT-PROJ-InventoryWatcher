@@ -20,11 +20,14 @@ public class ChainBiz implements Biz<String, ChainVO> {
 	public ChainVO get(String chainID) {
 		return dao.select(chainID);
 	}
+	
+	
 
 	@Override
 	public ArrayList<ChainVO> get() {
 		return dao.selectall();
 	}
+	
 	
 	
 	@Override
@@ -44,5 +47,16 @@ public class ChainBiz implements Biz<String, ChainVO> {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+	@Override
+	public ArrayList<ChainVO> getname(String hqid) {
+
+		return dao.selectname(hqid);
+	}
+
+
+
 
 }

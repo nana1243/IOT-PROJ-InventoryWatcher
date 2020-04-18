@@ -1,6 +1,10 @@
 package top.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+
+
+
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,17 +18,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import top.frame.Biz;
+import top.vo.ChainVO;
 import top.vo.HeadquarterVO;
+import top.vo.NotiVO;
 import top.vo.UserVO;
 
 @Controller
 public class UserController {
+	
+	
+	
 
-	@Resource(name = "userbiz")
-	Biz<String, UserVO> userbiz;
+	@Resource(name = "ubiz")
+	Biz<String, UserVO> ubiz;
 
 	@Resource(name = "hqbiz")
 	Biz<String, HeadquarterVO> hqbiz;
+
+	@Resource(name = "chainbiz")
+	Biz<String, ChainVO> chainbiz;
+	
+	
+	/*
+	 * 1.login (¿Ï·á)
+	 * 2.logout( ¿Ï·á)
+	 * 3.logincheck up(¿Ï·á)
+	 * 
+	 *  
+	 * */
+	
 
 	// login
 	@RequestMapping("/login.top")
@@ -47,16 +69,64 @@ public class UserController {
 		return "redirect:main.top";
 	}
 
+	// login ID available check up START!!
+	// ÇØ´ç ÄÚµå¸¦ CASE·Î ¹Ù²ãº¼°Í -> ¼öÁ¤»çÇ× 1
+
+	@RequestMapping(value = "/logincheckup.top", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public @ResponseBody String AjaxView(@RequestParam("ID") String id, @RequestParam("password") String pwd,
+			@RequestParam("radio") String radio, String hqcheck, String ucheck, HttpServletRequest request)
+			throws UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
+		System.out.println("enter into login check!");
+		String str = "";
+		System.out.println("id : " + id);
+		System.out.println("password : " + pwd);
+		System.out.println(radio);
+//		if(radio=="user") {
+//			UserVO user = ubiz.get(id);
+//		
+		try {
+			HeadquarterVO hq = hqbiz.get(id);
+			UserVO user = ubiz.get(id);
+
+			if (hq != null && user == null) {
+				hqcheck = hq.getHqID();
+				if (hq.getHqPwd().equals(pwd)) {
+					str = "Yes";
+				} else {
+					str = "NO";
+				}
+			} else if (hq == null && user != null) {
+				if (user.getUserPwd().equals(pwd)) {
+					str = "Yes";
+				} else {
+					str = "NO";
+				}
+
+			} else {
+				str = "NO";
+			}
+
+			// ±×ÀÌ¿ÜÀÇ ¿¹¿Ü ¹ß»ıÀ» À§ÇØ
+		} catch (Exception e) {
+			str = "NO";
+			return str.trim();
+		}
+
+		return str;
+	}
+
+
 	// loginimpl
 	@RequestMapping("/loginimpl.top")
 	public String loginimpl(HttpServletRequest request, ModelAndView mv) {
 
-		// step1. formìœ¼ë¡œ ë¶€í„° í•„ìš”í•œ nameì„ ë°›ì•„ì˜¨ë‹¤
+		// step1. formÀ¸·Î ºÎÅÍ ÇÊ¿äÇÑ nameÀ» ¹Ş¾Æ¿Â´Ù
 		String id = request.getParameter("ID").trim();
 		String pwd = request.getParameter("password");
 		String[] radio = request.getParameterValues("radio");
 
-		// step2. í•„ìš”í•œ voê°ì²´ë¥¼ ë¶ˆëŸ¬ì˜¤ê³  ë‚˜ì„œ pwdê°€ ì¼ì¹˜í•˜ëŠ”ì§€ í™•ì¸
+		// step2. ÇÊ¿äÇÑ vo°´Ã¼¸¦ ºÒ·¯¿À°í ³ª¼­ pwd°¡ ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎ
 		if (radio[0].equals("hq")) {
 			HeadquarterVO dbhquser = new HeadquarterVO();
 			dbhquser = hqbiz.get(id);
@@ -67,9 +137,9 @@ public class UserController {
 						HttpSession session = request.getSession();
 						session.setAttribute("loginid", id);
 						session.setAttribute("chaincnt", dbhquser.getChainCount());
-						System.out.println("----------- hqid ë¹„ë²ˆ ì¼ì¹˜--------------");
+						System.out.println("----------- hqid ºñ¹ø ÀÏÄ¡--------------");
 					} else {
-						System.out.println("---------- hq pwd ì¼ì¹˜í•˜ì§€ ì•ŠìŒ-------------");
+						System.out.println("---------- hq pwd ÀÏÄ¡ÇÏÁö ¾ÊÀ½-------------");
 					}
 				}
 			} catch (Exception e) {
@@ -79,19 +149,18 @@ public class UserController {
 			}
 		} else {
 			UserVO dbuser = null;
-			dbuser = userbiz.get(id);
+			dbuser = ubiz.get(id);
 			try {
 				if (dbuser.getUserID() != null) {
 					if (dbuser.getUserPwd().equals(pwd)) {
 						System.out.println("dbuser : " + dbuser.getUserID());
 						HttpSession session = request.getSession();
 						session.setAttribute("loginid", id);
-						
-						
-						System.out.println("----------- user id ë¹„ë²ˆ ì¼ì¹˜--------------");
+
+						System.out.println("----------- user id ºñ¹ø ÀÏÄ¡--------------");
 
 					} else {
-						System.out.println("---------- user pwd ì¼ì¹˜í•˜ì§€ ì•ŠìŒ-------------");
+						System.out.println("---------- user pwd ÀÏÄ¡ÇÏÁö ¾ÊÀ½-------------");
 					}
 				}
 			} catch (Exception e) {
@@ -103,8 +172,7 @@ public class UserController {
 
 		return "redirect:main.top";
 	}
-	
-	
+
 	// idcheckup
 
 	@RequestMapping(value = "/idCheck.top", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
@@ -116,15 +184,64 @@ public class UserController {
 			System.out.println(hqid);
 			idcheck = hqbiz.get(hqid).getHqID();
 		} catch (Exception e) {
-			System.out.println("ì¤‘ë³µì´ ì—†ìŠµë‹ˆë‹¤");
+			System.out.println("Áßº¹ÀÌ ¾ø½À´Ï´Ù");
 		}
 		System.out.println(idcheck);
-		if (idcheck == null) { // ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ê³„ì •
+		if (idcheck == null) { // ÀÌ¹Ì Á¸ÀçÇÏ´Â °èÁ¤
 			str = "YES";
-		} else { // ì‚¬ìš© ê°€ëŠ¥í•œ ê³„ì •
+		} else { // »ç¿ë °¡´ÉÇÑ °èÁ¤
 			str = "NO";
 		}
 		return str;
+	}
+
+	// user ½ÅÃ»ÀÚ ¹Ş´Â page
+
+	@RequestMapping("/apply.top")
+	public ModelAndView apply(HttpServletRequest request) {
+		System.out.println("entered apply.top");
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		String hqid = (String) session.getAttribute("loginid");
+		System.out.println("in apply.top check hqid : " + hqid);
+		ArrayList<ChainVO> clist = new ArrayList<ChainVO>();
+		clist.addAll(chainbiz.getname(hqid));
+
+		System.out.println(clist);
+		System.out.println(clist.size());
+
+//		mv.addObject("center", "../user/apply");
+		mv.addObject("clist", clist);
+		mv.setViewName("user/apply");
+		return mv;
+	}
+
+	// ½ÅÃ»ÀÚ¸¦ ¹Ş°í ³ª¼­ admin page¿¡ userÀÇ ½ÅÃ»ÀÚ¼ö¸¦ ³Ñ°Ü¶ó
+
+	@RequestMapping("/applyimpl.top")
+	public ModelAndView applyimpl(HttpServletRequest request) {
+		System.out.println("entered apply.top");
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		String userid = (String) session.getAttribute("loginid");
+		
+		// user¿Í ÇØ´çµÇ´Â chainid¸¦ Ã£ÀÚ
+		
+		String chainid= ubiz.get(userid).getChainID();
+		System.out.println(chainid);
+//		String cname = request.getParameter("cname");
+//		String caddr = request.getParameter("caddr");
+		
+		Integer user_apply_cnt = Integer.parseInt(request.getParameter("ucnt"));
+		System.out.println(user_apply_cnt);
+	
+
+		NotiVO noti = new NotiVO(chainid,userid,user_apply_cnt);
+		
+		
+//		mv.addObject("center", "../user/apply");
+		mv.setViewName("main/main");
+		return mv;
 	}
 
 	// show mypage

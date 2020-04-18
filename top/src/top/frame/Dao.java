@@ -2,6 +2,8 @@ package top.frame;
 
 import java.util.ArrayList;
 
+
+
 public interface Dao<Id, Model> {
 
 	
@@ -9,11 +11,14 @@ public interface Dao<Id, Model> {
 	
 	public ArrayList<Model> selectall();
 	
-	public void insert(Model model);
+	public ArrayList<Model> selectname(Id id);
 	
 	public void delete(Id id);
 
 	public void update(Model model);
+
+	public void insert(Model model);
+
 
 
 }

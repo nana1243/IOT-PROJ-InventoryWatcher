@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding//web/view/main/empty.jsp=UTF-8
+encoding//src/top/controller/HeadquarterController.java=UTF-8
+encoding//web/view/user/admin.jsp=UTF-8

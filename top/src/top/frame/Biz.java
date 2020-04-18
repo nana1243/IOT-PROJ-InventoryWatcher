@@ -7,6 +7,8 @@ public interface Biz<Id, Model> {
 	
 	public Model get(Id id);
 	
+	public ArrayList<Model> getname(Id id);
+	
 	public ArrayList<Model> get();
 	
 	public void register(Model model);

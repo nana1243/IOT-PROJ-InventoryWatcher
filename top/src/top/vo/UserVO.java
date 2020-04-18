@@ -1,6 +1,5 @@
 package top.vo;
 
-
 public class UserVO {
 
 	String userID;
@@ -71,8 +70,8 @@ public class UserVO {
 		return userRegDate;
 	}
 
-	public void setUserRegDate(String userRegDate) {
-		this.userRegDate = userRegDate;
+	public void setUserRegDate(String regdate) {
+		this.userRegDate = regdate;
 	}
 
 	public String getChainID() {

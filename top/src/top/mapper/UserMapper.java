@@ -9,7 +9,7 @@ public interface UserMapper {
 	public UserVO select(String userID);
 
 	public ArrayList<UserVO> selectall();
-	
-	public void insert(UserVO user);
+
+	public void insert(UserVO model);
 
 }

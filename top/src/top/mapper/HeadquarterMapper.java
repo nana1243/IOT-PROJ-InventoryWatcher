@@ -10,6 +10,6 @@ public interface HeadquarterMapper {
 
 	public ArrayList<HeadquarterVO> selectall();
 
-	public void insert(HeadquarterVO hq);
+	public void insert(HeadquarterVO model);
 
 }

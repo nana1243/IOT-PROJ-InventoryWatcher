@@ -17,16 +17,14 @@ public class MainController {
 		mv.setViewName("main/main");
 		return mv;
 	}
-	
 
 	@RequestMapping("/main.top")
 	public ModelAndView main(ModelAndView mv, HttpServletRequest req, HttpServletResponse res) {
-
 		HttpSession session = req.getSession();
+		
 		String u_id = (String) session.getAttribute("loginid");
 		System.out.println(u_id);
-
-//		String u_id = "test01";
+		
 		mv.addObject("loginId", u_id);
 		mv.addObject("AllChainsVisualAnalysis", "../main/AllChains");
 		mv.setViewName("main/main");

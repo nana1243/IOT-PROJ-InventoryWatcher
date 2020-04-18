@@ -12,5 +12,6 @@ public interface ChainMapper {
 	
 	public void insert(ChainVO chainvo);
 	
+	public ArrayList<ChainVO> selectchainname(String hqID);
 
 }
