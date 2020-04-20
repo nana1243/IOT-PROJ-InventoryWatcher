@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="top.vo.HeadquarterVO" alias="headquarter" />
+		<typeAlias type="top.vo.UserVO" alias="user" />
+		<typeAlias type="top.vo.ChainVO" alias="chain" />
+	
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="top/mybatis/headquartermapper.xml" />
+		<mapper resource="top/mybatis/usermapper.xml" />
+		<mapper resource="top/mybatis/chainmapper.xml" />
+		
+	</mappers>
+</configuration>
+
