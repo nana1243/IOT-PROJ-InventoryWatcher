@@ -1,0 +1,83 @@
+package top.biz;
+
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import top.frame.Biz;
+import top.frame.Dao;
+import top.vo.NotiVO;
+
+
+
+@Service("notibiz")
+public class NotiBiz implements Biz<String , NotiVO>{
+	
+	@Resource(name = "notidao")
+	Dao<String, NotiVO> dao;
+
+	@Override
+	public NotiVO get(String id) {
+		
+		return dao.select(id);
+	
+	}
+
+	@Override
+	public NotiVO getname(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<NotiVO> get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	// 쓰는 함수!-------------------------
+
+	@Override
+	public void register(NotiVO model) {
+		dao.insert(model);
+		
+	}
+	
+	
+	@Override
+	public void refreshstate(String chainId) {
+		dao.updatestate(chainId);
+	}
+
+	@Override
+	public void remove(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modify(NotiVO model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modifycnt(NotiVO model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<NotiVO> getnotifi(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
+
+}
