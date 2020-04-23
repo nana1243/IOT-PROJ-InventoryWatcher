@@ -1,5 +1,6 @@
 encodeURIComponent();
 
+
 // register 할때 id 중복 check
 
 $(function() {
@@ -30,6 +31,8 @@ $(function() {
 	})
 
 });
+
+
 
 
 

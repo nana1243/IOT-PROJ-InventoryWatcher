@@ -24,11 +24,7 @@ public class ChainDao implements Dao<String, ChainVO> {
 		return chainmapper.selectall();
 	}
 	
-	public ArrayList<ChainVO> selectchainname(String hqID){
-		return chainmapper.selectchainname(hqID);
-		
-	}
-
+	
 	@Override
 	public void insert(ChainVO model) {
 		chainmapper.insert(model);
@@ -43,13 +39,23 @@ public class ChainDao implements Dao<String, ChainVO> {
 
 	@Override
 	public void update(ChainVO model) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
-	public ArrayList<ChainVO> selectname(String hqID) {
-		return chainmapper.selectchainname(hqID);
+	public ChainVO selectname(String hqid) {
+		return chainmapper.selectchainname(hqid);
 	}
+	
 
+
+
+	
+
+	@Override
+	public ArrayList<ChainVO> selectnotifi(String hqid) {
+		return chainmapper.selectnotifi(hqid);
+		
+	}
 }

@@ -13,6 +13,8 @@ import top.vo.UserVO;
 public class UserDao implements Dao<String, UserVO> {
 	@Autowired
 	UserMapper usermapper;
+	
+	
 
 	@Override
 	public UserVO select(String userID) {
@@ -42,10 +44,8 @@ public class UserDao implements Dao<String, UserVO> {
 		
 	}
 
-	@Override
-	public ArrayList<UserVO> selectname(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+
 
 }

@@ -1,6 +1,8 @@
 <!-- Sidebar START -->
-<div class="sidebar">
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<div class="sidebar">
 	<div class="sidebar-background"></div>
 	<div class="sidebar-wrapper scrollbar-inner">
 		<div class="sidebar-content">
@@ -19,16 +21,29 @@
 
 					<div class="collapse in" id="collapseExample">
 						<ul class="nav">
-							<li><a href="logout.top"> <span class="link-collapse">
-										logout</span>
-							</a></li>
-							<li><a href="addAddr.top"> <span class="link-collapse">Addaddress
-										</span>
-						
-							</a></li>
+							<c:choose>
+								<c:when test="${who == 'hq'}">
+									<li><a href="addAddr.top"> <span class="link-collapse">
+												가맹점추가하기</span>
+									</a></li>
+									<li><a href="admin.top"> <span class="link-collapse">
+												관리자페이지</span>
+									</a></li>
 
-							<li><a href="apply.top"> <span class="link-collapse">
-										userapply</span>
+									<li><a href="update.top"> <span class="link-collapse">
+												나의 정보 수정하기</span>
+									</a></li>
+
+								</c:when>
+								<c:otherwise>
+									<li><a href="apply.top"> <span class="link-collapse">
+												가입 신청하기 </span>
+									</a></li>
+
+								</c:otherwise>
+							</c:choose>
+							<li><a href="logout.top"> <span class="link-collapse">
+										로그아웃</span>
 							</a></li>
 
 						</ul>

@@ -29,12 +29,33 @@ public class ChainBiz implements Biz<String, ChainVO> {
 	}
 	
 	
-	
+	// check
 	@Override
 	public void register(ChainVO model) {
 		dao.insert(model);
 		
 	}
+
+
+	@Override
+	public void modify(ChainVO model) {
+		
+		
+	}
+	
+	@Override
+	public ChainVO getname(String hqid) {
+
+		return dao.selectname(hqid);
+	}
+
+	@Override
+	public ArrayList<ChainVO> getnotifi(String hqid) {
+		return dao.selectnotifi(hqid);
+		
+	}
+
+
 
 	@Override
 	public void remove(String id) {
@@ -42,19 +63,10 @@ public class ChainBiz implements Biz<String, ChainVO> {
 		
 	}
 
-	@Override
-	public void modify(ChainVO model) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
+	
 
-	@Override
-	public ArrayList<ChainVO> getname(String hqid) {
-
-		return dao.selectname(hqid);
-	}
 
 
 

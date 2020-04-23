@@ -44,13 +44,10 @@ public class UserBiz implements Biz<String, UserVO> {
 		
 	}
 
-	@Override
-	public ArrayList<UserVO> getname(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 
+	
 	
 	
 

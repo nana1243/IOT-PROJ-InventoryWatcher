@@ -8,7 +8,6 @@ public class ChainVO {
 	String chainName;
 	String chainAddress;
 	String chainRegDate;
-	Integer upplycnt;
 	String hqID;
 	
 	
@@ -19,14 +18,12 @@ public class ChainVO {
 
 
 
-	public ChainVO(String chainID, String chainName, String chainAddress, String chainRegDate, Integer upplycnt,
-			String hqID) {
+	public ChainVO(String chainID, String chainName, String chainAddress, String chainRegDate, String hqID) {
 		super();
 		this.chainID = chainID;
 		this.chainName = chainName;
 		this.chainAddress = chainAddress;
 		this.chainRegDate = chainRegDate;
-		this.upplycnt = upplycnt;
 		this.hqID = hqID;
 	}
 
@@ -80,18 +77,6 @@ public class ChainVO {
 
 
 
-	public Integer getUpplycnt() {
-		return upplycnt;
-	}
-
-
-
-	public void setUpplycnt(Integer upplycnt) {
-		this.upplycnt = upplycnt;
-	}
-
-
-
 	public String getHqID() {
 		return hqID;
 	}
@@ -107,12 +92,10 @@ public class ChainVO {
 	@Override
 	public String toString() {
 		return "ChainVO [chainID=" + chainID + ", chainName=" + chainName + ", chainAddress=" + chainAddress
-				+ ", chainRegDate=" + chainRegDate + ", upplycnt=" + upplycnt + ", hqID=" + hqID + "]";
+				+ ", chainRegDate=" + chainRegDate + ", hqID=" + hqID + "]";
 	}
 	
-	
-	
-	
+
 	
 	
 

@@ -11,10 +11,10 @@
 <title>Azzara Bootstrap 4 Admin Dashboard</title>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no'
 	name='viewport' />
-<link rel="icon" href="../../assets/img/icon.ico" type="image/x-icon" />
+<link rel="icon" href="assets/img/icon.ico" type="image/x-icon" />
 
 <!-- Fonts and icons -->
-<script src="../../assets/js/plugin/webfont/webfont.min.js"></script>
+<script src="assets/js/plugin/webfont/webfont.min.js"></script>
 <script>
 	WebFont.load({
 		google : {
@@ -23,7 +23,7 @@
 		custom : {
 			"families" : [ "Flaticon", "Font Awesome 5 Solid",
 					"Font Awesome 5 Regular", "Font Awesome 5 Brands" ],
-			urls : [ '../../assets/css/fonts.css' ]
+			urls : [ '../assets/css/fonts.css' ]
 		},
 		active : function() {
 			sessionStorage.fonts = true;
@@ -31,11 +31,24 @@
 	});
 </script>
 
+<style>
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+</style>
+
 <!-- CSS Files -->
-<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../assets/css/azzara.min.css">
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/azzara.min.css">
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link rel="stylesheet" href="../../assets/css/demo.css">
+<link rel="stylesheet" href="assets/css/demo.css">
 </head>
 <body>
 	<div class="wrapper">
@@ -49,8 +62,7 @@
 					<div class="card-body">
 						<ul class="nav nav-pills nav-secondary" id="pills-tab"
 							role="tablist">
-							
-							
+
 							<!--  신청자 보기  menu bar start -->
 							<li class="nav-item"><a class="nav-link active"
 								id="pills-home-tab" data-toggle="pill" href="#pills-home"
@@ -80,8 +92,24 @@
 
 							<div class="tab-pane fade show active" id="pills-home"
 								role="tabpanel" aria-labelledby="pills-home-tab">
-								<p>신청자수</p>
 
+								<table>
+									<tr>
+										<th>ChinId</th>
+										<th>UserId</th>
+										<th>신청자수</th>
+										<th>신청날</th>
+									</tr>
+									<c:forEach var="notilist" items="${notilist}">
+										<tr>
+											<td>${notilist.chainid }</td>
+											<td>${notilist.userid }</td>
+											<td>${notilist.applycnt }</td>
+											<td>${notilist.regDate }</td>
+										</tr>
+
+									</c:forEach>
+								</table>
 							</div>
 							<!--  신청자수 end -->
 
@@ -115,23 +143,21 @@
 	<!-- End Custom template -->
 
 	<!--   Core JS Files   -->
-	<script src="../../assets/js/core/jquery.3.2.1.min.js"></script>
-	<script src="../../assets/js/core/popper.min.js"></script>
-	<script src="../../assets/js/core/bootstrap.min.js"></script>
+	<script src="assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="assets/js/core/popper.min.js"></script>
+	<script src="assets/js/core/bootstrap.min.js"></script>
 	<!-- jQuery UI -->
+	<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 	<script
-		src="../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-	<script
-		src="../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+		src="assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 	<!-- Bootstrap Toggle -->
 	<script
-		src="../../assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+		src="sassets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 	<!-- jQuery Scrollbar -->
-	<script
-		src="../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 	<!-- Azzara JS -->
-	<script src="../../assets/js/ready.min.js"></script>
+	<script src="assets/js/ready.min.js"></script>
 	<!-- Azzara DEMO methods, don't include it in your project! -->
-	<script src="../../assets/js/setting-demo.js"></script>
+	<script src="assets/js/setting-demo.js"></script>
 </body>
 </html>

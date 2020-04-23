@@ -11,5 +11,7 @@ public interface HeadquarterMapper {
 	public ArrayList<HeadquarterVO> selectall();
 
 	public void insert(HeadquarterVO model);
+	
+	public void update(HeadquarterVO model);
 
 }

@@ -7,14 +7,14 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 		<typeAlias type="top.vo.HeadquarterVO" alias="headquarter" />
 		<typeAlias type="top.vo.UserVO" alias="user" />
 		<typeAlias type="top.vo.ChainVO" alias="chain" />
-	
+		<typeAlias type="top.vo.NotiVO" alias="noti" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="top/mybatis/headquartermapper.xml" />
 		<mapper resource="top/mybatis/usermapper.xml" />
 		<mapper resource="top/mybatis/chainmapper.xml" />
-		
+		<mapper resource="top/mybatis/notimapper.xml" />
 	</mappers>
 </configuration>
 

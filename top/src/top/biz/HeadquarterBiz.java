@@ -41,15 +41,17 @@ public class HeadquarterBiz implements Biz<String, HeadquarterVO> {
 
 	@Override
 	public void modify(HeadquarterVO model) {
-		// TODO Auto-generated method stub
+		dao.update(model);
 		
 	}
 
-	@Override
-	public ArrayList<HeadquarterVO> getname(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+
+
+	
+	
+
+
 
 
 

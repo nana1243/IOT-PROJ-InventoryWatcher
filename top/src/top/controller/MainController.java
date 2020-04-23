@@ -22,10 +22,13 @@ public class MainController {
 	public ModelAndView main(ModelAndView mv, HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();
 		
-		String u_id = (String) session.getAttribute("loginid");
+		String u_id = (String) session.getAttribute("loginId");
+		String who =(String)session.getAttribute("who");
+		System.out.println(who);
 		System.out.println(u_id);
 		
 		mv.addObject("loginId", u_id);
+		mv.addObject("who",who);
 		mv.addObject("AllChainsVisualAnalysis", "../main/AllChains");
 		mv.setViewName("main/main");
 		res.setContentType("text/html; charset=UTF-8");

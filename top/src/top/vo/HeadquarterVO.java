@@ -15,12 +15,11 @@ public class HeadquarterVO {
 	
 
 	public HeadquarterVO() {
-		super();
 	}
 
 	public HeadquarterVO(String hqID, String hqName, String hqPwd, String hqEmail, String hqPhone, String hqRegDate,
 			String hqAddress, String chainCount) {
-		super();
+	
 		this.hqID = hqID;
 		this.hqName = hqName;
 		this.hqPwd = hqPwd;
@@ -29,6 +28,22 @@ public class HeadquarterVO {
 		this.hqRegDate = hqRegDate;
 		this.hqAddress = hqAddress;
 		this.chainCount = chainCount;
+	}
+	
+	
+
+
+
+	public HeadquarterVO(String hqName, String hqPwd, String hqEmail, String hqPhone, String hqAddress,
+			String chainCount, String hqID) {
+	
+		this.hqName = hqName;
+		this.hqPwd = hqPwd;
+		this.hqEmail = hqEmail;
+		this.hqPhone = hqPhone;
+		this.hqAddress = hqAddress;
+		this.chainCount = chainCount;
+		this.hqID = hqID;
 	}
 
 	public String getHqID() {

@@ -13,6 +13,9 @@ import top.vo.HeadquarterVO;
 public class HeadquarterDao implements Dao<String, HeadquarterVO> {
 	@Autowired
 	HeadquarterMapper hqmapper;
+	
+	
+	///// used start !/////
 
 	@Override
 	public HeadquarterVO select(String hqID) {
@@ -29,6 +32,15 @@ public class HeadquarterDao implements Dao<String, HeadquarterVO> {
 		hqmapper.insert(model);
 		
 	}
+	
+	@Override
+	public void update(HeadquarterVO model) {
+		hqmapper.update(model);
+		
+	}
+	
+	///// used END !/////
+
 
 	@Override
 	public void delete(String id) {
@@ -36,18 +48,9 @@ public class HeadquarterDao implements Dao<String, HeadquarterVO> {
 		
 	}
 
-	@Override
-	public void update(HeadquarterVO model) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public ArrayList<HeadquarterVO> selectname(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	
+
+
 
 }

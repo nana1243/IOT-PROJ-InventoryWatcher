@@ -10,8 +10,19 @@ public interface ChainMapper {
 
 	public ArrayList<ChainVO> selectall();
 	
+	
+	// hq가 맡은 chain을 모두 불러오기 위해서
+	public ArrayList<ChainVO> selectnotifi(String hqid);
+	
+	// addAddrimpl.top
 	public void insert(ChainVO chainvo);
 	
-	public ArrayList<ChainVO> selectchainname(String hqID);
+	// user cnt apply.top 일때 사용
+	public ChainVO selectchainname(String chainid);
+	
+	//public void update(ChainVO chainvo);
+	
+
+	
 
 }

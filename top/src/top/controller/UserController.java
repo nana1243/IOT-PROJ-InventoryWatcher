@@ -1,8 +1,8 @@
 package top.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 
@@ -26,8 +26,6 @@ import top.vo.UserVO;
 @Controller
 public class UserController {
 	
-	
-	
 
 	@Resource(name = "ubiz")
 	Biz<String, UserVO> ubiz;
@@ -38,20 +36,22 @@ public class UserController {
 	@Resource(name = "chainbiz")
 	Biz<String, ChainVO> chainbiz;
 	
+	@Resource(name = "notibiz")
+	Biz<String, NotiVO> notibiz;
 	
 	/*
-	 * 1.login (완료)
-	 * 2.logout( 완료)
-	 * 3.logincheck up(완료)
-	 * 
-	 *  
+	 * 1.login (completed!) 
+	 * 2.logout(completed!)
+	 * 3.logincheck up(completed!)
+	 * 4.loginimpl(completed!)
+	 * 5.apply.top (completed!)
+	 * 6.applyimpl.top (completed!)
 	 * */
 	
 
-	// login
+	// 1.login
 	@RequestMapping("/login.top")
 	public ModelAndView login(HttpServletRequest request) {
-
 		System.out.println("entered login.top");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("center", "../user/login");
@@ -59,9 +59,10 @@ public class UserController {
 		return mv;
 	}
 
-	// logout
+	// 2.logout
 	@RequestMapping("/logout.top")
 	public String logout(HttpServletRequest request, ModelAndView mv) {
+		System.out.println("entered into logout.top");
 		HttpSession session = request.getSession();
 		if (session != null) {
 			session.invalidate();
@@ -69,72 +70,75 @@ public class UserController {
 		return "redirect:main.top";
 	}
 
-	// login ID available check up START!!
-	// 해당 코드를 CASE로 바꿔볼것 -> 수정사항 1
+	//3. login ID && PWD CHECK UP!
 
+
+	/* 변수에 대한 설명!
+	 * id: 사용자가 웹 안에서 입력한 id
+	 * pwd: 사용자가 웹 안에서 입력한 pwd
+	 * radio : 사용자가 선택한 radiobutton(user vs headquarter)	  
+	 */
+	
+
+	@ResponseBody
 	@RequestMapping(value = "/logincheckup.top", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public @ResponseBody String AjaxView(@RequestParam("ID") String id, @RequestParam("password") String pwd,
-			@RequestParam("radio") String radio, String hqcheck, String ucheck, HttpServletRequest request)
+	public String AjaxView(@RequestParam("ID") String id, @RequestParam("password") String pwd,
+			@RequestParam("radio") String radio, String str, HttpServletRequest request)
 			throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
 		System.out.println("enter into login check!");
-		String str = "";
-		System.out.println("id : " + id);
-		System.out.println("password : " + pwd);
-		System.out.println(radio);
-//		if(radio=="user") {
-//			UserVO user = ubiz.get(id);
-//		
+		request.setCharacterEncoding("UTF-8");
+
 		try {
-			HeadquarterVO hq = hqbiz.get(id);
-			UserVO user = ubiz.get(id);
 
-			if (hq != null && user == null) {
-				hqcheck = hq.getHqID();
-				if (hq.getHqPwd().equals(pwd)) {
+			switch (radio) {
+			case "hq":
+				HeadquarterVO hq = hqbiz.get(id.trim());
+				System.out.println("hq check : " + hq);
+				if (hq.getHqPwd().equals(pwd.trim())) {
 					str = "Yes";
 				} else {
 					str = "NO";
 				}
-			} else if (hq == null && user != null) {
-				if (user.getUserPwd().equals(pwd)) {
+				break;
+			case "user":
+				UserVO user = ubiz.get(id.trim());
+				System.out.println("user check : " + user);
+				if (user.getUserPwd().equals(pwd.trim())) {
 					str = "Yes";
 				} else {
 					str = "NO";
 				}
-
-			} else {
+				break;
+			default:
 				str = "NO";
+				break;
 			}
-
-			// 그이외의 예외 발생을 위해
 		} catch (Exception e) {
 			str = "NO";
-			return str.trim();
 		}
-
+		System.out.println(str);
 		return str;
 	}
 
-
-	// loginimpl
+	// 4. LoginImpl - onemoretime 확인해준다
 	@RequestMapping("/loginimpl.top")
 	public String loginimpl(HttpServletRequest request, ModelAndView mv) {
 
-		// step1. form으로 부터 필요한 name을 받아온다
+		System.out.println("enter into loginimpl!");
 		String id = request.getParameter("ID").trim();
 		String pwd = request.getParameter("password");
-		String[] radio = request.getParameterValues("radio");
+		String radio = request.getParameter("radio");
 
-		// step2. 필요한 vo객체를 불러오고 나서 pwd가 일치하는지 확인
-		if (radio[0].equals("hq")) {
+		HttpSession session = request.getSession();
+		session.setAttribute("loginId", id);
+		session.setAttribute("who", radio);
+
+		if (radio.equals("hq")) {
 			HeadquarterVO dbhquser = new HeadquarterVO();
 			dbhquser = hqbiz.get(id);
-			System.out.println("hquser : " + dbhquser);
 			try {
 				if (dbhquser.getHqID() != null) {
 					if (dbhquser.getHqPwd().equals(pwd)) {
-						HttpSession session = request.getSession();
 						session.setAttribute("loginid", id);
 						session.setAttribute("chaincnt", dbhquser.getChainCount());
 						System.out.println("----------- hqid 비번 일치--------------");
@@ -147,6 +151,7 @@ public class UserController {
 				e.printStackTrace();
 
 			}
+
 		} else {
 			UserVO dbuser = null;
 			dbuser = ubiz.get(id);
@@ -154,7 +159,6 @@ public class UserController {
 				if (dbuser.getUserID() != null) {
 					if (dbuser.getUserPwd().equals(pwd)) {
 						System.out.println("dbuser : " + dbuser.getUserID());
-						HttpSession session = request.getSession();
 						session.setAttribute("loginid", id);
 
 						System.out.println("----------- user id 비번 일치--------------");
@@ -166,86 +170,65 @@ public class UserController {
 			} catch (Exception e) {
 				System.out.println("sqlexcetion ");
 				return "redirect:main.top";
-
 			}
 		}
-
 		return "redirect:main.top";
 	}
+		
+		
+		
 
-	// idcheckup
-
-	@RequestMapping(value = "/idCheck.top", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public @ResponseBody String AjaxView(@RequestParam("hqid") String hqid, String idcheck, HttpServletRequest request)
-			throws UnsupportedEncodingException {
-		request.setCharacterEncoding("UTF-8");
-		String str = "";
-		try {
-			System.out.println(hqid);
-			idcheck = hqbiz.get(hqid).getHqID();
-		} catch (Exception e) {
-			System.out.println("중복이 없습니다");
-		}
-		System.out.println(idcheck);
-		if (idcheck == null) { // 이미 존재하는 계정
-			str = "YES";
-		} else { // 사용 가능한 계정
-			str = "NO";
-		}
-		return str;
-	}
-
-	// user 신청자 받는 page
-
+	// 5. user count 신청자 page
 	@RequestMapping("/apply.top")
 	public ModelAndView apply(HttpServletRequest request) {
-		System.out.println("entered apply.top");
+		
 		ModelAndView mv = new ModelAndView();
-		HttpSession session = request.getSession();
-		String hqid = (String) session.getAttribute("loginid");
-		System.out.println("in apply.top check hqid : " + hqid);
-		ArrayList<ChainVO> clist = new ArrayList<ChainVO>();
-		clist.addAll(chainbiz.getname(hqid));
+		HttpSession session = request.getSession();		
+		String usrid = (String) session.getAttribute("loginId");
+		System.out.println(usrid +"  : entered into apply.top");
 
-		System.out.println(clist);
-		System.out.println(clist.size());
-
-//		mv.addObject("center", "../user/apply");
-		mv.addObject("clist", clist);
-		mv.setViewName("user/apply");
-		return mv;
-	}
-
-	// 신청자를 받고 나서 admin page에 user의 신청자수를 넘겨라
-
-	@RequestMapping("/applyimpl.top")
-	public ModelAndView applyimpl(HttpServletRequest request) {
-		System.out.println("entered apply.top");
-		ModelAndView mv = new ModelAndView();
-		HttpSession session = request.getSession();
-		String userid = (String) session.getAttribute("loginid");
+		/* user cnt apply jsp 안에 select로 chainname 을 선택하는 구간이 있음
+		 * 그렇기 때문에 해당 유저의 chainname을 불러오기 위해  getname(chainId)가 필요함
+		 */
 		
-		// user와 해당되는 chainid를 찾자
+		String chainId=ubiz.get(usrid).getChainID();
+		String cname = chainbiz.getname(chainId).getChainName();
 		
-		String chainid= ubiz.get(userid).getChainID();
-		System.out.println(chainid);
-//		String cname = request.getParameter("cname");
-//		String caddr = request.getParameter("caddr");
-		
-		Integer user_apply_cnt = Integer.parseInt(request.getParameter("ucnt"));
-		System.out.println(user_apply_cnt);
-	
-
-		NotiVO noti = new NotiVO(chainid,userid,user_apply_cnt);
-		
-		
-//		mv.addObject("center", "../user/apply");
+		mv.addObject("center", "../user/apply");
+		mv.addObject("cname", cname);
 		mv.setViewName("main/main");
 		return mv;
 	}
 
-	// show mypage
+	// 6. applyimpl.top(user가 신청하자 마자  -> headquarter에게  notification)
+	
+	
+	@RequestMapping("/applyimpl.top")
+	public ModelAndView applyimpl(HttpServletRequest request) {
+		System.out.println("entered applyimpl.top");
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+	
+		
+		// step1. notivo에 필요한 var생성
+		NotiVO notivo = new NotiVO();
+		String usrid = (String) session.getAttribute("loginId");
+		String chainId=ubiz.get(usrid).getChainID();
+		String regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		String ucnt = request.getParameter("ucnt");	
 
-	// modify mypage
+		// step2. notivo에 해당 변수 저장
+		notivo.setChainid(chainId);
+		notivo.setUserid(usrid);
+		notivo.setApplycnt(ucnt);
+		notivo.setRegDate(regdate);
+		notivo.setRefresh("true".trim()); 
+		notibiz.register(notivo);
+		System.out.println("success!");	
+		mv.addObject("center", "../user/apply");
+		mv.setViewName("main/main");
+		return mv;
+	}
 
+	
 }

@@ -13,18 +13,19 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	
-		<!-- Need to search on how to use 2 parameters -->
+	<!--  user apply cnt 할때 필요함  -->
 	<select id="selectchainname" parameterType="String" resultType="chain">
 		SELECT *
-		FROM CHAIN WHERE hqID=#{hqID}
+		FROM CHAIN WHERE chainID=#{chainID}
 	</select>
 	
 	
-
-	<select id="selectchain" parameterType="String"
+	<select id="selectnotifi" parameterType="String"
 		resultType="chain">
 		SELECT * FROM CHAIN WHERE hqID=#{hqID}
 	</select>
+	
+	
 	<select id="selectall" resultType="chain">
 		SELECT * FROM CHAIN
 	</select>
@@ -32,8 +33,17 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="chain">
 		INSERT INTO CHAIN
 		values(concat('chain_',TO_CHAR(chainID_seq.nextval)),#{chainName},#{chainAddress},#{chainRegDate},#{hqID})
-
 	</insert>
+
+
+
+	<!-- 
+	<update id="applycnt" parameterType="chain">
+		update
+		chain set
+		applycnt =#{applycnt} where chainid=#{chainID}
+	</update>
 	
+	-->
 	
 </mapper>

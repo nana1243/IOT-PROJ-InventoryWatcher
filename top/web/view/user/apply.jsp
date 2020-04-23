@@ -83,8 +83,8 @@
 					<div class="form-group">
 						<label for="exampleFormControlSelect1">chainname</label> <select
 							class="form-control" id="exampleFormControlSelect1" name = "cname">
-							<c:forEach var="clist" items="${clist}">
-								<option>${clist.chainName}</option>
+							<c:forEach var="clist" items="${cname}">
+								<option>${cname}</option>
 							</c:forEach>
 
 						</select>

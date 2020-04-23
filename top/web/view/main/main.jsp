@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -73,14 +76,21 @@
 						<div class="page-inner">
 							<!-- Visual Analysis START! -->
 							<c:choose>
-								<c:when test="${AllChainsVisualAnalysis == null }">
-									<jsp:include page="empty.jsp" />
-								</c:when>
-								<c:otherwise>
+								<c:when test="${AllChainsVisualAnalysis != null }">
 									<jsp:include page="${AllChainsVisualAnalysis }.jsp" />
-								</c:otherwise>
+								</c:when>
 							</c:choose>
 							<!-- Visual Analysis END! -->
+
+							<c:choose>
+								<c:when test="${center != null }">
+									<jsp:include page="${center }.jsp" />
+
+								</c:when>
+
+							</c:choose>
+
+
 						</div>
 					</div>
 				</div>
@@ -88,6 +98,7 @@
 		</c:choose>
 	</div>
 </body>
+
 
 <!--   Core JS Files   -->
 <script src="assets/js/core/jquery.3.2.1.min.js"></script>
