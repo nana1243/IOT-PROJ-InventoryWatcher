@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< HEAD
+=======
+import top.biz.NotiBiz;
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 import top.frame.Biz;
 import top.vo.ChainVO;
 import top.vo.HeadquarterVO;
@@ -48,7 +52,11 @@ public class HeadquarterController {
 	 * 5. addAddress impl -completed! (Not null일때만 성공되며, null이 존재할때는 insert가 되지 않고 redirect로
 	 *                     addAddr.top 으로 해당페이지로 다시 오게된다)
 	 * 6. notifications - completed!
+<<<<<<< HEAD
 	 * 7. mypage -update - completed!
+=======
+	 * 
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 	 */
 
 	// 1. register
@@ -197,6 +205,10 @@ public class HeadquarterController {
 	
 	
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 	@RequestMapping(value = "/read.top", method = RequestMethod.POST)
 	public @ResponseBody JSONArray AjaxRead(HttpServletRequest request) {
 
@@ -247,6 +259,7 @@ public class HeadquarterController {
 			notibiz.refreshstate(chainid);
 			array.add(data);
 		}
+<<<<<<< HEAD
 
 		System.out.println(array);
 		System.out.println("success ajax!");
@@ -308,5 +321,13 @@ public class HeadquarterController {
 
 	}
 	
+=======
+
+		System.out.println(array);
+		System.out.println("success ajax!");
+
+		return array;
+	}
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 }

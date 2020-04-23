@@ -25,10 +25,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		noti set
 		refresh ='false' where chainid=#{chainID}
 	</update>
+<<<<<<< HEAD
 	
 	<select id="selectall" resultType="noti">
 		SELECT * FROM noti
 	</select>
+=======
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 
 

@@ -5,10 +5,16 @@
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 <script>
+<<<<<<< HEAD
 
    // ajax를 통해 userapplycnt를 받는다
 	var myJSON = [];
 	function readAjax() {
+=======
+	var myJSON = [];
+	function readAjax() {
+		alert("check ajax input data");
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 		$.ajax({
 			type : "post",
 			dataType : "json",
@@ -16,12 +22,23 @@
 			async : false,
 			cache : false,
 			success : function(data) {
+<<<<<<< HEAD
 				showNoti(data);
 			},
+=======
+				alert("success");
+				showNoti(data);
+		
+			},
+			error : function(data) {
+				alert("error occured")
+			}
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 		});
 	}
 
+<<<<<<< HEAD
 	// 받은 데이터가 존재한다면 noti창에 뜨게한다
 	function showNoti(data) {
 		for (i = 0; i < data.length; i++) {
@@ -38,6 +55,27 @@
 	
 	// 10초에 한번씩 ajax를 통해  데이터를 받는다
 	$(document).ready(function() {
+=======
+	function showNoti(data) {
+		
+		
+		for (i = 0; i < data.length; i++) {
+		var txt = '<a href="#"><div class="notif-icon notif-success"><i class="fa fa-comment"></i></div><div class="notif-content"><span class="block">';
+			
+			var chainid = data[i].chainid;
+			var applycnt = data[i].applycnt;
+			
+			
+			txt += chainid;
+			txt += '</span> <span class="time">12minutes ago</span></div></a>';
+			$('div.notif-center').append(txt);
+		};
+		
+	}
+
+	$(document).ready(function() {
+
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 		setInterval(readAjax, 10000);
 
 	});
@@ -109,7 +147,26 @@
 						<li>
 							<div class="message-notif-scroll scrollbar-outer">
 								<div class="notif-center">
+<<<<<<< HEAD
 								
+=======
+									<!-- a tag영역을 for each만큼 돌린다 -->
+									
+									<!-- 
+									<c:forEach var="myJSON" items="${myJSON}">
+
+										<a href="#">
+											<div class="notif-icon notif-success">
+												<i class="fa fa-comment"></i>
+											</div>
+											<div class="notif-content">
+												<span class="block"> ${myJSON.chainid}</span> <span class="time">12
+													minutes ago</span>
+											</div>
+										</a>
+									</c:forEach>
+
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 -->
 
 								</div>

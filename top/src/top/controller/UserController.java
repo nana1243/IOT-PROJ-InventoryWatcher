@@ -3,6 +3,11 @@ package top.controller;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 
 
@@ -38,6 +43,12 @@ public class UserController {
 	
 	@Resource(name = "notibiz")
 	Biz<String, NotiVO> notibiz;
+<<<<<<< HEAD
+=======
+	
+	
+	
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 	
 	/*
 	 * 1.login (completed!) 
@@ -208,21 +219,36 @@ public class UserController {
 		System.out.println("entered applyimpl.top");
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
+<<<<<<< HEAD
 	
 		
 		// step1. notivo에 필요한 var생성
 		NotiVO notivo = new NotiVO();
+=======
+		
+		// notivo에 저장할 변수들을 불러오거나 생성하는 과정
+		NotiVO notivo = new NotiVO(); 
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 		String usrid = (String) session.getAttribute("loginId");
 		String chainId=ubiz.get(usrid).getChainID();
 		String regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		String ucnt = request.getParameter("ucnt");	
 
+<<<<<<< HEAD
 		// step2. notivo에 해당 변수 저장
+=======
+		// notivo를 해당하는 값에 저장한다
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 		notivo.setChainid(chainId);
 		notivo.setUserid(usrid);
 		notivo.setApplycnt(ucnt);
 		notivo.setRegDate(regdate);
+<<<<<<< HEAD
 		notivo.setRefresh("true".trim()); 
+=======
+		notivo.setRefresh("true".trim());
+		System.out.println("check notivo :" + notivo);
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 		notibiz.register(notivo);
 		System.out.println("success!");	
 		mv.addObject("center", "../user/apply");

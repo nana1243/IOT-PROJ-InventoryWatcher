@@ -59,6 +59,7 @@
 			document.getElementById("chaincnt").value = parse_num;
 		}
 	}
+<<<<<<< HEAD
 
 	function checkup() {
 		var pwd = document.getElementById("hqpwd").value;
@@ -85,6 +86,12 @@
 
 	}
 </script>
+=======
+	
+ </script> 
+	
+
+>>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 
 
