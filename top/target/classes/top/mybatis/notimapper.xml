@@ -6,12 +6,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="top.mapper.NotiMapper">
 
-
 	<insert id="insert" parameterType="noti">
 		INSERT INTO NOTI
-		values(concat('noti_',TO_CHAR(notiID_seq.nextval)),#{chainid},#{userid},#{applycnt},#{regDate},#{refresh})
+		values(concat('noti_',TO_CHAR(notiID_seq.nextval)),#{applycnt},#{regDate},#{chainid},#{chainname},#{userid},#{username},#{refresh})
 	</insert>
-
 
 
 	<select id="select" parameterType="string" resultType="noti">
@@ -25,13 +23,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		noti set
 		refresh ='false' where chainid=#{chainID}
 	</update>
-<<<<<<< HEAD
 	
 	<select id="selectall" resultType="noti">
 		SELECT * FROM noti
 	</select>
-=======
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 
 

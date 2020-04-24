@@ -12,7 +12,6 @@ public class HeadquarterVO {
 	String chainCount;
 	
 	
-	
 
 	public HeadquarterVO() {
 	}

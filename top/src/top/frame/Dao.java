@@ -2,6 +2,8 @@ package top.frame;
 
 import java.util.ArrayList;
 
+import top.vo.ChainVO;
+
 
 
 public interface Dao<Id, Model> {
@@ -40,12 +42,6 @@ public interface Dao<Id, Model> {
 	}
 	
 
-	
-	
-	//refresh_change
-	default public void updatestate(String chainid) {
-		
-	}
 	
 
 

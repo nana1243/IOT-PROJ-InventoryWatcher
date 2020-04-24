@@ -32,22 +32,10 @@ public class NotiDao implements Dao<String, NotiVO>{
 
 	@Override
 	public ArrayList<NotiVO> selectall() {
-<<<<<<< HEAD
 		return notimapper.selectall();
 	}
 
 	
-=======
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public NotiVO selectname(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 	@Override
 	public void delete(String id) {
@@ -67,26 +55,7 @@ public class NotiDao implements Dao<String, NotiVO>{
 		
 	}
 
-<<<<<<< HEAD
 
-=======
-	@Override
-	public void applycnt(NotiVO model) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ArrayList<NotiVO> selectnotifi(String hqid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-	
-	
-	
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 	
 	
 	

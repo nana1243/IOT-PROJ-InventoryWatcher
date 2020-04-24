@@ -34,17 +34,7 @@
 
 	document.domain = "127.0.0.1";
 
-	function goPopup() {
-		var pop = window.open("view/address/jusoPopup.jsp", "pop",
-				"width=570,height=420, scrollbars=yes, resizable=yes");
 
-	}
-
-	function jusoCallBack(roadFullAddr, addrDetail) {
-		document.getElementById("address").value = roadFullAddr;
-
-	}
-	
 	
 	function addcnt() {
 		var num = document.getElementById("ucnt").value;
@@ -92,18 +82,6 @@
 					</div>
 					<!--  company 이름  END -->
 
-
-					<!--  주소입력 START -->
-					
-					<div id="addressarea">
-					<label for="caddress" class="placeholder"><b>chain주소를 입력해주세요</b></label>
-						<input type="text" id="address" name="caddr"
-							placeholder="주소를 입력하기 위해 클릭하세요" class="form-control"
-							onclick="goPopup()">
-					</div>
-					<!--  주소입력  END -->
-
-
 				
 
 					<!--  user Count START -->
@@ -141,7 +119,7 @@
 	<script src="assets/js/core/popper.min.js"></script>
 	<script src="assets/js/core/bootstrap.min.js"></script>
 	<script src="assets/js/ready.js"></script>
-	<script src="assets/js/idcheck.js" charset="UTF-8"></script>
+	
 	
 </body>
 </html>

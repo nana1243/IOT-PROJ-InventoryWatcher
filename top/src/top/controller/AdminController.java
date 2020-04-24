@@ -18,6 +18,7 @@ import top.vo.UserVO;
 
 @Controller
 
+
 public class AdminController {
 	
 	@Resource(name = "chainbiz")

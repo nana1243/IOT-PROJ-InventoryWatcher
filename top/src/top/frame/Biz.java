@@ -31,12 +31,9 @@ public interface Biz<Id, Model> {
 		
 	}
 	
-<<<<<<< HEAD
 	default public Model getname(String id) {
 		return null;
 	};
 
-=======
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 }

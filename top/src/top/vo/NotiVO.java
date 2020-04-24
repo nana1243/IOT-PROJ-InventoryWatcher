@@ -3,24 +3,30 @@ package top.vo;
 public class NotiVO {
 	
 	String notiId;
-	String chainid;
-	String userid;
 	String applycnt;
 	String regDate;
+	String chainid;
+	String chainname;
+	String userid;
+	String username;
 	String refresh;
 	
 
 	public NotiVO() {
-		super();
+	
 	}
 
 
-	public NotiVO(String notiId, String chainid, String userid, String applycnt, String regDate, String refresh) {
+	public NotiVO(String notiId, String applycnt, String regDate, String chainid, String chainname, String userid,
+			String username, String refresh) {
+		
 		this.notiId = notiId;
-		this.chainid = chainid;
-		this.userid = userid;
 		this.applycnt = applycnt;
 		this.regDate = regDate;
+		this.chainid = chainid;
+		this.chainname = chainname;
+		this.userid = userid;
+		this.username = username;
 		this.refresh = refresh;
 	}
 
@@ -32,26 +38,6 @@ public class NotiVO {
 
 	public void setNotiId(String notiId) {
 		this.notiId = notiId;
-	}
-
-
-	public String getChainid() {
-		return chainid;
-	}
-
-
-	public void setChainid(String chainid) {
-		this.chainid = chainid;
-	}
-
-
-	public String getUserid() {
-		return userid;
-	}
-
-
-	public void setUserid(String userid) {
-		this.userid = userid;
 	}
 
 
@@ -75,6 +61,46 @@ public class NotiVO {
 	}
 
 
+	public String getChainid() {
+		return chainid;
+	}
+
+
+	public void setChainid(String chainid) {
+		this.chainid = chainid;
+	}
+
+
+	public String getChainname() {
+		return chainname;
+	}
+
+
+	public void setChainname(String chainname) {
+		this.chainname = chainname;
+	}
+
+
+	public String getUserid() {
+		return userid;
+	}
+
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
 	public String getRefresh() {
 		return refresh;
 	}
@@ -87,12 +113,15 @@ public class NotiVO {
 
 	@Override
 	public String toString() {
-		return "NotiVO [notiId=" + notiId + ", chainid=" + chainid + ", userid=" + userid + ", applycnt=" + applycnt
-				+ ", regDate=" + regDate + ", refresh=" + refresh + "]";
+		return "NotiVO [notiId=" + notiId + ", applycnt=" + applycnt + ", regDate=" + regDate + ", chainid=" + chainid
+				+ ", chainname=" + chainname + ", userid=" + userid + ", username=" + username + ", refresh=" + refresh
+				+ "]";
 	}
+	
+	
+	
 
-	
-	
+
 	
 	
 }

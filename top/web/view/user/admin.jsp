@@ -96,6 +96,7 @@ th, td {
 								<table>
 									<tr>
 										<th>ChinId</th>
+										<th>ChinName</th>
 										<th>UserId</th>
 										<th>신청자수</th>
 										<th>신청날</th>
@@ -103,6 +104,7 @@ th, td {
 									<c:forEach var="notilist" items="${notilist}">
 										<tr>
 											<td>${notilist.chainid }</td>
+											<td>${notilist.chainname }</td>
 											<td>${notilist.userid }</td>
 											<td>${notilist.applycnt }</td>
 											<td>${notilist.regDate }</td>

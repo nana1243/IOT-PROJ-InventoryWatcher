@@ -18,6 +18,7 @@ public class MainController {
 		return mv;
 	}
 
+	
 	@RequestMapping("/main.top")
 	public ModelAndView main(ModelAndView mv, HttpServletRequest req, HttpServletResponse res) {
 		HttpSession session = req.getSession();

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,10 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
-=======
-import top.biz.NotiBiz;
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 import top.frame.Biz;
 import top.vo.ChainVO;
 import top.vo.HeadquarterVO;
@@ -40,23 +38,18 @@ public class HeadquarterController {
 
 	@Resource(name = "chainbiz")
 	Biz<String, ChainVO> chainbiz;
-	
+
 	@Resource(name = "notibiz")
 	Biz<String, NotiVO> notibiz;
 
+	private static Logger logger = LoggerFactory.getLogger(HeadquarterController.class);
+
 	/*
-	 * 1. register(signup) - completed!
-	 * 2. registerimpl(signup impl) -completed!
-	 * 3. signup id 중복 check - completed!
-	 * 4. addAddress - completed!
-	 * 5. addAddress impl -completed! (Not null일때만 성공되며, null이 존재할때는 insert가 되지 않고 redirect로
-	 *                     addAddr.top 으로 해당페이지로 다시 오게된다)
-	 * 6. notifications - completed!
-<<<<<<< HEAD
-	 * 7. mypage -update - completed!
-=======
-	 * 
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
+	 * 1. register(signup) - completed! 2. registerimpl(signup impl) -completed! 3.
+	 * signup id 중복 check - completed! 4. addAddress - completed! 5. addAddress impl
+	 * -completed! (Not null일때만 성공되며, null이 존재할때는 insert가 되지 않고 redirect로
+	 * addAddr.top 으로 해당페이지로 다시 오게된다) 6. notifications - completed! 7. mypage
+	 * -update - completed!
 	 */
 
 	// 1. register
@@ -164,7 +157,7 @@ public class HeadquarterController {
 		HttpSession session = request.getSession();
 		String hqid = (String) session.getAttribute("loginid");
 		String chainname = request.getParameter("chainname").trim();
-		String regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
 		// 주소는 여러개 이기때문에 아래와 같은 parsing과정이 필요하다
 
@@ -201,22 +194,13 @@ public class HeadquarterController {
 		mv.setViewName("main/main");
 		return "redirect:main.top";
 	}
-	
-	
-	
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 	@RequestMapping(value = "/read.top", method = RequestMethod.POST)
 	public @ResponseBody JSONArray AjaxRead(HttpServletRequest request) {
-
-		System.out.println("Enter into read notification read.top");
-
 		HttpSession session = request.getSession();
+
 		String hqid = (String) session.getAttribute("loginId");
-		System.out.println(hqid);
+		logger.info(hqid);
 
 		// step1. hq가 맡는 chainid를 모두 불러온다
 		ArrayList<String> chainIdList = new ArrayList<String>();
@@ -259,47 +243,44 @@ public class HeadquarterController {
 			notibiz.refreshstate(chainid);
 			array.add(data);
 		}
-<<<<<<< HEAD
 
 		System.out.println(array);
 		System.out.println("success ajax!");
-
 		return array;
+
 	}
-	
-	
+
 	// 7. update page
-	
+
 	@RequestMapping("/update.top")
 	public ModelAndView updatemypage(ModelAndView mv, HttpServletRequest request) {
-	
-		//step1. 해당 hq에 대한 정보를 가져온다!
+
+		// step1. 해당 hq에 대한 정보를 가져온다!
 		mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		String hqid = (String) session.getAttribute("loginId");
 		System.out.println("enter into updatepage : " + hqid);
-		
-		HeadquarterVO hqvo =  hqbiz.get(hqid);
+
+		HeadquarterVO hqvo = hqbiz.get(hqid);
 		System.out.println(hqvo);
-		
+
 		ArrayList<HeadquarterVO> hqlist = new ArrayList<HeadquarterVO>();
 		hqlist.add(hqvo);
 		System.out.println(hqlist);
-		
+
 		mv.addObject("center", "../user/update");
 		mv.addObject("hqlist", hqlist);
 
-	
 		mv.setViewName("main/main");
 		return mv;
-		
+
 	}
 
 	// 8.updateimpl
 
 	@RequestMapping("/updateimpl.top")
 	public String updateimpl(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		String hqid = (String) session.getAttribute("loginId");
 		System.out.println("enter into updatepage : " + hqid);
@@ -311,7 +292,7 @@ public class HeadquarterController {
 		String hqAddress = request.getParameter("caddr").trim();
 
 		try {
-			HeadquarterVO hqupdate = new HeadquarterVO(hqName, hqPwd, hqEmail, hqPhone, hqAddress, chainCount,hqid);
+			HeadquarterVO hqupdate = new HeadquarterVO(hqName, hqPwd, hqEmail, hqPhone, hqAddress, chainCount, hqid);
 			hqbiz.modify(hqupdate);
 		} catch (Exception e) {
 			System.out.println("sql exception!");
@@ -320,14 +301,5 @@ public class HeadquarterController {
 		return "redirect:main.top";
 
 	}
-	
-=======
-
-		System.out.println(array);
-		System.out.println("success ajax!");
-
-		return array;
-	}
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 }

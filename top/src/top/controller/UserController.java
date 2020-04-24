@@ -3,11 +3,6 @@ package top.controller;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-<<<<<<< HEAD
-=======
-import java.util.ArrayList;
-
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 
 
 
@@ -15,6 +10,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,12 +40,8 @@ public class UserController {
 	
 	@Resource(name = "notibiz")
 	Biz<String, NotiVO> notibiz;
-<<<<<<< HEAD
-=======
 	
-	
-	
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
+//	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	/*
 	 * 1.login (completed!) 
@@ -69,6 +62,7 @@ public class UserController {
 		mv.setViewName("main/main");
 		return mv;
 	}
+	
 
 	// 2.logout
 	@RequestMapping("/logout.top")
@@ -134,25 +128,25 @@ public class UserController {
 	// 4. LoginImpl - onemoretime 확인해준다
 	@RequestMapping("/loginimpl.top")
 	public String loginimpl(HttpServletRequest request, ModelAndView mv) {
-
-		System.out.println("enter into loginimpl!");
 		String id = request.getParameter("ID").trim();
-		String pwd = request.getParameter("password");
+		String pwd = request.getParameter("password").trim();
 		String radio = request.getParameter("radio");
-
 		HttpSession session = request.getSession();
-		session.setAttribute("loginId", id);
-		session.setAttribute("who", radio);
+		System.out.println(id);
+		System.out.println(pwd);
 
 		if (radio.equals("hq")) {
 			HeadquarterVO dbhquser = new HeadquarterVO();
-			dbhquser = hqbiz.get(id);
+			
 			try {
+				dbhquser = hqbiz.get(id);
 				if (dbhquser.getHqID() != null) {
 					if (dbhquser.getHqPwd().equals(pwd)) {
-						session.setAttribute("loginid", id);
+						session.setAttribute("loginId", id);
+						session.setAttribute("who", radio);
 						session.setAttribute("chaincnt", dbhquser.getChainCount());
 						System.out.println("----------- hqid 비번 일치--------------");
+						
 					} else {
 						System.out.println("---------- hq pwd 일치하지 않음-------------");
 					}
@@ -160,23 +154,19 @@ public class UserController {
 			} catch (Exception e) {
 				System.out.println("sqlexcetion");
 				e.printStackTrace();
-
 			}
 
 		} else {
 			UserVO dbuser = null;
-			dbuser = ubiz.get(id);
 			try {
+				dbuser = ubiz.get(id);
 				if (dbuser.getUserID() != null) {
 					if (dbuser.getUserPwd().equals(pwd)) {
 						System.out.println("dbuser : " + dbuser.getUserID());
-						session.setAttribute("loginid", id);
-
-						System.out.println("----------- user id 비번 일치--------------");
-
-					} else {
-						System.out.println("---------- user pwd 일치하지 않음-------------");
-					}
+						session.setAttribute("loginId", id);
+						session.setAttribute("who", radio);
+						System.out.println("비번일치");
+					} 
 				}
 			} catch (Exception e) {
 				System.out.println("sqlexcetion ");
@@ -219,36 +209,29 @@ public class UserController {
 		System.out.println("entered applyimpl.top");
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
-<<<<<<< HEAD
-	
 		
 		// step1. notivo에 필요한 var생성
 		NotiVO notivo = new NotiVO();
-=======
-		
-		// notivo에 저장할 변수들을 불러오거나 생성하는 과정
-		NotiVO notivo = new NotiVO(); 
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 		String usrid = (String) session.getAttribute("loginId");
+		String username = ubiz.get(usrid).getUserName();
+		System.out.println(username);
 		String chainId=ubiz.get(usrid).getChainID();
-		String regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		System.out.println(chainId);
+		String chainname = request.getParameter("cname");
+		String regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 		String ucnt = request.getParameter("ucnt");	
+		
+		System.out.println(regdate);
+		System.out.println(ucnt);
 
-<<<<<<< HEAD
 		// step2. notivo에 해당 변수 저장
-=======
-		// notivo를 해당하는 값에 저장한다
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 		notivo.setChainid(chainId);
 		notivo.setUserid(usrid);
+		notivo.setUsername(username);
 		notivo.setApplycnt(ucnt);
 		notivo.setRegDate(regdate);
-<<<<<<< HEAD
+		notivo.setChainname(chainname);
 		notivo.setRefresh("true".trim()); 
-=======
-		notivo.setRefresh("true".trim());
-		System.out.println("check notivo :" + notivo);
->>>>>>> 40f9fadf40938334de6bf4230644184efe8f4633
 		notibiz.register(notivo);
 		System.out.println("success!");	
 		mv.addObject("center", "../user/apply");
