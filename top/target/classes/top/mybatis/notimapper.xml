@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.mapper.NotiMapper">
+
+	<insert id="insert" parameterType="noti">
+		INSERT INTO NOTI
+		values(concat('noti_',TO_CHAR(notiID_seq.nextval)),#{applycnt},#{regDate},#{chainid},#{chainname},#{userid},#{username},#{refresh})
+	</insert>
+
+
+	<select id="select" parameterType="string" resultType="noti">
+		select *
+		from noti where chainID = #{chainID}
+	</select>
+
+
+	<!-- Need to search on how to use 2 parameters -->
+	<update id="updaterefresh" parameterType="string">
+		update
+		noti set
+		refresh
+		='false' where chainid=#{chainID}
+	</update>
+
+	<select id="selectall" resultType="noti">
+		SELECT * FROM noti
+	</select>
+	<update id="updatestatetrue" parameterType="string">
+		update
+		noti set
+		refresh
+		='true' where chainid=#{chainID}
+	</update>
+
+
+</mapper>
