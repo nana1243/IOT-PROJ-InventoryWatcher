@@ -66,7 +66,7 @@ public class MainController {
 	public void getSalesData(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("Entered getSalesData.top");
 		String year = req.getParameter("year");
-		System.out.println("year: " + year);
+//		System.out.println("year: " + year);
 		PrintWriter out = null;
 		try {
 			out = res.getWriter();

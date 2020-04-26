@@ -96,7 +96,7 @@
 					class="collapsed" aria-expanded="false"> <i
 						class="far fa-chart-bar" aria-expanded="false"></i>
 						<p>
-							而⑦뀒?대꼫愿由?</p> <span class="caret"></span></a>
+							container</p> <span class="caret"></span></a>
 					<div class="collapse" id="submenu" style>
 						<ul>
 							<li class="submenu"><a data-toggle="collapse"

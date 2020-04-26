@@ -41,7 +41,7 @@ public class UserController {
 	@Resource(name = "notibiz")
 	Biz<String, NotiVO> notibiz;
 	
-	private static Logger logger = LoggerFactory.getLogger(UserController.class);
+//	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	/*
 	 * 1.login (completed!) 
@@ -72,7 +72,7 @@ public class UserController {
 		if (session != null) {
 			session.invalidate();
 			String logout = (String) session.getAttribute("loginId");
-			logger.info(logout);
+//			logger.info(logout);
 			
 		}
 		return "redirect:main.top";
@@ -177,7 +177,7 @@ public class UserController {
 				return "redirect:main.top";
 			}
 		}
-		logger.info(id);
+//		logger.info(id);
 		return "redirect:main.top";
 	}
 		

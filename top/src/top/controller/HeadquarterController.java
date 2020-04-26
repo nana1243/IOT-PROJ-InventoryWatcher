@@ -190,22 +190,21 @@ public class HeadquarterController {
 	@RequestMapping(value = "/read.top", method = RequestMethod.POST)
 	public @ResponseBody JSONArray AjaxRead(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-
+//		System.out.println("testof ajax READ.TOP");
 		String hqid = (String) session.getAttribute("loginId");
-//		logger.info(hqid);
 
 		// step1. hq가 맡는 chainid를 모두 불러온다
 		ArrayList<String> chainIdList = new ArrayList<String>();
 		ArrayList<ChainVO> clist = chainbiz.getbyhq(hqid);
 
-		System.out.println("clist :" + clist);
+//		System.out.println("clist :" + clist);
 		for (ChainVO element : clist) {
 			String chainid = element.getChainID();
 			System.out.println(chainid);
 			chainIdList.add(chainid);
 
 		}
-		System.out.println(chainIdList);
+//		System.out.println("test of chainidlist :" +chainIdList);
 
 		// STEP2. 해당하는 CHAINID에 따른 모든 noti를 불러온다
 		// 이떄의 notification은 refresh ="true"일때만 불러온다
@@ -220,9 +219,9 @@ public class HeadquarterController {
 			}
 			System.out.println("refresh : " + noti.getRefresh());
 			if (noti != null && noti.getRefresh().equals("new")) {
-				System.out.println("noti in : " + noti);
+//				System.out.println("noti in : " + noti);
 				notiList.add(noti);
-				System.out.println(noti.getChainid());
+//				System.out.println(noti.getChainid());
 				notibiz.refreshStateTrue(noti.getChainid());
 				try {
 					notibiz.modify(noti);
@@ -231,7 +230,7 @@ public class HeadquarterController {
 				}
 			}
 		}
-		System.out.println("check notiList size : " + notiList.size());
+//		System.out.println("check notiList size : " + notiList.size());
 
 		// step3. 이제는 자바스크립트로 보낼 애들만 !
 		// and ajax로 보냇다면 -> update로 상태를 바꿔준다
@@ -241,7 +240,7 @@ public class HeadquarterController {
 			JSONObject data = new JSONObject();
 			String applycnt = element.getApplycnt();
 
-			System.out.println("applycnt" + applycnt);
+//			System.out.println("applycnt" + applycnt);
 			String chainid = element.getChainid();
 			System.out.println("chainid" + chainid);
 			data.put("chainid", chainid);
@@ -250,8 +249,8 @@ public class HeadquarterController {
 			array.add(data);
 		}
 
-		System.out.println(array);
-		System.out.println("success ajax!");
+//		System.out.println(array);
+		System.out.println("success ajax read.top!");
 		return array;
 
 	}
@@ -260,6 +259,8 @@ public class HeadquarterController {
 	@RequestMapping(value = "/readTrue.top", method = RequestMethod.POST)
 	public @ResponseBody JSONArray AjaxRead2(HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		System.out.println("testof ajax READTrue.TOP");
+
 
 		String hqid = (String) session.getAttribute("loginId");
 //		logger.info(hqid);
@@ -268,23 +269,23 @@ public class HeadquarterController {
 		ArrayList<String> chainIdList = new ArrayList<String>();
 		ArrayList<ChainVO> clist = chainbiz.getbyhq(hqid);
 
-		System.out.println("clist :" + clist);
+//		System.out.println("clist :" + clist);
 		for (ChainVO element : clist) {
 			String chainid = element.getChainID();
-			System.out.println(chainid);
+//			System.out.println(chainid);
 			chainIdList.add(chainid);
 
 		}
 		System.out.println(chainIdList);
 
-		// STEP2. 해당하는 CHAINID에 따른 모든 noti를 불러온다
-		// 이떄의 notification은 refresh ="true"일때만 불러온다
 
 		ArrayList<NotiVO> notiList = new ArrayList<NotiVO>();
 
 		for (int i = 0; i < chainIdList.size(); i++) {
+			System.out.println("noti check before true checck: " );
 			NotiVO noti = notibiz.get(chainIdList.get(i));
-			System.out.println("noti : " + noti);
+//			System.out.println("noti check : " +noti);
+//			System.out.println("noti : " + noti);
 			if (noti == null) {
 				continue;
 			}
@@ -311,7 +312,7 @@ public class HeadquarterController {
 			JSONObject data = new JSONObject();
 			String applycnt = element.getApplycnt();
 
-			System.out.println("applycnt" + applycnt);
+//			System.out.println("applycnt" + applycnt);
 			String chainid = element.getChainid();
 			System.out.println("chainid" + chainid);
 			data.put("chainid", chainid);
@@ -320,8 +321,8 @@ public class HeadquarterController {
 			array.add(data);
 		}
 
-		System.out.println(array);
-		System.out.println("success ajax!");
+//		System.out.println(array);
+		System.out.println("success ajax get true!");
 		return array;
 
 	}

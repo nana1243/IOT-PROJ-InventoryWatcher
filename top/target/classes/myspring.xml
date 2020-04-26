@@ -87,9 +87,7 @@
 	</bean>
 	
 	
-	<hadoop:configuration id="hadoopConf">
-		fs.default.name=hdfs://localhost:9000
-	</hadoop:configuration>
+	
 	
 
 

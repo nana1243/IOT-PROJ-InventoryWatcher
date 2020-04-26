@@ -23,6 +23,11 @@ import top.vo.SalesVO;
 
 @Controller
 public class POSController {
+	
+	/*
+	 * 1. saledetail insert 하는 모든 부분에 menuid항목 추가해줘야함(controller에서만 고치면됨)
+	 * 2. MYBATIS부분에서는 내가 햇음 ----- > 이건 동현이가 CHECK 해보기
+	 * */
 
 	@Resource(name = "salesbiz")
 	Biz<String, SalesVO> salesbiz;
@@ -32,10 +37,10 @@ public class POSController {
 
 	SalesDetailVO sd;
 	SalesVO sales;
+	
 
 	String regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
-	// �븞�뱶濡쒖씠�뱶 POS �뿉�꽌 �삤�뒗 JSON 諛쏄린 //
 	@RequestMapping(value = "/pos.top", method = RequestMethod.POST)
 	@ResponseBody
 	public String getData(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject jo) {
@@ -56,6 +61,7 @@ public class POSController {
 				+ " saleAdmin :" + saleAdmin);
 
 		String temp = request.getParameter("jsonData");
+		System.out.println(temp);
 
 		ArrayList<SalesVO> slist = new ArrayList<SalesVO>();
 
@@ -88,7 +94,6 @@ public class POSController {
 //		sales = salesbiz.getbychain(chainID);
 		// orderNo 濡� �꽔�뼱�룄 Sequence 濡쒖쟻�슜�맂�떎. -> SalesDetail �뿉 �뼱�뼸寃� SaelsID瑜� �꽔�뼱二쇱�? //
 		sales.setSalesID(orderNo);
-
 		sales.setChainID(chainID);
 		sales.setTotSales(orderCost);
 		sales.setSalesRegDate(regdate);
@@ -197,7 +202,8 @@ public class POSController {
 	}
 	
 
-	// 二쇰Ц�젙蹂� �꽔�뒗 �븿�닔 . 硫붾돱�뒗 誘명룷�븿 //
+//	//////////////////////////////아래서 부터는 함수 ///////////////////////////////
+	
 	public void insertSaleData(SalesVO sales) {
 
 		try {

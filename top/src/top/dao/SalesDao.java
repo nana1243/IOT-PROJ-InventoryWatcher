@@ -24,6 +24,7 @@ public class SalesDao implements Dao<String, SalesVO> {
 		return salesmapper.selectall();
 	}
 
+	// 언니 꺼 시작 
 	public ArrayList<SalesVO> selectYear(String year) {
 		return salesmapper.selectYear(year);
 	}
@@ -43,6 +44,25 @@ public class SalesDao implements Dao<String, SalesVO> {
 	public SalesVO selectbychain(String chainID) {
 		return salesmapper.selectbychain(chainID);
 	}
+	
+	// 동현이꺼 시작(POScontroller START
+	@Override
+	public void insert(SalesVO model) throws Exception {
+		salesmapper.insert(model);
+
+	}
+	
+	@Override
+	public void delete(String salesID) throws Exception {
+		salesmapper.delete(salesID);
+		
+	}
+	@Override
+	public void update(SalesVO model) throws Exception {
+		salesmapper.update(model);
+	}
 
 	
 }
+
+

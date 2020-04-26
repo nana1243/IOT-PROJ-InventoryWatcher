@@ -97,7 +97,7 @@ th, td {
 									<tr>
 										<th>ChinId</th>
 										<th>ChinName</th>
-										<th>UserId</th>
+<!--  										<th>UserId</th> -->
 										<th>신청자수</th>
 										<th>신청날</th>
 									</tr>
@@ -105,7 +105,7 @@ th, td {
 										<tr>
 											<td>${notilist.chainid }</td>
 											<td>${notilist.chainname }</td>
-											<td>${notilist.userid }</td>
+											<!-- <td>${notilist.userid }</td> -->
 											<td>${notilist.applycnt }</td>
 											<td>${notilist.regDate }</td>
 										</tr>
