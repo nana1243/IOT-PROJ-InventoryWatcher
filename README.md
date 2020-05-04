@@ -90,8 +90,6 @@
 > | AdminController                    | ChainVO NotiVO                                          | admin.jsp                                                    |
 > | ChainController                    | ContainerVO NotiVO                                      | statMain.jsp                                                 |
 >
-> ​    1-3 API
->        -  FCM(irebase Cloud Messaging)
 
 
 
@@ -119,8 +117,7 @@
 >      | PlaceHolderFragment    | ViewPager 를 사용하기위해 필요한 Default model  |
 >   | OrderLayoutFragmnet    | 주문내역,  DB                                   |
 >   
-> 2. 서버 통신
->   
+>   2. 서버 통신
 >    - Android - web 간의 HttpConnection
 >     
 >      2-1 HttpConnection 클래스 모음
