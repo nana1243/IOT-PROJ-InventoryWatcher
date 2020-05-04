@@ -1,16 +1,16 @@
 # InventoryWatcher Proj(2020.03.27-04.30)
 
-> 목차
->
+### 목차
+
 > 1. 프로젝트에 설명 및 배경
-> 2. 시스템 구성
+>2. 시스템 구성
 > 3. 화면구성
 >    - Web 구성
 >    - Android 구성
 >    - IOT구성
 > 4.  DB-ERD
 > 5. 프로젝트 결과
->
+> 
 >    
 
 
@@ -56,40 +56,47 @@
 > ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
 
 
+
 ### 3.  화면구성
 
-#### 3-1 웹 구성(MVC pattern)
-
--  주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다 . 부가적인 설명은 아래와 같습니다.
-> 1. 서비스를 제공 받는 사람 : headquarter(매장을 총 관리하는 본사 직원), user(가맹주)
+>  ### 3-1 웹 구성(MVC pattern
 >
->    1-1 본사[Headquarter]를 위한 페이지   
->      1. CRUD 페이지
->      2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
->      3. 분석 페이지
->      4. 본사와 가맹주간의 메세지 페이지
->      5. IOT 기계들을 (container) 등록 및 관리 페이지
->      6. 재료 관리 페이지
->   
->    1-2 가맹주[User]를 위한 페이지 
->      1. CRUD 페이지
->      2. 계정 신청 페이지
->      3. 분석 페이지
->      4. 재고관리 및 발주 페이지
->    
+> - 주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다 . 부가적인 설명은 아래와 같습니다.
 >
-> | Controller                         | Model                                                   | View                                                         |
-> | ---------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-> | MainController StatisticController | salesVO                                                 | main.jsp statMain.jsp                                        |
-> | HeadquarterController              | HeadquarterVO,NotiVO UserVO,ChainVO                     | sign.jsp login.jsp addAddr.jsp admin.jsp                     |
-> | UserController                     | UserVO,ChainVO,HeadquarterVO NotiVO                     | userapply.jsp                                                |
-> | OrderController                    | OrderVO, OrderDetailVO                                  | orderStatus.jsp popup.jsp                                    |
-> | IngredientControoler               | ingredientVO                                            | viewFolder : inventory && ingredient                         |
-> | PosController                      | MenuVO SalesVO SalesDetailVO                            |                                                              |
-> | ContainerController                | ContainerVO IngredientVO OrderVO, OrderDetailVO ChainVO | containerProgress.jsp containerRegisterWizard.jsp showContainerUpdateList.jsp |
-> | AdminController                    | ChainVO NotiVO                                          | admin.jsp                                                    |
-> | ChainController                    | ContainerVO NotiVO                                      | statMain.jsp                                                 |
+>   서비스를 제공 받는 사람 : headquarter(매장을 총 관리하는 본사 직원), user(가맹주)
 >
+>   1-1 본사[Headquarter]를 위한 페이지   
+>
+>     1. CRUD 페이지
+>     2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
+>     3. 분석 페이지
+>     4. 본사와 가맹주간의 메세지 페이지
+>     5. IOT 기계들을 (container) 등록 및 관리 페이지
+>     6. 재료 관리 페이지
+>
+>   1-2 가맹주[User]를 위한 페이지 
+>
+>     1. CRUD 페이지
+>
+>     2. 계정 신청 페이지
+>
+>     3. 분석 페이지
+>
+>     4. 재고관리 및 발주 페이지
+>
+>        
+>
+>   | Controller                         | Model                                                   | View                                                         |
+>   | ---------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+>   | MainController StatisticController | salesVO                                                 | main.jsp statMain.jsp                                        |
+>   | HeadquarterController              | HeadquarterVO,NotiVO UserVO,ChainVO                     | sign.jsp login.jsp addAddr.jsp admin.jsp                     |
+>   | UserController                     | UserVO,ChainVO,HeadquarterVO NotiVO                     | userapply.jsp                                                |
+>   | OrderController                    | OrderVO, OrderDetailVO                                  | orderStatus.jsp popup.jsp                                    |
+>   | IngredientControoler               | ingredientVO                                            | viewFolder : inventory && ingredient                         |
+>   | PosController                      | MenuVO SalesVO SalesDetailVO                            |                                                              |
+>   | ContainerController                | ContainerVO IngredientVO OrderVO, OrderDetailVO ChainVO | containerProgress.jsp containerRegisterWizard.jsp showContainerUpdateList.jsp |
+>   | AdminController                    | ChainVO NotiVO                                          | admin.jsp                                                    |
+>   | ChainController                    | ContainerVO NotiVO                                      | statMain.jsp                                                 |
 
 
 
@@ -97,58 +104,51 @@
 
 - 기능에 따라 크게 **3가지로** 나누었습니다. 부가적인 설명은 아래와 같습니다
 
+
+
+> 
+>
 > ####  3-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
 >
->   1. 컴포넌트( 中 액티비티) -1개의 MainActivity에 8개의 Fragment로 구성
->
->      | MainActivity           | Explain                                         |
->      | ---------------------- | ----------------------------------------------- |
->      | CaculateDialogFragment | 정산확인(영업마감) 메시지를 띄우는 기능         |
->      | CaculateLayoutFragment | 정산기능과 일일 주문건의 정보를 담음            |
->      | CustomDialogFragment   | 메뉴를 담지 않고 주문할 경우 띄우는 메세지 기능 |
->      | DaySellLayoutFragment  | 영업기간과 일일판매량을 표시                    |
->      | LoginDialogFragment    | 로그인 기능                                     |
->      | MenuLayOutFragment     | 메뉴 선택 및 결제 기능                          |
->      | PlaceHolderFragment    | ViewPager 를 사용하기위해 필요한 Default model  |
->      | OrderLayoutFragmnet    | 주문내역,  DB                                   |
->   
->   2. 서버 통신
->    - Android - web 간의 HttpConnection
->     
->      2-1 HttpConnection 클래스 모음
->     
->      | Handler                  | Explain                                                      |
->      | ------------------------ | ------------------------------------------------------------ |
->      | getDailySalesHttpHandler | SpringServer  - DB로 부터 일일 판매량 수신                   |
->      | getSalesHttpHandler      | SpringServer 로 기존 판매량 정보를 송신                      |
->      | LoginHttpHandler         | 안드로이드 앱 ( POS 기) 를 사용하는 관리자의 아이디와 비밀번호를 DB와 비교하여 앱 사용 가능여부를 판단 |
->      | OrderDetailHttpHandler   | 주문 1건의 상세 정보를 전송                                  |
->      | OrderHttpHandler         | 주문 1건의 정보를 전송                                       |
->     
->      
->
+> 1.  Activity: -1개의 MainActivity에 8개의 Fragment로 구성
+> 
+> | MainActivity           | Explain                                         |
+> | ---------------------- | ----------------------------------------------- |
+> | CaculateDialogFragment | 정산확인(영업마감) 메시지를 띄우는 기능         |
+> | CaculateLayoutFragment | 정산기능과 일일 주문건의 정보를 담음            |
+> | CustomDialogFragment   | 메뉴를 담지 않고 주문할 경우 띄우는 메세지 기능 |
+> | DaySellLayoutFragment  | 영업기간과 일일판매량을 표시                    |
+> | LoginDialogFragment    | 로그인 기능                                     |
+> | MenuLayOutFragment     | 메뉴 선택 및 결제 기능                          |
+> | PlaceHolderFragment    | ViewPager 를 사용하기위해 필요한 Default model  |
+> | OrderLayoutFragmnet    | 주문내역,  DB                                   |
+> 
+> 2. 서버 통신
+> 
+>    -Android - web 간의 HttpConnection
+> 
 > #### 3-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
->
+> 
 >   1. 액티비티
->
+> 
 >      | Activity         | Explain                                           |
 >      | ---------------- | ------------------------------------------------- |
 >      | MainActivity     | 현재시간과, 배송정보, 평균 재고량을 나타내는 기능 |
 >      | ProgressActivity | IOT기계로 부터 받은 데이터 표시                   |
->      
+>     
 >   2. 서비스
->   
+>  
 >      -  FCM(Firebase Cloud Messaging)
->   
+>  
 >   3. 사용된 통신
->   
->    | 통신종류          | Explain                                                  |
->    | ----------------- | -------------------------------------------------------- |
->    | httpUrlConnection | IOT로 부터 받은 데이터를 Android-> WEB 로 데이터 송/수신 |
->    | TCP/IP            | IOT기계로 부터 받은 데이터 송/수신                       |
->
->      
->
+> 
+> | 통신종류          | Explain                                                  |
+> | ----------------- | -------------------------------------------------------- |
+> | httpUrlConnection | IOT로 부터 받은 데이터를 Android-> WEB 로 데이터 송/수신 |
+> | TCP/IP            | IOT기계로 부터 받은 데이터 송/수신                       |
+> 
+> ​     
+> 
 > #### 3-2-3  Logistics
 
 
@@ -182,7 +182,7 @@
 >
 > 3. hive
 >
->    ![Hadoop](https://user-images.githubusercontent.com/52269210/80945872-cba9e800-8e27-11ea-8d83-07ac08954088.jpg) ![hadoop2](https://user-images.githubusercontent.com/52269210/80945940-e7ad8980-8e27-11ea-8fa4-e07b0579c082.jpg)
+>    <img src="https://user-images.githubusercontent.com/52269210/80945872-cba9e800-8e27-11ea-8d83-07ac08954088.jpg" alt="Hadoop" style="zoom: 35%;" />  <img src="https://user-images.githubusercontent.com/52269210/80945940-e7ad8980-8e27-11ea-8fa4-e07b0579c082.jpg" alt="hadoop2" style="zoom:35%;" />
 
 
 ### 4. DB - ERD
@@ -191,18 +191,17 @@
 
 ### 5. 프로젝트  결과
 
-5-1 동영상 시연 
+5-1 동영상 시연 : https://youtu.be/6x_5fEjYh4E
 
-[top-youtube]: https://youtu.be/6x_5fEjYh4E	"youtube-click "
 
 
 5-2 프로젝트 사진(대표 사진 2개 이하로 첨부하였습니다)
 
 > 1.로드셀 장비
 >
-> <img src="https://user-images.githubusercontent.com/52269210/80946182-6d313980-8e28-11ea-9e08-b6627b0e8b70.png" alt="로드셀" style="zoom:33%;" />   
+> <img src="https://user-images.githubusercontent.com/52269210/80946182-6d313980-8e28-11ea-9e08-b6627b0e8b70.png" alt="로드셀" style="zoom:20%;" />    <img src="https://user-images.githubusercontent.com/52269210/80946201-79b59200-8e28-11ea-9454-10219aded0d0.png" alt="로드셀2" style="zoom:20%;" />
 >
-> <img src="https://user-images.githubusercontent.com/52269210/80946201-79b59200-8e28-11ea-9454-10219aded0d0.png" alt="로드셀2" style="zoom:33%;" />       
+> ​       
 >
 > 2. web
 >
@@ -229,9 +228,10 @@
 >
 >    5.Logistic
 >
->       ![semi_plusalpha](https://user-images.githubusercontent.com/52269210/80946799-cb125100-8e29-11ea-985e-8b83c8c62b72.png)   
+>       ![semi_plusalpha](https://user-images.githubusercontent.com/52269210/80946799-cb125100-8e29-11ea-985e-8b83c8c62b72.png)
 >
->       
+>
+> ​      
 >
 >    6. webView in Android
 >
@@ -243,5 +243,5 @@
 >
 >          <img src="https://user-images.githubusercontent.com/52269210/80947094-63103a80-8e2a-11ea-8fd7-fbbdb74c8e0b.jpg" alt="top2" style="zoom:35%;" />     <img src="https://user-images.githubusercontent.com/52269210/80947165-8aff9e00-8e2a-11ea-9d37-ad5e20352957.jpg" alt="top4" style="zoom:35%;" />
 >
->        
+> ​       
 
