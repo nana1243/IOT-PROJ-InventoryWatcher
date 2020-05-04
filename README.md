@@ -1,4 +1,4 @@
-# InventoryWatcher Proj(2020.03.27-04.30)
+# InventoryWatcher Proj(2020.03.27-04.30) - 수정중
 
 ### 목차
 
@@ -65,15 +65,11 @@
 
 ####  3-1-1 본사[Headquarter]를 위한 페이지   
 
-       1. CRUD 페이지
-          2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
-
+1. CRUD 페이지
+2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
 3. 분석 페이지
-
 4. 본사와 가맹주간의 메세지 페이지
-
 5. IOT 기계들을 (container) 등록 및 관리 페이지
-
 6. 재료 관리 페이지
 
 #### 3-1-2 가맹주[User]를 위한 페이지 
@@ -85,15 +81,15 @@
 
 | Controller                         | Model                                                   | View                                                         |
 | ---------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| MainController StatisticController | salesVO                                                 | main.jsp statMain.jsp                                        |
-| HeadquarterController              | HeadquarterVO,NotiVO UserVO,ChainVO                     | sign.jsp login.jsp addAddr.jsp admin.jsp                     |
-| UserController                     | UserVO,ChainVO,HeadquarterVO NotiVO                     | userapply.jsp                                                |
-| OrderController                    | OrderVO, OrderDetailVO                                  | orderStatus.jsp popup.jsp                                    |
-| IngredientControoler               | ingredientVO                                            | viewFolder : inventory && ingredient                         |
-| PosController                      | MenuVO SalesVO SalesDetailVO                            |                                                              |
-| ContainerController                | ContainerVO IngredientVO OrderVO, OrderDetailVO ChainVO | containerProgress.jsp containerRegisterWizard.jsp showContainerUpdateList.jsp |
-| AdminController                    | ChainVO NotiVO                                          | admin.jsp                                                    |
-| ChainController                    | ContainerVO NotiVO                                      | statMain.jsp                                                 |
+| MainController StatisticController | salesVO                                                 | main.jsp <br>statMain.jsp                                        |
+| HeadquarterController              | HeadquarterVO <br>NotiVO UserVO <br>ChainVO                     | sign.jsp<br> login.jsp <br> addAddr.jsp<br> admin.jsp                     |
+| UserController                     | UserVO <br>ChainVO <br>HeadquarterVO <br> NotiVO                     | userapply.jsp                                                |
+| OrderController                    | OrderVO, OrderDetailVO                                  | orderStatus.jsp<br> popup.jsp                                    |
+| IngredientControoler               | ingredientVO                                            | viewFolder :<br> inventory && ingredient                         |
+| PosController                      | MenuVO <br>SalesVO <br> SalesDetailVO                    |                                                              |
+| ContainerController                | ContainerVO <br>IngredientVO <br> OrderVO <br>OrderDetailVO <br> ChainVO | containerProgress.jsp <br> containerRegisterWizard.jsp<br> showContainerUpdateList.jsp |
+| AdminController                    | ChainVO<br> NotiVO                                          | admin.jsp                                                    |
+| ChainController                    | ContainerVO<br> NotiVO                                      | statMain.jsp                                                 |
 
 
 
