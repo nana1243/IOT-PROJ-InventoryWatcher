@@ -37,22 +37,22 @@
 #### 부가 설명
 
 >1. 안드로이드 및 아두이노
->    1-1 POS : Android, Java
->    1-2 Local Pad : Android, Java
->    1-3 Logistics : JavaFx, ECU(Lattepanda), CAN 통신
+>    1. POS : Android, Java<br>
+>    2. Local Pad : Android, Java<br>
+>    3. Logistics : JavaFx, ECU(Lattepanda), CAN 통신<br>
 >
 >2. 웹서버
->    2-1 Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat
->    2-2 Front-End: Bootstrap, HTML5, AJAX & jQuery
+>    1. Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat 
+>    2. Front-End: Bootstrap, HTML5, AJAX & jQuery<br>
 >
 >3. 데이터베이스
->   3-1 DB : Oracle Database , Hadoop HDF
->   3-2 분석도구 :Hadoop hive, R
->   3-3 시각화: Highcharts ( Java )  
+>    1. DB : Oracle Database , Hadoop HDF
+>    2. 분석도구 :Hadoop hive, R
+>    3. 시각화: Highcharts ( Java )  
 >
 >4. API
->   4-1 FCM
->   4-2 AWS
+>    1. FCM
+>    2. AWS
 > ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
 
 
@@ -64,18 +64,18 @@
 > 1. 서비스를 제공 받는 사람 : headquarter(매장을 총 관리하는 본사 직원), user(가맹주)
 >
 >    1-1 본사[Headquarter]를 위한 페이지   
->    - CRUD 페이지
->    - 매장POS로(android) 부터 받은 데이터 모니터링 페이지
->    - 분석 페이지
->    - 본사와 가맹주간의 메세지 페이지
->    - IOT 기계들을 (container) 등록 및 관리 페이지
->    - 재료 관리 페이지
+>      1. CRUD 페이지
+>      2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
+>      3. 분석 페이지
+>      4. 본사와 가맹주간의 메세지 페이지
+>      5. IOT 기계들을 (container) 등록 및 관리 페이지
+>      6. 재료 관리 페이지
 >   
 >    1-2 가맹주[User]를 위한 페이지 
->    - CRUD 페이지
->    - 계정 신청 페이지
->    - 분석 페이지
->    - 재고관리 및 발주 페이지
+>      1. CRUD 페이지
+>      2. 계정 신청 페이지
+>      3. 분석 페이지
+>      4. 재고관리 및 발주 페이지
 >    
 >
 > | Controller                         | Model                                                   | View                                                         |
@@ -99,11 +99,6 @@
 
 > ####  3-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
 >
-> - Order 관련 기능
-> - 정산 기능
-> - 매출누적량 확인(일별 판매량)
-> - 로그인 기능
->
 >   1. 컴포넌트( 中 액티비티) -1개의 MainActivity에 8개의 Fragment로 구성
 >
 >      | MainActivity           | Explain                                         |
@@ -115,7 +110,7 @@
 >      | LoginDialogFragment    | 로그인 기능                                     |
 >      | MenuLayOutFragment     | 메뉴 선택 및 결제 기능                          |
 >      | PlaceHolderFragment    | ViewPager 를 사용하기위해 필요한 Default model  |
->   | OrderLayoutFragmnet    | 주문내역,  DB                                   |
+>      | OrderLayoutFragmnet    | 주문내역,  DB                                   |
 >   
 >   2. 서버 통신
 >    - Android - web 간의 HttpConnection
@@ -131,14 +126,8 @@
 >      | OrderHttpHandler         | 주문 1건의 정보를 전송                                       |
 >     
 >      
-> 
->   
 >
 > #### 3-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
->
-> - IoT 센서값 송수신 
-> - 발주 및 배송상태 확인 가능
-> - FCM Notify  수신
 >
 >   1. 액티비티
 >
@@ -149,9 +138,9 @@
 >      
 >   2. 서비스
 >   
->      - FCM(Firebase Cloud Messaging)
+>      -  FCM(Firebase Cloud Messaging)
 >   
-> 3. 사용된 통신
+>   3. 사용된 통신
 >   
 >    | 통신종류          | Explain                                                  |
 >    | ----------------- | -------------------------------------------------------- |
@@ -238,19 +227,19 @@
 >
 >       ![pos2](https://user-images.githubusercontent.com/52269210/80946695-8e465a00-8e29-11ea-829a-3d0bc9f37f84.png)
 >
->       5.Logistic
+>    5.Logistic
 >
 >       ![semi_plusalpha](https://user-images.githubusercontent.com/52269210/80946799-cb125100-8e29-11ea-985e-8b83c8c62b72.png)   
 >
 >       
 >
->       6. webView in Android
+>    6. webView in Android
 >
 >          <img src="https://user-images.githubusercontent.com/52269210/80946838-e2513e80-8e29-11ea-979c-512cb72b93ef.png" alt="android_webview" style="zoom: 33%;" /> 
 >
 >          
 >
->       7. teamWork 관련 사진
+>    7. teamWork 관련 사진
 >
 >          <img src="https://user-images.githubusercontent.com/52269210/80947094-63103a80-8e2a-11ea-8fd7-fbbdb74c8e0b.jpg" alt="top2" style="zoom:35%;" />     <img src="https://user-images.githubusercontent.com/52269210/80947165-8aff9e00-8e2a-11ea-9d37-ad5e20352957.jpg" alt="top4" style="zoom:35%;" />
 >
