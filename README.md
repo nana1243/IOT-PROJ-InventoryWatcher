@@ -59,44 +59,41 @@
 
 ### 3.  화면구성
 
->  ### 3-1 웹 구성(MVC pattern
->
-> - 주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다 . 부가적인 설명은 아래와 같습니다.
->
->   서비스를 제공 받는 사람 : headquarter(매장을 총 관리하는 본사 직원), user(가맹주)
->
->   1-1 본사[Headquarter]를 위한 페이지   
->
->     1. CRUD 페이지
->     2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
->     3. 분석 페이지
->     4. 본사와 가맹주간의 메세지 페이지
->     5. IOT 기계들을 (container) 등록 및 관리 페이지
->     6. 재료 관리 페이지
->
->   1-2 가맹주[User]를 위한 페이지 
->
->     1. CRUD 페이지
->
->     2. 계정 신청 페이지
->
->     3. 분석 페이지
->
->     4. 재고관리 및 발주 페이지
->
->        
->
->   | Controller                         | Model                                                   | View                                                         |
->   | ---------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
->   | MainController StatisticController | salesVO                                                 | main.jsp statMain.jsp                                        |
->   | HeadquarterController              | HeadquarterVO,NotiVO UserVO,ChainVO                     | sign.jsp login.jsp addAddr.jsp admin.jsp                     |
->   | UserController                     | UserVO,ChainVO,HeadquarterVO NotiVO                     | userapply.jsp                                                |
->   | OrderController                    | OrderVO, OrderDetailVO                                  | orderStatus.jsp popup.jsp                                    |
->   | IngredientControoler               | ingredientVO                                            | viewFolder : inventory && ingredient                         |
->   | PosController                      | MenuVO SalesVO SalesDetailVO                            |                                                              |
->   | ContainerController                | ContainerVO IngredientVO OrderVO, OrderDetailVO ChainVO | containerProgress.jsp containerRegisterWizard.jsp showContainerUpdateList.jsp |
->   | AdminController                    | ChainVO NotiVO                                          | admin.jsp                                                    |
->   | ChainController                    | ContainerVO NotiVO                                      | statMain.jsp                                                 |
+###   3-1 웹 구성(MVC pattern)
+
+ 주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다 . 부가적인 설명은 아래와 같습니다.
+
+####  3-1-1 본사[Headquarter]를 위한 페이지   
+
+       1. CRUD 페이지
+          2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
+
+3. 분석 페이지
+
+4. 본사와 가맹주간의 메세지 페이지
+
+5. IOT 기계들을 (container) 등록 및 관리 페이지
+
+6. 재료 관리 페이지
+
+#### 3-1-2 가맹주[User]를 위한 페이지 
+
+1. CRUD 페이지
+2. 계정 신청 페이지
+3. 분석 페이지
+4. 재고관리 및 발주 페이지
+
+| Controller                         | Model                                                   | View                                                         |
+| ---------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
+| MainController StatisticController | salesVO                                                 | main.jsp statMain.jsp                                        |
+| HeadquarterController              | HeadquarterVO,NotiVO UserVO,ChainVO                     | sign.jsp login.jsp addAddr.jsp admin.jsp                     |
+| UserController                     | UserVO,ChainVO,HeadquarterVO NotiVO                     | userapply.jsp                                                |
+| OrderController                    | OrderVO, OrderDetailVO                                  | orderStatus.jsp popup.jsp                                    |
+| IngredientControoler               | ingredientVO                                            | viewFolder : inventory && ingredient                         |
+| PosController                      | MenuVO SalesVO SalesDetailVO                            |                                                              |
+| ContainerController                | ContainerVO IngredientVO OrderVO, OrderDetailVO ChainVO | containerProgress.jsp containerRegisterWizard.jsp showContainerUpdateList.jsp |
+| AdminController                    | ChainVO NotiVO                                          | admin.jsp                                                    |
+| ChainController                    | ContainerVO NotiVO                                      | statMain.jsp                                                 |
 
 
 
@@ -104,54 +101,50 @@
 
 - 기능에 따라 크게 **3가지로** 나누었습니다. 부가적인 설명은 아래와 같습니다
 
+####   3-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
+
+   1 . Activity: -1개의 MainActivity에 8개의 Fragment로 구성
+
+| MainActivity           | Explain                                         |
+| ---------------------- | ----------------------------------------------- |
+| CaculateDialogFragment | 정산확인(영업마감) 메시지를 띄우는 기능         |
+| CaculateLayoutFragment | 정산기능과 일일 주문건의 정보를 담음            |
+| CustomDialogFragment   | 메뉴를 담지 않고 주문할 경우 띄우는 메세지 기능 |
+| DaySellLayoutFragment  | 영업기간과 일일판매량을 표시                    |
+| LoginDialogFragment    | 로그인 기능                                     |
+| MenuLayOutFragment     | 메뉴 선택 및 결제 기능                          |
+| PlaceHolderFragment    | ViewPager 를 사용하기위해 필요한 Default model  |
+| OrderLayoutFragmnet    | 주문내역,  DB                                   |
 
 
-> 
->
-> ####  3-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
->
-> 1.  Activity: -1개의 MainActivity에 8개의 Fragment로 구성
-> 
-> | MainActivity           | Explain                                         |
-> | ---------------------- | ----------------------------------------------- |
-> | CaculateDialogFragment | 정산확인(영업마감) 메시지를 띄우는 기능         |
-> | CaculateLayoutFragment | 정산기능과 일일 주문건의 정보를 담음            |
-> | CustomDialogFragment   | 메뉴를 담지 않고 주문할 경우 띄우는 메세지 기능 |
-> | DaySellLayoutFragment  | 영업기간과 일일판매량을 표시                    |
-> | LoginDialogFragment    | 로그인 기능                                     |
-> | MenuLayOutFragment     | 메뉴 선택 및 결제 기능                          |
-> | PlaceHolderFragment    | ViewPager 를 사용하기위해 필요한 Default model  |
-> | OrderLayoutFragmnet    | 주문내역,  DB                                   |
-> 
-> 2. 서버 통신
-> 
->    -Android - web 간의 HttpConnection
-> 
-> #### 3-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
-> 
->   1. 액티비티
-> 
->      | Activity         | Explain                                           |
->      | ---------------- | ------------------------------------------------- |
->      | MainActivity     | 현재시간과, 배송정보, 평균 재고량을 나타내는 기능 |
->      | ProgressActivity | IOT기계로 부터 받은 데이터 표시                   |
->     
->   2. 서비스
->  
->      -  FCM(Firebase Cloud Messaging)
->  
->   3. 사용된 통신
-> 
-> | 통신종류          | Explain                                                  |
-> | ----------------- | -------------------------------------------------------- |
-> | httpUrlConnection | IOT로 부터 받은 데이터를 Android-> WEB 로 데이터 송/수신 |
-> | TCP/IP            | IOT기계로 부터 받은 데이터 송/수신                       |
-> 
-> ​     
-> 
-> #### 3-2-3  Logistics
+
+2. 서버 통신
+
+   -Android - web 간의 HttpConnection
 
 
+
+#### 3-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
+
+1. 액티비티
+
+   | Activity         | Explain                                           |
+   | ---------------- | ------------------------------------------------- |
+   | MainActivity     | 현재시간과, 배송정보, 평균 재고량을 나타내는 기능 |
+   | ProgressActivity | IOT기계로 부터 받은 데이터 표시                   |
+
+2. 서비스
+
+   - FCM(Firebase Cloud Messaging)
+
+3. 통신
+
+   | 통신종류          | Explain                                                  |
+   | ----------------- | -------------------------------------------------------- |
+   | httpUrlConnection | IOT로 부터 받은 데이터를 Android-> WEB 로 데이터 송/수신 |
+   | TCP/IP            | IOT기계로 부터 받은 데이터 송/수신                       |
+
+   
 
 ### 3-3 Aduino 및 로드셀 구성
 
