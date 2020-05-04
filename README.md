@@ -37,37 +37,23 @@
 #### 부가 설명
 
 >1. 안드로이드 및 아두이노
->
 >    1-1 POS : Android, Java
->
 >    1-2 Local Pad : Android, Java
->
 >    1-3 Logistics : JavaFx, ECU(Lattepanda), CAN 통신
 >
 >2. 웹서버
->
 >    2-1 Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat
->
->    2- 2 Front-End: Bootstrap, HTML5, AJAX & jQuery
+>    2-2 Front-End: Bootstrap, HTML5, AJAX & jQuery
 >
 >3. 데이터베이스
->
->    3-1 DB : Oracle Database , Hadoop HDFS
->
->    3-2 분석도구 :Hadoop hive, R
->
->    3-3 시각화: Highcharts ( Java )  
+>   3-1 DB : Oracle Database , Hadoop HDF
+>   3-2 분석도구 :Hadoop hive, R
+>   3-3 시각화: Highcharts ( Java )  
 >
 >4. API
->
->    4-1 FCM
->
->    4-2 AWS
->
->![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
->
->
-
+>   4-1 FCM
+>   4-2 AWS
+> ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
 
 
 ### 3.  화면구성
@@ -75,27 +61,17 @@
 #### 3-1 웹 구성(MVC pattern)
 
 -  주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다 . 부가적인 설명은 아래와 같습니다.
-
 > 1. 서비스를 제공 받는 사람 : headquarter(매장을 총 관리하는 본사 직원), user(가맹주)
 >
 >    1-1 본사[Headquarter]를 위한 페이지   
->
 >    - CRUD 페이지
->    
 >    - 매장POS로(android) 부터 받은 데이터 모니터링 페이지
->    
 >    - 분석 페이지
->    
-> - 본사와 가맹주간의 메세지 페이지
->   
-> - IOT 기계들을 (container) 등록 및 관리 페이지
->   
-> - 재료 관리 페이지
->   
->      
+>    - 본사와 가맹주간의 메세지 페이지
+>    - IOT 기계들을 (container) 등록 및 관리 페이지
+>    - 재료 관리 페이지
 >   
 >    1-2 가맹주[User]를 위한 페이지 
->
 >    - CRUD 페이지
 >    - 계정 신청 페이지
 >    - 분석 페이지
@@ -115,12 +91,7 @@
 > | ChainController                    | ContainerVO NotiVO                                      | statMain.jsp                                                 |
 >
 > ​    1-3 API
->
-> ​         -  FCM(irebase Cloud Messaging)
-
-
-
-
+>        -  FCM(irebase Cloud Messaging)
 
 
 
@@ -128,16 +99,11 @@
 
 - 기능에 따라 크게 **3가지로** 나누었습니다. 부가적인 설명은 아래와 같습니다
 
-
-
 > ####  3-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
 >
 > - Order 관련 기능
->
 > - 정산 기능
->
 > - 매출누적량 확인(일별 판매량)
->
 > - 로그인 기능
 >
 >   1. 컴포넌트( 中 액티비티) -1개의 MainActivity에 8개의 Fragment로 구성
@@ -174,9 +140,7 @@
 > #### 3-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
 >
 > - IoT 센서값 송수신 
->
 > - 발주 및 배송상태 확인 가능
->
 > - FCM Notify  수신
 >
 >   1. 액티비티
@@ -220,10 +184,6 @@
 >
 > 
 
-
-
-
-
 ### 3-4 Hadoop 구성
 
 > 1. 연결 흐름도
@@ -238,17 +198,10 @@
 >
 >    ![Hadoop](https://user-images.githubusercontent.com/52269210/80945872-cba9e800-8e27-11ea-8d83-07ac08954088.jpg) ![hadoop2](https://user-images.githubusercontent.com/52269210/80945940-e7ad8980-8e27-11ea-8fa4-e07b0579c082.jpg)
 
- 
-
-
 
 ### 4. DB - ERD
 
 ![ERD설계](https://user-images.githubusercontent.com/52269210/80946110-483cc680-8e28-11ea-8d84-aa5c375c7824.png)
-
-
-
-
 
 ### 5. 프로젝트  결과
 
@@ -256,7 +209,6 @@
 
 [top-youtube]: https://youtu.be/6x_5fEjYh4E	"youtube-click "
 
- 
 
 5-2 프로젝트 사진(대표 사진 2개 이하로 첨부하였습니다)
 
@@ -266,19 +218,12 @@
 >
 > <img src="https://user-images.githubusercontent.com/52269210/80946201-79b59200-8e28-11ea-9454-10219aded0d0.png" alt="로드셀2" style="zoom:33%;" />       
 >
-> 
->
 > 2. web
 >
 >    ![web3](https://user-images.githubusercontent.com/52269210/80946412-f9436100-8e28-11ea-9646-da3c6094c66d.png)
 >
 >    <img src="https://user-images.githubusercontent.com/52269210/80946342-ca2cef80-8e28-11ea-8146-a512bb50ed2c.png" alt="web1" style="zoom:50%;" /> 
 >
->    
->
->    
->
->    
 >
 >    3.android_localpad
 >
