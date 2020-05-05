@@ -14,23 +14,17 @@
 >    
 
 
-
 ### 1. 프로젝트 설명 및 배경
 
        1-1 프로젝트 배경
 
-           팀원들의 다양한 아르바이트 경험 특히,  **매장에서의 재고관리**   그리고  **AWS 원버튼** 의 아이디어를 얻어 
-
+           팀원들의 다양한 아르바이트 경험 특히,매장에서의 재고관리 그리고  AWS 원버튼의 아이디어를 얻어 
            로드셀을 활용한 IOT가 결합된 재고관리 시스템을 구축을 목표로 하게 되었습니다.
 
-      1-2 프로젝트가 목표한 서비스에 관한 기능 
-
+       1-2 프로젝트가 목표한 서비스에 관한 기능 
             1. 프랜차이즈 소유주의 가맹점 매출정보 및 재고현황 파악 (웹 서비스)
-
             2. 가맹점주의 매장 매출정보, 재고정보 파악 (안드로이드 앱 , 웹 서비스 제공)
-
             3. 자동 발주 주문서 생성 , 배송상태 확인 가능
-
             4. 매출 정보 및 발주 정보 데이터 분석을 통한 최적의 재고관리 솔루션 제공 
 
 
@@ -44,28 +38,20 @@
  ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG )
 
 
-####          부가 설명
+####          cf>부가 설명
 
               1. 안드로이드 및 아두이노
-
-                       1.POS : Android, Java<br>
-
-                       2. Local Pad : Android, Java<br>
-
-                       3. Logistics : JavaFx, ECU(Lattepanda), CAN 통신<br>
+                       1.POS : Android, Java
+                       2. Local Pad : Android, Java
+                       3. Logistics : JavaFx, ECU(Lattepanda), CAN 통신
 
               2.  웹서버
-
                       1. Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat 
-
-                      2. Front-End: Bootstrap, HTML5, AJAX & jQuery<br>
+                      2. Front-End: Bootstrap, HTML5, AJAX & jQuery
 
              3. 데이터베이스
-
                      1. DB : Oracle Database , Hadoop HDF
-
                      2.분석도구 :Hadoop hive, R
-
                      3.시각화: Highcharts ( Java )  
 
 
@@ -99,45 +85,42 @@
 
 - 기능에 따라 크게 **3가지로** 나누었습니다. 부가적인 설명은 아래와 같습니다
 
-####   4-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
+####      4-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
 
-   1 . Activity: -1개의 MainActivity에 8개의 Fragment로 구성
-
-| MainActivity           | Explain                                         |
-| ---------------------- | ----------------------------------------------- |
-| CaculateDialogFragment | 정산확인(영업마감) 메시지를 띄우는 기능         |
-| CaculateLayoutFragment | 정산기능과 일일 주문건의 정보를 담음            |
-| CustomDialogFragment   | 메뉴를 담지 않고 주문할 경우 띄우는 메세지 기능 |
-| DaySellLayoutFragment  | 영업기간과 일일판매량을 표시                    |
-| LoginDialogFragment    | 로그인 기능                                     |
-| MenuLayOutFragment     | 메뉴 선택 및 결제 기능                          |
-| PlaceHolderFragment    | ViewPager 를 사용하기위해 필요한 Default model  |
-| OrderLayoutFragmnet    | 주문내역,  DB                                   |
-
-
-
-  2. 서버 통신
-     -Android - web 간의 HttpConnection
+        1 . Activity: -1개의 MainActivity에 8개의 Fragment로 구성<br>
+           1-1. 정산확인(영업마감) 메시지를 띄우는 기능(CaculateDialogFragment)<br>
+           1-2. 정산기능과 일일 주문건의 정보를 담음(CaculateLayoutFragment)<br>
+           1-3. 메뉴를 담지 않고 주문할 경우 띄우는 메세지 기능(CustomDialogFragment)<br>
+           1-4. 영업기간과 일일판매량을 표시 (DaySellLayoutFragment)<br>
+           1-5. 로그인 기능(LoginDialogFragment)<br>
+           1-6. 메뉴 선택 및 결제 기능(MenuLayOutFragment)<br>
+           1-7. ViewPager 를 사용하기위해 필요한 Default model(PlaceHolderFragment)<br>
+           1-8. 주문내역,  DB (OrderLayoutFragmnet)<br>
+           
+        2. 서버 통신
+           -Android - web 간의 HttpConnection(sales관련 데이터 전송 -> poscontroller에서 받는다)
 
 
+####   
 
-#### 4-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
+        
+####      4-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
 
-  1. 액티비티
+        1 . Activity: - 2개의 Activity로 구성
+           1-1 현재시간과, 배송정보, 평균 재고량을 나타내는 기능(mainactivity)
+           1-2 IOT기계로 부터 받은 데이터 표시(ProgressActivity)
+           
+        2. 서비스
+           - FCM(Firebase Cloud Messaging)
 
-   | Activity         | Explain                                           |
-   | ---------------- | ------------------------------------------------- |
-   | MainActivity     | 현재시간과, 배송정보, 평균 재고량을 나타내는 기능 |
-   | ProgressActivity | IOT기계로 부터 받은 데이터 표시                   |
+        3. 통신
+           - http통신 : 센서데이터를 웹상으로 전달
+           - tcp/ip : 센서데이터를 수신
 
-  2. 서비스
 
-    - FCM(Firebase Cloud Messaging)
+####   
 
-  3. 통신
 
-    - http통신 : 센서데이터를 웹상으로 전달
-    - tcp/ip : 센서데이터를 수신
 
 ### 4-3 로드셀 구성
 
