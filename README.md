@@ -37,7 +37,12 @@
 
 ### 2. 시스템 구성
 
-![system](https://user-images.githubusercontent.com/52269210/80945520-f182bd00-8e26-11ea-9d7b-a23ef6e50568.JPG)
+ ![system](https://user-images.githubusercontent.com/52269210/80945520-f182bd00-8e26-11ea-9d7b-a23ef6e50568.JPG ) 
+ 
+### 3. 프로젝트 구조
+ 
+ ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG )
+
 
 ####          부가 설명
 
@@ -49,13 +54,13 @@
 
                        3. Logistics : JavaFx, ECU(Lattepanda), CAN 통신<br>
 
-             2.  웹서버
+              2.  웹서버
 
                       1. Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat 
 
                       2. Front-End: Bootstrap, HTML5, AJAX & jQuery<br>
 
-            3. 데이터베이스
+             3. 데이터베이스
 
                      1. DB : Oracle Database , Hadoop HDF
 
@@ -64,17 +69,16 @@
                      3.시각화: Highcharts ( Java )  
 
 
- ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
 
 
 
-### 3.  화면구성
+### 4.  화면구성
 
-###   #3-1 웹 구성(MVC pattern)
+###   4-1 웹 구성(MVC pattern)
 
  주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다 . 부가적인 설명은 아래와 같습니다.
 
-####      3-1-1 본사[Headquarter]를 위한 페이지   
+####      4-1-1 본사[Headquarter]를 위한 페이지   
 
         1. CRUD 페이지
         2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
@@ -83,21 +87,19 @@
         5. IOT 기계들을 (container) 등록 및 관리 페이지
         6. 재료 관리 페이지
 
-#### 3-1-2 가맹주[User]를 위한 페이지 
+####      4-1-1 가맹주[User]를 위한 페이지   
 
-     1. CRUD 페이지
-     2. 계정 신청 페이지
-     3. 분석 페이지
-     4. 재고관리 및 발주 페이지
-
-
+        1. CRUD 페이지
+        2. 계정 신청 페이지
+        3. 분석 페이지
+        4. 재고관리 및 발주 페이지
 
 
-### # 3-2 안드로이드 구성
+### 4-2 안드로이드 구성
 
 - 기능에 따라 크게 **3가지로** 나누었습니다. 부가적인 설명은 아래와 같습니다
 
-####   3-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
+####   4-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
 
    1 . Activity: -1개의 MainActivity에 8개의 Fragment로 구성
 
@@ -114,41 +116,38 @@
 
 
 
-2. 서버 통신
-
-   -Android - web 간의 HttpConnection
-
+  2. 서버 통신
+     -Android - web 간의 HttpConnection
 
 
-#### 3-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
 
-1. 액티비티
+#### 4-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
+
+  1. 액티비티
 
    | Activity         | Explain                                           |
    | ---------------- | ------------------------------------------------- |
    | MainActivity     | 현재시간과, 배송정보, 평균 재고량을 나타내는 기능 |
    | ProgressActivity | IOT기계로 부터 받은 데이터 표시                   |
 
-2. 서비스
+  2. 서비스
 
-   - FCM(Firebase Cloud Messaging)
+    - FCM(Firebase Cloud Messaging)
 
-3. 통신
+  3. 통신
 
-   - http통신 : 센서데이터를 웹상으로 전달
-   - tcp/ip : 센서데이터를 수신
+    - http통신 : 센서데이터를 웹상으로 전달
+    - tcp/ip : 센서데이터를 수신
 
-### 3-3 로드셀 구성
+### 4-3 로드셀 구성
 
-      3-3-1. 로드셀 회로 설계
+      4-3-1. 로드셀 회로 설계
 
    ![로드셀회로](https://user-images.githubusercontent.com/52269210/80945694-54745400-8e27-11ea-92b8-417cec94a9e4.png)
 
 
 
-
-
-### 3-4 Hadoop 구성
+### 4-4 Hadoop 구성
 
 > 1. 연결 흐름도
 >
