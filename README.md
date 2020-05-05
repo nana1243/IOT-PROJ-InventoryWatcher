@@ -17,53 +17,64 @@
 
 ### 1. 프로젝트 설명 및 배경
 
-> 1-1 프로젝트 배경
->
-> 팀원들의 다양한 아르바이트 경험 특히,  **매장에서의 재고관리**   그리고  **AWS 원버튼** 의 아이디어를 얻어 로드셀을 활용한 IOT가 결합된 재고관리 시스템을 구축을 목표로 하게 되었습니다.
->
-> 1-2 프로젝트가 목표한 서비스에 관한 기능 
->
-> - 프랜차이즈 소유주의 가맹점 매출정보 및 재고현황 파악 (웹 서비스)
-> - 가맹점주의 매장 매출정보, 재고정보 파악 (안드로이드 앱 , 웹 서비스 제공)
-> - 자동 발주 주문서 생성 , 배송상태 확인 가능
-> - 매출 정보 및 발주 정보 데이터 분석을 통한 최적의 재고관리 솔루션 제공 
->
-> 
+​       1-1 프로젝트 배경
+
+​           팀원들의 다양한 아르바이트 경험 특히,  **매장에서의 재고관리**   그리고  **AWS 원버튼** 의 아이디어를 얻어 
+
+​           로드셀을 활용한 IOT가 결합된 재고관리 시스템을 구축을 목표로 하게 되었습니다.
+
+​      1-2 프로젝트가 목표한 서비스에 관한 기능 
+
+​            1. 프랜차이즈 소유주의 가맹점 매출정보 및 재고현황 파악 (웹 서비스)
+
+​            2. 가맹점주의 매장 매출정보, 재고정보 파악 (안드로이드 앱 , 웹 서비스 제공)
+
+​            3. 자동 발주 주문서 생성 , 배송상태 확인 가능
+
+​            4. 매출 정보 및 발주 정보 데이터 분석을 통한 최적의 재고관리 솔루션 제공 
+
+
 
 ### 2. 시스템 구성
 
 ![system](https://user-images.githubusercontent.com/52269210/80945520-f182bd00-8e26-11ea-9d7b-a23ef6e50568.JPG)
 
-#### 부가 설명
+####          부가 설명
 
->1. 안드로이드 및 아두이노
->    1. POS : Android, Java<br>
->    2. Local Pad : Android, Java<br>
->    3. Logistics : JavaFx, ECU(Lattepanda), CAN 통신<br>
->
->2. 웹서버
->    1. Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat 
->    2. Front-End: Bootstrap, HTML5, AJAX & jQuery<br>
->
->3. 데이터베이스
->    1. DB : Oracle Database , Hadoop HDF
->    2. 분석도구 :Hadoop hive, R
->    3. 시각화: Highcharts ( Java )  
->
->4. API
->    1. FCM
->    2. AWS
-> ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
+​              1. 안드로이드 및 아두이노
+
+​                       1.POS : Android, Java<br>
+
+​                       2. Local Pad : Android, Java<br>
+
+​                       3. Logistics : JavaFx, ECU(Lattepanda), CAN 통신<br>
+
+​             2.  웹서버
+
+​                      1. Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat 
+
+​                      2. Front-End: Bootstrap, HTML5, AJAX & jQuery<br>
+
+​            3. 데이터베이스
+
+​                     1. DB : Oracle Database , Hadoop HDF
+
+​                     2.분석도구 :Hadoop hive, R
+
+​                     3.시각화: Highcharts ( Java )  
+
+
+​           ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
 
 
 
 ### 3.  화면구성
 
-###   3-1 웹 구성(MVC pattern)
+###   #3-1 웹 구성(MVC pattern)
 
  주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다 . 부가적인 설명은 아래와 같습니다.
 
-####  3-1-1 본사[Headquarter]를 위한 페이지   
+####      3-1-1 본사[Headquarter]를 위한 페이지   
 
 1. CRUD 페이지
 2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
@@ -93,7 +104,7 @@
 
 
 
-### 3-2 안드로이드 구성
+### # 3-2 안드로이드 구성
 
 - 기능에 따라 크게 **3가지로** 나누었습니다. 부가적인 설명은 아래와 같습니다
 
@@ -135,29 +146,18 @@
 
 3. 통신
 
-   | 통신종류          | Explain                                                  |
-   | ----------------- | -------------------------------------------------------- |
-   | httpUrlConnection | IOT로 부터 받은 데이터를 Android-> WEB 로 데이터 송/수신 |
-   | TCP/IP            | IOT기계로 부터 받은 데이터 송/수신                       |
+   - http통신 : 센서데이터를 웹상으로 전달
+   - tcp/ip : 센서데이터를 수신
 
-   
+### 3-3 로드셀 구성
 
-### 3-3 Aduino 및 로드셀 구성
+​      3-3-1. 로드셀 회로 설계
+
+​               ![로드셀회로](https://user-images.githubusercontent.com/52269210/80945694-54745400-8e27-11ea-92b8-417cec94a9e4.png)
 
 
 
-> - 기능에 따른 Aduino  구성
->
->   | 기능                                | src folder |
->   | ----------------------------------- | ---------- |
->   | 로드셀로 부터 측정한 데이터 송/수신 | Serial     |
->   | Android와 tcp/ip통신                | tcp/ip2    |
->
-> - 로드셀 회로설계
->
->   ![로드셀회로](https://user-images.githubusercontent.com/52269210/80945694-54745400-8e27-11ea-92b8-417cec94a9e4.png)
->
-> 
+
 
 ### 3-4 Hadoop 구성
 
