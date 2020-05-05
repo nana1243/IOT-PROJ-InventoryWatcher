@@ -1,16 +1,16 @@
 # InventoryWatcher Proj(2020.03.27-04.30) - 수정중
-
 ### 목차
 
 > 1. 프로젝트에 설명 및 배경
->2. 시스템 구성
-> 3. 화면구성
+> 2. 시스템 구성
+> 3. 프로젝트 구성(그림다시)
+> 4. 화면구성
 >    - Web 구성
 >    - Android 구성
 >    - IOT구성
-> 4.  DB-ERD
-> 5. 프로젝트 결과
-> 
+> 5.  DB-ERD
+> 6. 프로젝트 결과
+>    cf> 로드셀까지 수정완료
 >    
 
 
@@ -60,11 +60,10 @@
 
 ### 4.  화면구성
 
-###   4-1 웹 구성(MVC pattern)
+####   1. 웹 구성
+- 주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다.
 
- 주체를 기준으로 크게 **2가지**로 나누어 설계하였습니다 . 부가적인 설명은 아래와 같습니다.
-
-####      4-1-1 본사[Headquarter]를 위한 페이지   
+####      1-1. 본사[Headquarter]를 위한 페이지   
 
         1. CRUD 페이지
         2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
@@ -73,29 +72,31 @@
         5. IOT 기계들을 (container) 등록 및 관리 페이지
         6. 재료 관리 페이지
 
-####      4-1-1 가맹주[User]를 위한 페이지   
+####      1-2. 가맹주[User]를 위한 페이지   
 
         1. CRUD 페이지
         2. 계정 신청 페이지
         3. 분석 페이지
         4. 재고관리 및 발주 페이지
 
+<br>
+<br>
 
-### 4-2 안드로이드 구성
+####  2. 안드로이드 구성
 
-- 기능에 따라 크게 **3가지로** 나누었습니다. 부가적인 설명은 아래와 같습니다
+- 기능에 따라 크게 **3가지로** 나누었습니다.
 
-####      4-2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
+####      2-1.POS : 매장의 주문 및 매출에 관련된 정보를 담는 시스템
 
-        1 . Activity: -1개의 MainActivity에 8개의 Fragment로 구성<br>
-           1-1. 정산확인(영업마감) 메시지를 띄우는 기능(CaculateDialogFragment)<br>
-           1-2. 정산기능과 일일 주문건의 정보를 담음(CaculateLayoutFragment)<br>
-           1-3. 메뉴를 담지 않고 주문할 경우 띄우는 메세지 기능(CustomDialogFragment)<br>
-           1-4. 영업기간과 일일판매량을 표시 (DaySellLayoutFragment)<br>
-           1-5. 로그인 기능(LoginDialogFragment)<br>
-           1-6. 메뉴 선택 및 결제 기능(MenuLayOutFragment)<br>
-           1-7. ViewPager 를 사용하기위해 필요한 Default model(PlaceHolderFragment)<br>
-           1-8. 주문내역,  DB (OrderLayoutFragmnet)<br>
+        1 . Activity: -1개의 MainActivity에 8개의 Fragment로 구성
+           1-1. 정산확인(영업마감) 메시지를 띄우는 기능(CaculateDialogFragment)
+           1-2. 정산기능과 일일 주문건의 정보를 담음(CaculateLayoutFragment)
+           1-3. 메뉴를 담지 않고 주문할 경우 띄우는 메세지 기능(CustomDialogFragment)
+           1-4. 영업기간과 일일판매량을 표시 (DaySellLayoutFragment)
+           1-5. 로그인 기능(LoginDialogFragment)
+           1-6. 메뉴 선택 및 결제 기능(MenuLayOutFragment)
+           1-7. ViewPager 를 사용하기위해 필요한 Default model(PlaceHolderFragment)
+           1-8. 주문내역,  DB (OrderLayoutFragmnet)
            
         2. 서버 통신
            -Android - web 간의 HttpConnection(sales관련 데이터 전송 -> poscontroller에서 받는다)
@@ -104,7 +105,7 @@
 ####   
 
         
-####      4-2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
+####      2-2.LocalPad : 재고관리를 실시간 모니터링 할 수 있는 테블릿(iot장비와 연동)
 
         1 . Activity: - 2개의 Activity로 구성
            1-1 현재시간과, 배송정보, 평균 재고량을 나타내는 기능(mainactivity)
@@ -123,11 +124,9 @@
 
 
 ### 4-3 로드셀 구성
-
-      4-3-1. 로드셀 회로 설계
-
-   ![로드셀회로](https://user-images.githubusercontent.com/52269210/80945694-54745400-8e27-11ea-92b8-417cec94a9e4.png)
-
+   1. 로드셀 회로 설계
+   
+![로드셀회로](https://user-images.githubusercontent.com/52269210/80945694-54745400-8e27-11ea-92b8-417cec94a9e4.png)
 
 
 ### 4-4 Hadoop 구성
