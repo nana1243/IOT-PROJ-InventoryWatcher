@@ -36,8 +36,9 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		String hqid = (String) session.getAttribute("loginId");
+		
+
 		ArrayList<ChainVO> chainvolist = chainbiz.getbyhq(hqid);
-		System.out.println("chainvo" + chainvolist);
 		ArrayList<String> chainlist = new ArrayList<String>();
 		
 		for(ChainVO element : chainvolist) {
@@ -68,10 +69,7 @@ public class AdminController {
 	
 	
 	
-	// admin 신청완료 page
 	
-	
-
 
 
 

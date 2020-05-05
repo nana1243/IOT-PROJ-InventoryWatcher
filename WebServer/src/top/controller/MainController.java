@@ -43,14 +43,12 @@ public class MainController {
 		String u_id = (String) session.getAttribute("loginId");
 		String who = (String) session.getAttribute("who");
 		String year = req.getParameter("year");
-
 		if (year == null) {
 			year = "2019";
 		}
 		ArrayList<SalesVO> salesList = salesbiz.getYear(year);
 		mv.addObject("year", year);
 		mv.addObject("salesData", salesList);
-
 		mv.addObject("loginId", u_id);
 		mv.addObject("who", who);
 		mv.addObject("AllChainsVisualAnalysis", "../main/AllChains");
@@ -77,10 +75,6 @@ public class MainController {
 			JSONArray ja = new JSONArray();
 			JSONArray data = new JSONArray();
 			for (int i = 0; i < salesList.size(); i++) {
-//				JSONArray ja_inner = new JSONArray();
-//				ja_inner.add(chainList.get(i).getChainName());
-//				ja_inner.add(salesList.get(i).getTotSales());
-//				ja_outer.add(ja_inner);
 
 				JSONObject jo_inin = new JSONObject();
 				jo_inin.put("name", salesList.get(i).getChainID());
@@ -116,8 +110,6 @@ public class MainController {
 			ja.add(ja_drilldown);
 
 			System.out.println(ja.toString());
-//			res.setCharacterEncoding("UTF-8");
-//			res.setContentType("text/json; charset=UTF-8");
 			res.setCharacterEncoding("EUC-KR");
 			res.setContentType("text/json; charset=EUC-KR");
 			out.write(ja.toString());

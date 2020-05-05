@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -30,7 +29,6 @@ import top.vo.OrderVO;
 //order와 orderdetail 처리 컨트롤러 
 @Controller
 public class OrderController {
-	private Logger logger = Logger.getLogger(OrderController.class);//로깅 처리 변수 
 
 	@Resource(name = "ingbiz")
 	Biz<String, IngredientVO> biz;
@@ -54,7 +52,7 @@ public class OrderController {
 		int dataLength = Integer.parseInt(loadProds);
 		ArrayList<String> orderDetailID = new ArrayList<>();
 		ArrayList<OrderDetailVO> OrderDetailVO = new ArrayList<>();
-        logger.info("This is an info log entry");
+ 
         JSONParser parser = new JSONParser();
 		JSONObject jsonObject = null;
 		
@@ -74,7 +72,6 @@ public class OrderController {
 			//orderDetailID.add((String) jsonObject.get(Integer.toString(i)));
 //			biz3.update(mine);
 			OrderDetailList = biz3.get((String) jsonObject.get(Integer.toString(i)));
-	        logger.info("OrderDetail Log " + OrderDetailList.getOrderDetailID() + " " + OrderDetailList.getHqName() + " " + OrderDetailList.getChainName() + " " + OrderDetailList.getIngPrice() + " " + OrderDetailList.getIngTotPrice());
 		}
 	}
 	/*

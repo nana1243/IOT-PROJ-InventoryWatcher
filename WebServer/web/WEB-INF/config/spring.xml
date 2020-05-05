@@ -55,12 +55,11 @@
 		<!-- 70.12.113.219 -->
 		<!-- 192.168.0.6 -->
 		<property name="url"
-			value="jdbc:oracle:thin:@70.12.113.196:1521:XE" />
+			value="jdbc:oracle:thin:@15.165.163.102:1521:xe" />
+
 		<property name="username" value="top" />
 		<property name="password" value="111111" />
-		<!-- <property name="url" value="jdbc:oracle:thin:@70.12.113.219:1521:xe" 
-			/> <property name="username" value="sp365" /> <property name="password" value="0365" 
-			/> -->
+
 	</bean>
 	<!-- 2. Transaction Setting -->
 	<bean id="txManager"
@@ -83,8 +82,8 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="top.mapper" />
 	</bean>
-	
-	
+
+
 
 
 </beans>

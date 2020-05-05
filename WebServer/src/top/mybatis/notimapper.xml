@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="select" parameterType="string" resultType="noti">
 		select *
-		from noti where chainID = #{chainID}
+		from noti where chainID = #{chainID} 
 	</select>
 
 

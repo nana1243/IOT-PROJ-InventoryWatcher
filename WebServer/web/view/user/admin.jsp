@@ -36,7 +36,6 @@ table {
 	border-collapse: collapse;
 	width: 100%;
 }
-
 th, td {
 	padding: 8px;
 	text-align: left;
@@ -96,17 +95,15 @@ th, td {
 								<table>
 									<tr>
 										<th>ChinId</th>
-										<th>ChinName</th>
 										<th>UserId</th>
 										<th>신청자수</th>
 										<th>신청날</th>
 									</tr>
 									<c:forEach var="notilist" items="${notilist}">
 										<tr>
-											<td>${notilist.chainid }</td>
-											<td>${notilist.chainname }</td>
-											<td>${notilist.userid }</td>
-											<td>${notilist.applycnt }</td>
+											<td>${notilist.chainID }</td>
+											<td>${notilist.userID }</td>
+											<td>${notilist.applyCnt }</td>
 											<td>${notilist.regDate }</td>
 										</tr>
 

@@ -42,26 +42,31 @@ public class HeadquarterController {
 	@Resource(name = "notibiz")
 	Biz<String, NotiVO> notibiz;
 
-//	private static Logger logger = LoggerFactory.getLogger(HeadquarterController.class);
+	HeadquarterVO hqvo;
+	ChainVO chainvo;
+	UserVO usrvo;
+	NotiVO notivo;
+
+	/*
+	 * 1. register 2. registerimpl 3. addAddr- chain추가 4. addAddrImpl - Chain추가 5.
+	 * idCheck - ID 중복확인 기능 5. read(ajax) 6. readTrue(ajax) 7. update 8. updateimpl
+	 */
 
 	// 1. register
 	@RequestMapping("/signup.top")
 	public ModelAndView signup(ModelAndView mv) {
 		System.out.println("enter into signup.top");
-//		mv.addObject("center", "../user/register");
 		mv.setViewName("user/register");
 		return mv;
 	}
 
 	// 2. register_impl
 	@RequestMapping(value = "/signupimpl.top", produces = "text/plain;charset=UTF-8")
-	public String signupimpl(HeadquarterVO hq_register, HttpServletRequest request) {
-		System.out.println("enter into signupimpl.top");
+	public String signupimpl(HttpServletRequest request) {
+
+		hqvo = new HeadquarterVO();
 		try {
-
-			// 한글 안깨지려면!
-			request.setCharacterEncoding("UTF-8");
-
+			request.setCharacterEncoding("UTF-8"); // 한글 안깨지려면
 			// getparameter start
 			String hq_name = request.getParameter("cname").trim();
 			String hq_id = request.getParameter("hqid").trim();
@@ -74,53 +79,30 @@ public class HeadquarterController {
 
 			// hq resgister set and register
 			try {
-				hq_register.setHqID(hq_id);
-				hq_register.setHqPwd(hq_pwd);
-				hq_register.setHqName(hq_name);
-				hq_register.setHqEmail(hq_email);
-				hq_register.setHqPhone(hq_phone);
-				hq_register.setHqRegDate(hq_regdate);
-				hq_register.setChainCount(hq_chaincnt);
-				hq_register.setHqAddress(hq_addr);
-				hqbiz.register(hq_register);
-
-				// error 날 상황 -> utf encoding안될때, sql exception
+				hqvo.setHqID(hq_id);
+				hqvo.setHqPwd(hq_pwd);
+				hqvo.setHqName(hq_name);
+				hqvo.setHqEmail(hq_email);
+				hqvo.setHqPhone(hq_phone);
+				hqvo.setHqRegDate(hq_regdate);
+				hqvo.setChainCount(hq_chaincnt);
+				hqvo.setHqAddress(hq_addr);
+				hqbiz.register(hqvo);
 			} catch (Exception e) {
 
-				// null일때 error남
-				System.out.println("----------SQL INSERT FAIL ----------------");
+				System.out.println("SQL INSERT FAIL"); // null 일때
+				return "redirect:main.top";
 			}
 		} catch (UnsupportedEncodingException e1) {
 			System.out.println("----------ENCODING FAIL----------------");
-			e1.printStackTrace();
+			return "redirect:main.top";
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main/main");
 		return "redirect:main.top";
 	}
 
-	@RequestMapping("/addAddr.top")
-	public ModelAndView addAddr(ModelAndView mv, HttpServletRequest request) {
-		System.out.println("enter into addAddr.top");
-
-		// addADDR과정
-		HttpSession session = request.getSession();
-		String hqid = (String) session.getAttribute("loginId");
-		System.out.println(hqid);
-
-		// headquarter가 담당하는 chain갯수를 jsp로 넘겨줘야 하기에 !
-
-		HeadquarterVO hqvo = hqbiz.get(hqid);
-
-		Integer chaincnt = Integer.parseInt(hqvo.getChainCount());
-		session.setAttribute("chaincnt", chaincnt);
-		// 화면으로 넘어가자!
-		mv.setViewName("user/AddAddr");
-		return mv;
-	}
-
 	// sign up 할때 idcheckup
-
 	@RequestMapping(value = "/idCheck.top", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String AjaxView(@RequestParam("hqid") String hqid, String idcheck, HttpServletRequest request)
 			throws UnsupportedEncodingException {
@@ -141,13 +123,27 @@ public class HeadquarterController {
 		return str;
 	}
 
+	// headquarter가 담당하는 체인갯수만큼 input이 존재해야한다
+	
+	@RequestMapping("/addAddr.top")
+	public ModelAndView addAddr(ModelAndView mv, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		String hqid = (String) session.getAttribute("loginId");
+		hqvo = hqbiz.get(hqid);
+		Integer chaincnt = Integer.parseInt(hqvo.getChainCount());
+		session.setAttribute("chaincnt", chaincnt);
+		mv.setViewName("user/AddAddr");
+		return mv;
+	}
+
 	// Addrimpl 과정
 
 	@RequestMapping(value = "/addAddrimpl.top", produces = "text/plain;charset=UTF-8")
 	public String addAddrimpl(HttpServletRequest request) {
 		ArrayList<String> hq_addr = new ArrayList<String>();
 		HttpSession session = request.getSession();
-		String hqid = (String) session.getAttribute("loginid");
+		String hqid = (String) session.getAttribute("loginId");
 		String chainname = request.getParameter("chainname").trim();
 		String regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
@@ -163,7 +159,6 @@ public class HeadquarterController {
 				System.out.println(inputaddr + "----------- check ADDR--------------");
 			}
 		}
-		System.out.println(hq_addr);
 
 		// 주소를 입력하는 동시에 chain INSERT 시작된다!
 		for (int i = 0; i < hq_addr.size(); i++) {
@@ -192,7 +187,6 @@ public class HeadquarterController {
 		HttpSession session = request.getSession();
 
 		String hqid = (String) session.getAttribute("loginId");
-//		logger.info(hqid);
 
 		// step1. hq가 맡는 chainid를 모두 불러온다
 		ArrayList<String> chainIdList = new ArrayList<String>();
@@ -205,7 +199,7 @@ public class HeadquarterController {
 			chainIdList.add(chainid);
 
 		}
-		System.out.println(chainIdList);
+		
 
 		// STEP2. 해당하는 CHAINID에 따른 모든 noti를 불러온다
 		// 이떄의 notification은 refresh ="true"일때만 불러온다
@@ -213,26 +207,24 @@ public class HeadquarterController {
 		ArrayList<NotiVO> notiList = new ArrayList<NotiVO>();
 
 		for (int i = 0; i < chainIdList.size(); i++) {
-			NotiVO noti = notibiz.get(chainIdList.get(i));
-			System.out.println("noti : " + noti);
-			if (noti == null) {
+			notivo = notibiz.get(chainIdList.get(i));
+			if (notivo == null) {
 				continue;
 			}
-			System.out.println("refresh : " + noti.getRefresh());
-			if (noti != null && noti.getRefresh().equals("new")) {
-				System.out.println("noti in : " + noti);
-				notiList.add(noti);
-				System.out.println(noti.getChainid());
-				notibiz.refreshStateTrue(noti.getChainid());
+			System.out.println("refresh : " + notivo.getRefresh());
+			if (notivo != null && notivo.getRefresh().equals("new")) {
+			
+				notiList.add(notivo);
+				System.out.println(notivo.getChainid());
+				notibiz.refreshStateTrue(notivo.getChainid());
 				try {
-					notibiz.modify(noti);
+					notibiz.modify(notivo);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		System.out.println("check notiList size : " + notiList.size());
-
+	
 		// step3. 이제는 자바스크립트로 보낼 애들만 !
 		// and ajax로 보냇다면 -> update로 상태를 바꿔준다
 
@@ -250,7 +242,6 @@ public class HeadquarterController {
 			array.add(data);
 		}
 
-		System.out.println(array);
 		System.out.println("success ajax!");
 		return array;
 
@@ -262,13 +253,11 @@ public class HeadquarterController {
 		HttpSession session = request.getSession();
 
 		String hqid = (String) session.getAttribute("loginId");
-//		logger.info(hqid);
 
 		// step1. hq가 맡는 chainid를 모두 불러온다
 		ArrayList<String> chainIdList = new ArrayList<String>();
 		ArrayList<ChainVO> clist = chainbiz.getbyhq(hqid);
 
-		System.out.println("clist :" + clist);
 		for (ChainVO element : clist) {
 			String chainid = element.getChainID();
 			System.out.println(chainid);
@@ -283,37 +272,30 @@ public class HeadquarterController {
 		ArrayList<NotiVO> notiList = new ArrayList<NotiVO>();
 
 		for (int i = 0; i < chainIdList.size(); i++) {
-			NotiVO noti = notibiz.get(chainIdList.get(i));
-			System.out.println("noti : " + noti);
-			if (noti == null) {
+			notivo = notibiz.get(chainIdList.get(i));
+			if (notivo == null) {
 				continue;
 			}
-			System.out.println("refresh : " + noti.getRefresh());
-			if (noti != null && noti.getRefresh().equals("true")) {
-				System.out.println("noti in : " + noti);
-				notiList.add(noti);
-				System.out.println(noti.getChainid());
-				notibiz.refreshStateTrue(noti.getChainid());
+			System.out.println("refresh : " + notivo.getRefresh());
+			if (notivo != null && notivo.getRefresh().equals("true")) {
+				notiList.add(notivo);
+				System.out.println(notivo.getChainid());
+				notibiz.refreshStateTrue(notivo.getChainid());
 				try {
-					notibiz.modify(noti);
+					notibiz.modify(notivo);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		System.out.println("check notiList size : " + notiList.size());
-
-		// step3. 이제는 자바스크립트로 보낼 애들만 !
-		// and ajax로 보냇다면 -> update로 상태를 바꿔준다
 
 		JSONArray array = new JSONArray();
 		for (NotiVO element : notiList) {
 			JSONObject data = new JSONObject();
+			
 			String applycnt = element.getApplycnt();
-
-			System.out.println("applycnt" + applycnt);
 			String chainid = element.getChainid();
-			System.out.println("chainid" + chainid);
+			
 			data.put("chainid", chainid);
 			data.put("applycnt", applycnt);
 //			notibiz.refreshstate(chainid);
