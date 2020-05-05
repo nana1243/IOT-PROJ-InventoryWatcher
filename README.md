@@ -17,21 +17,21 @@
 
 ### 1. 프로젝트 설명 및 배경
 
-​       1-1 프로젝트 배경
+       1-1 프로젝트 배경
 
-​           팀원들의 다양한 아르바이트 경험 특히,  **매장에서의 재고관리**   그리고  **AWS 원버튼** 의 아이디어를 얻어 
+           팀원들의 다양한 아르바이트 경험 특히,  **매장에서의 재고관리**   그리고  **AWS 원버튼** 의 아이디어를 얻어 
 
-​           로드셀을 활용한 IOT가 결합된 재고관리 시스템을 구축을 목표로 하게 되었습니다.
+           로드셀을 활용한 IOT가 결합된 재고관리 시스템을 구축을 목표로 하게 되었습니다.
 
-​      1-2 프로젝트가 목표한 서비스에 관한 기능 
+      1-2 프로젝트가 목표한 서비스에 관한 기능 
 
-​            1. 프랜차이즈 소유주의 가맹점 매출정보 및 재고현황 파악 (웹 서비스)
+            1. 프랜차이즈 소유주의 가맹점 매출정보 및 재고현황 파악 (웹 서비스)
 
-​            2. 가맹점주의 매장 매출정보, 재고정보 파악 (안드로이드 앱 , 웹 서비스 제공)
+            2. 가맹점주의 매장 매출정보, 재고정보 파악 (안드로이드 앱 , 웹 서비스 제공)
 
-​            3. 자동 발주 주문서 생성 , 배송상태 확인 가능
+            3. 자동 발주 주문서 생성 , 배송상태 확인 가능
 
-​            4. 매출 정보 및 발주 정보 데이터 분석을 통한 최적의 재고관리 솔루션 제공 
+            4. 매출 정보 및 발주 정보 데이터 분석을 통한 최적의 재고관리 솔루션 제공 
 
 
 
@@ -41,30 +41,30 @@
 
 ####          부가 설명
 
-​              1. 안드로이드 및 아두이노
+              1. 안드로이드 및 아두이노
 
-​                       1.POS : Android, Java<br>
+                       1.POS : Android, Java<br>
 
-​                       2. Local Pad : Android, Java<br>
+                       2. Local Pad : Android, Java<br>
 
-​                       3. Logistics : JavaFx, ECU(Lattepanda), CAN 통신<br>
+                       3. Logistics : JavaFx, ECU(Lattepanda), CAN 통신<br>
 
-​             2.  웹서버
+             2.  웹서버
 
-​                      1. Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat 
+                      1. Back-End : Spring & Mybatis , AWS EC2 , Apache Tomcat 
 
-​                      2. Front-End: Bootstrap, HTML5, AJAX & jQuery<br>
+                      2. Front-End: Bootstrap, HTML5, AJAX & jQuery<br>
 
-​            3. 데이터베이스
+            3. 데이터베이스
 
-​                     1. DB : Oracle Database , Hadoop HDF
+                     1. DB : Oracle Database , Hadoop HDF
 
-​                     2.분석도구 :Hadoop hive, R
+                     2.분석도구 :Hadoop hive, R
 
-​                     3.시각화: Highcharts ( Java )  
+                     3.시각화: Highcharts ( Java )  
 
 
-​           ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
+ ![PROJ](https://user-images.githubusercontent.com/52269210/80945612-21ca5b80-8e27-11ea-9ca2-f0bbee831b60.JPG)
 
 
 
@@ -76,31 +76,20 @@
 
 ####      3-1-1 본사[Headquarter]를 위한 페이지   
 
-1. CRUD 페이지
-2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
-3. 분석 페이지
-4. 본사와 가맹주간의 메세지 페이지
-5. IOT 기계들을 (container) 등록 및 관리 페이지
-6. 재료 관리 페이지
+        1. CRUD 페이지
+        2. 매장POS로(android) 부터 받은 데이터 모니터링 페이지
+        3. 분석 페이지
+        4. 본사와 가맹주간의 메세지 페이지
+        5. IOT 기계들을 (container) 등록 및 관리 페이지
+        6. 재료 관리 페이지
 
 #### 3-1-2 가맹주[User]를 위한 페이지 
 
-1. CRUD 페이지
-2. 계정 신청 페이지
-3. 분석 페이지
-4. 재고관리 및 발주 페이지
+     1. CRUD 페이지
+     2. 계정 신청 페이지
+     3. 분석 페이지
+     4. 재고관리 및 발주 페이지
 
-| Controller                         | Model                                                   | View                                                         |
-| ---------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| MainController StatisticController | salesVO                                                 | main.jsp <br>statMain.jsp                                        |
-| HeadquarterController              | HeadquarterVO <br>NotiVO UserVO <br>ChainVO                     | sign.jsp<br> login.jsp <br> addAddr.jsp<br> admin.jsp                     |
-| UserController                     | UserVO <br>ChainVO <br>HeadquarterVO <br> NotiVO                     | userapply.jsp                                                |
-| OrderController                    | OrderVO, OrderDetailVO                                  | orderStatus.jsp<br> popup.jsp                                    |
-| IngredientControoler               | ingredientVO                                            | viewFolder :<br> inventory && ingredient                         |
-| PosController                      | MenuVO <br>SalesVO <br> SalesDetailVO                    |                                                              |
-| ContainerController                | ContainerVO <br>IngredientVO <br> OrderVO <br>OrderDetailVO <br> ChainVO | containerProgress.jsp <br> containerRegisterWizard.jsp<br> showContainerUpdateList.jsp |
-| AdminController                    | ChainVO<br> NotiVO                                          | admin.jsp                                                    |
-| ChainController                    | ContainerVO<br> NotiVO                                      | statMain.jsp                                                 |
 
 
 
@@ -151,9 +140,9 @@
 
 ### 3-3 로드셀 구성
 
-​      3-3-1. 로드셀 회로 설계
+      3-3-1. 로드셀 회로 설계
 
-​               ![로드셀회로](https://user-images.githubusercontent.com/52269210/80945694-54745400-8e27-11ea-92b8-417cec94a9e4.png)
+   ![로드셀회로](https://user-images.githubusercontent.com/52269210/80945694-54745400-8e27-11ea-92b8-417cec94a9e4.png)
 
 
 
@@ -190,7 +179,7 @@
 >
 > <img src="https://user-images.githubusercontent.com/52269210/80946182-6d313980-8e28-11ea-9e08-b6627b0e8b70.png" alt="로드셀" style="zoom:20%;" />    <img src="https://user-images.githubusercontent.com/52269210/80946201-79b59200-8e28-11ea-9454-10219aded0d0.png" alt="로드셀2" style="zoom:20%;" />
 >
-> ​       
+>       
 >
 > 2. web
 >
@@ -220,7 +209,7 @@
 >       ![semi_plusalpha](https://user-images.githubusercontent.com/52269210/80946799-cb125100-8e29-11ea-985e-8b83c8c62b72.png)
 >
 >
-> ​      
+>      
 >
 >    6. webView in Android
 >
@@ -232,5 +221,5 @@
 >
 >          <img src="https://user-images.githubusercontent.com/52269210/80947094-63103a80-8e2a-11ea-8fd7-fbbdb74c8e0b.jpg" alt="top2" style="zoom:35%;" />     <img src="https://user-images.githubusercontent.com/52269210/80947165-8aff9e00-8e2a-11ea-9d37-ad5e20352957.jpg" alt="top4" style="zoom:35%;" />
 >
-> ​       
+>       
 
