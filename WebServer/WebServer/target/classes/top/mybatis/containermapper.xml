@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="top.mapper.ContainerMapper">
+	<insert id="insert" parameterType="containerVO">
+		INSERT INTO CONTAINER VALUES
+		('CONID_'||TO_CHAR(CONID_seq.NEXTVAL),#{conSize},#{conMaxWeight},#{conRegDate},#{conUpdateDate},#{conFullWeight},#{conFullQuantity},#{conWarningWeight},#{conWarningQuantity},#{conCurrWeight},#{conCurrQuantity},#{conUnitWeight},#{ingID},#{ingName},#{ingWeight},#{chainID},#{chainName},#{hqID},#{hqName})
+	</insert>
+
+	<update id="update" parameterType="containerVO">
+		UPDATE CONTAINER SET
+		conFullQuantity=#{conFullQuantity},conFullWeight=#{conFullWeight},conWarningWeight=#{conWarningWeight},conWarningQuantity=#{conWarningQuantity},conUnitWeight=#{conUnitWeight},ingID=#{ingID},ingName=#{ingName},ingWeight=#{ingWeight}
+		WHERE CONID=#{conID}
+
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM CONTAINER WHERE
+		conID=#{conID}
+	</delete>
+
+	<select id="select" parameterType="String"
+		resultType="containerVO">
+		SELECT * FROM CONTAINER WHERE conID=#{conID}
+	</select>
+
+
+	<select id="selectall" resultType="containerVO">
+		SELECT * FROM CONTAINER
+	</select>
+
+	<select id="selectbyhq" parameterType="String"
+		resultType="containerVO">
+		SELECT * FROM CONTAINER WHERE hqID=#{hqID}
+	</select>
+
+	<select id="selectForChain" parameterType="String"
+		resultType="containerVO">
+		SELECT * FROM CONTAINER WHERE chainID=#{chainID}
+	</select>
+</mapper>
+
