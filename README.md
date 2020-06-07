@@ -1,4 +1,4 @@
-# InventoryWatcher Proj(2020.03.27-04.30) - 수정중
+# InventoryWatcher Proj(2020.03.27-04.30)
 ### 목차
 
 > 1. 프로젝트에 설명 및 배경
